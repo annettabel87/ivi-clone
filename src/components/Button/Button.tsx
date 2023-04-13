@@ -52,8 +52,8 @@ const Button: FC<IButtonProps> = ({
             backgroundColor: isHovering ? hoverBg : bgColor,
             border,
             borderRadius: radius,
-            height,
-            width,
+            height: height ? height : '40px',
+            width: width ? width : '196px',
             color: isHovering ? hoverFontColor : '#fff',
           }}
           className={styles.button__btn}
@@ -68,8 +68,8 @@ const Button: FC<IButtonProps> = ({
             backgroundColor: isHovering ? hoverBg : bgColor,
             border,
             borderRadius: radius,
-            height,
-            width,
+            height: height ? height : '40px',
+            width: width ? width : '196px',
             color: isHovering ? hoverFontColor : '#fff',
           }}
           target={target}
