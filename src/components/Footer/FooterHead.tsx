@@ -1,6 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { aboutLinks, sectionsLinks } from '@/shared/footerLinks/footerLinks';
+import { LinksList } from './linksList/LinksList';
 import Button from '../Button/Button';
 import FooterWidget from '../FooterWidget/FooterWidget';
 import mailIcon from '../../assets/icon/mail.png';
@@ -12,105 +14,11 @@ export const FooterHead = () => {
     <div className={styles.footer__head}>
       <div className={styles.footer__column}>
         <div className={styles.footer__title}>О нас</div>
-        <ul className={styles.footer__linksList}>
-          <li className={styles.footer__listItem}>
-            <Link href="https://corp.ivi.ru/" className={styles.footer__link}>
-              О компании
-            </Link>
-          </li>
-          <li className={styles.footer__listItem}>
-            <Link
-              href="https://corp.ivi.ru/career/#career-vacancy-block"
-              className={styles.footer__link}
-            >
-              Вакансии
-            </Link>
-          </li>
-          <li className={styles.footer__listItem}>
-            <Link href="https://www.ivi.ru/pages/beta/" className={styles.footer__link}>
-              Программа бета-тестирования
-            </Link>
-          </li>
-          <li className={styles.footer__listItem}>
-            <Link href="https://www.ivi.ru/info/partners" className={styles.footer__link}>
-              Информация для партнёров
-            </Link>
-          </li>
-          <li className={styles.footer__listItem}>
-            <Link
-              href="https://corp.ivi.ru/advertisers/?_gl=1*1jovxmj*_ga*NzQyOTcyNjUuMTY4MTI5OTIzNA..*_ga_GETQ4387MJ*MTY4MTM3OTY3My40LjEuMTY4MTM4MzcxOC40Mi4wLjA."
-              className={styles.footer__link}
-            >
-              Размещение рекламы
-            </Link>
-          </li>
-          <li className={styles.footer__listItem}>
-            <Link href="https://www.ivi.ru/info/agreement" className={styles.footer__link}>
-              Пользовательское соглашение
-            </Link>
-          </li>
-          <li className={styles.footer__listItem}>
-            <Link href="https://www.ivi.ru/info/confidential" className={styles.footer__link}>
-              Политика конфиденциальности
-            </Link>
-          </li>
-          <li className={styles.footer__listItem}>
-            <Link
-              href="https://www.ivi.ru/info/goryachaya-liniya-komplaens"
-              className={styles.footer__link}
-            >
-              Комплаенс
-            </Link>
-          </li>
-        </ul>
+        <LinksList list={aboutLinks} />
       </div>
       <div className={styles.footer__column}>
         <div className={styles.footer__title}>Разделы</div>
-        <ul className={styles.footer__linksList}>
-          <li className={styles.footer__listItem}>
-            <Link href="/" className={styles.footer__link}>
-              Мой Иви
-            </Link>
-          </li>
-          <li className={styles.footer__listItem}>
-            <Link href="https://www.ivi.ru/new" className={styles.footer__link}>
-              Что нового
-            </Link>
-          </li>
-          <li className={styles.footer__listItem}>
-            <Link href="/films" className={styles.footer__link}>
-              Фильмы
-            </Link>
-          </li>
-          <li className={styles.footer__listItem}>
-            <Link href="https://www.ivi.ru/series" className={styles.footer__link}>
-              Сериалы
-            </Link>
-          </li>
-          <li className={styles.footer__listItem}>
-            <Link href="https://www.ivi.ru/animation" className={styles.footer__link}>
-              Мультфильмы
-            </Link>
-          </li>
-          <li className={styles.footer__listItem}>
-            <Link href="https://www.ivi.ru/tvplus" className={styles.footer__link}>
-              TV+
-            </Link>
-          </li>
-          <li className={styles.footer__listItem}>
-            <Link href="https://www.ivi.ru/goodmovies" className={styles.footer__link}>
-              Что посмотреть
-            </Link>
-          </li>
-          <li className={styles.footer__listItem}>
-            <Link
-              href="https://www.ivi.ru/cert"
-              className={`${styles.footer__link} ${styles.footer__certificateLink}`}
-            >
-              Активация сертификата
-            </Link>
-          </li>
-        </ul>
+        <LinksList list={sectionsLinks} />
       </div>
       <div className={styles.footer__column}>
         <div className={styles.footer__title}>Служба поддержки</div>

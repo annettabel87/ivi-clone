@@ -1,0 +1,32 @@
+@import '../../../styles/variables.scss';
+
+.linksList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style: none;
+
+    &__listItem {
+        line-height: 20px;
+    }
+
+    &__link {
+        cursor: pointer;
+        color: $secondaryColor;
+        text-decoration: none;
+        opacity: 1;
+        transition: all 0.4s;
+
+        &:hover {
+            color: $mainColor;
+        }
+    }
+
+    &__certificateLink {
+        line-height: 20px;
+        font-weight: 500;
+        background-image: linear-gradient(-45deg, #c447ff, #ea003d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
