@@ -69,7 +69,7 @@ export const FooterHead = () => {
               <Image src={phoneIcon} alt="phone" width={16} height={16} />
             </Button>
             {showPhoneNumber && (
-              <Link className={styles.contacts__phone_block} href="tel:88002344923">
+              <Link className={styles.contacts__phone_block} type="tel" href="tel:88002344923">
                 <p className={styles.footer__title}>8 800 234-49-23</p>
                 <p className={styles.footer__text}>Бесплатно по России</p>
               </Link>
@@ -77,7 +77,7 @@ export const FooterHead = () => {
           </div>
         </div>
         <div className={styles.footer__questions}>
-          <Link type="tel" href="tel:88002344923" className={styles.footer_questions_link}>
+          <Link href="https://ask.ivi.ru/" className={styles.footer_questions_link}>
             <p className={styles.footer__text_bold}>ask.ivi.ru</p>
             <p className={styles.footer__text}>Ответы на вопросы</p>
           </Link>
