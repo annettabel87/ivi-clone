@@ -13,7 +13,7 @@ export const socialsData = [
   {
     id: 'odnoklassniki',
     iconUrl: '/icon/social_odnoklassniki.svg',
-    link: 'https://vk.com/iviruhttps://ok.ru/ivi.ru?crc=fa4448c13e06e69ba9e814e8743c7e2e',
+    link: 'https://ok.ru/ivi.ru',
   },
   {
     id: 'twitter',
