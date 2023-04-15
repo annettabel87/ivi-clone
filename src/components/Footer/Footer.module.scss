@@ -47,6 +47,7 @@
         display: flex;
         gap: 12px;
         align-items: center;
+        position: relative;
     }
 
     &__text_bold {
@@ -56,6 +57,23 @@
 
         &:hover {
             opacity: 0.5;
+        }
+    }
+
+    .contacts__phone_block {
+        padding: 8px 16px;
+        width: 196px;
+        background-color: #1f1b2e;
+        border-radius: 8px;
+        position: absolute;
+        top: 50px;
+        z-index: 1;
+        transition: all .15s linear;
+        color: inherit;
+
+        &:hover {
+            background-color: #27223a;
+
         }
     }
 

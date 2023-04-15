@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { aboutLinks, sectionsLinks } from '@/shared/footerLinks/footerLinks';
@@ -10,6 +10,8 @@ import phoneIcon from '../../assets/icon/phone.png';
 import styles from './Footer.module.scss';
 
 export const FooterHead = () => {
+  const [showPhoneNumber, setShowPhoneNumber] = useState(false);
+
   return (
     <div className={styles.footer__head}>
       <div className={styles.footer__column}>
@@ -60,13 +62,18 @@ export const FooterHead = () => {
               height={'40px'}
               radius={'8px'}
               width={'40px'}
-              as={'link'}
-              href="mailto:support@ivi.ru"
-              target="_blank"
+              as={'button'}
               hoverBg={'#2e2844'}
+              onClick={() => setShowPhoneNumber(!showPhoneNumber)}
             >
               <Image src={phoneIcon} alt="phone" width={16} height={16} />
             </Button>
+            {showPhoneNumber && (
+              <Link className={styles.contacts__phone_block} href="tel:88002344923">
+                <p className={styles.footer__title}>8 800 234-49-23</p>
+                <p className={styles.footer__text}>Бесплатно по России</p>
+              </Link>
+            )}
           </div>
         </div>
         <div className={styles.footer__questions}>
