@@ -1,0 +1,28 @@
+@import '../../styles/variables.scss';
+
+
+.widget{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    cursor: pointer;
+
+    &__btn {
+        width: 104px;
+        height: 104px;
+        border-radius: 20px;
+        background: linear-gradient(180deg, #A869F0 0%,#834CC2 100%);
+        box-shadow: 0 0 104px #A869F0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__text{
+        text-align: center;
+        font-size: $textFontSize;
+        line-height: 20px;
+        color: $additionalColor;
+    }
+}

@@ -1,5 +1,6 @@
 import Head from 'next/head';
-import styles from '@/styles/Home.module.css';
+import styles from '../styles/Home.module.scss';
+import { Footer } from '../components/Footer/Footer';
 import Header from '../components/Header/Header';
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
       </Head>
       <main className={styles.main}>
         <Header />
+        <Footer />
       </main>
     </>
   );
