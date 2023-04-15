@@ -74,7 +74,7 @@ export const Stores = () => {
         radius={'8px'}
         width={'174px'}
         as={'link'}
-        href="https://go.onelink.me/app/devicesiOS"
+        href="https://www.ivi.ru/devices"
         target="_blank"
         hoverBg={'#2e2844'}
       >
