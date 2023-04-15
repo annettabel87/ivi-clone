@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { aboutLinks, sectionsLinks } from '@/shared/footerLinks/footerLinks';
-import { LinksList } from './linksList/LinksList';
+import { LinksList } from '../LinksList/LinksList';
 import Button from '../Button/Button';
 import FooterWidget from '../FooterWidget/FooterWidget';
 import mailIcon from '../../assets/icon/mail.png';

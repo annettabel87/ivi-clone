@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
-import { IFooterLinks } from '@/shared/footerLinks/footerLinks';
+import { ILinks } from '@/shared/footerLinks/footerLinks';
 import styles from './LinksList.module.scss';
 
 interface ILinksList {
-  list: IFooterLinks[];
+  list: ILinks[];
 }
 export const LinksList: FC<ILinksList> = ({ list }) => {
   return (

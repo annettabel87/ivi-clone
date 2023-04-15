@@ -1,10 +1,10 @@
-export interface IFooterLinks {
+export interface ILinks {
   title: string;
   link: string;
   certificate?: boolean;
 }
 
-export const aboutLinks: IFooterLinks[] = [
+export const aboutLinks: ILinks[] = [
   {
     title: 'О компании',
     link: 'https://corp.ivi.ru/?_gl=1*ej3vmc*_ga*NjYzNjY3NDguMTY1MTQyOTE1MA..*_ga_GETQ4387MJ*MTY4MTMxNTUxMi4yNC4xLjE2ODEzMTc5NjAuNDcuMC4w',
@@ -24,7 +24,7 @@ export const aboutLinks: IFooterLinks[] = [
   { title: 'Комплаенс', link: 'https://www.ivi.ru/info/goryachaya-liniya-komplaens' },
 ];
 
-export const sectionsLinks: IFooterLinks[] = [
+export const sectionsLinks: ILinks[] = [
   { title: 'Мой Иви', link: 'https://www.ivi.ru/' },
   { title: 'Что нового', link: 'https://www.ivi.ru/new' },
   { title: 'Фильмы', link: '/films' },
