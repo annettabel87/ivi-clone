@@ -1,0 +1,8 @@
+@import '../../styles/variables.scss';
+
+.filmCard {
+    &__container {
+        max-width: $maxWidthContainer;
+        margin: 0 auto;
+    }
+}
