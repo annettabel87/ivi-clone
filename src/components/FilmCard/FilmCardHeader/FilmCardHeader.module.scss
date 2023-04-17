@@ -11,6 +11,10 @@
         display: flex;
         align-items: center;
         gap: 7px;
+
+        @media screen and (max-width: 600px) {
+            display: none;
+        }
     }
 
     &_link {
@@ -41,5 +45,15 @@
         width: 2px;
         height: 2px;
         background-color: rgba(255, 255, 255, .56);
+    }
+
+    &_backBtn  {
+        display: none;
+        cursor: pointer;
+        background-color: inherit;
+
+        @media screen and (max-width: 600px) {
+            display: block;
+        }
     }
 }

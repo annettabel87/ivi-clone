@@ -1,11 +1,16 @@
 import React, { FC } from 'react';
-import styles from './FilmCardHeader.module.scss';
 import Link from 'next/link';
-
+import arrow from '../../../assets/icon/arrow-left.svg';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import styles from './FilmCardHeader.module.scss';
 export interface IFilmCardHeaderProps {
   genre: string;
 }
+
 const FilmCardHeader: FC<IFilmCardHeaderProps> = ({ genre }) => {
+  const router = useRouter();
+
   return (
     <div className={styles.filmCard__header}>
       <div className={styles.filmCard__header_controls}>
@@ -17,6 +22,13 @@ const FilmCardHeader: FC<IFilmCardHeaderProps> = ({ genre }) => {
           {genre}
         </Link>
       </div>
+      <button
+        type="button"
+        onClick={() => router.back()}
+        className={styles.filmCard__header_backBtn}
+      >
+        <Image src={arrow} alt="назад" height={20} width={20} />
+      </button>
       <div className={styles.filmCard__header_badge}>выбор Иви</div>
     </div>
   );
