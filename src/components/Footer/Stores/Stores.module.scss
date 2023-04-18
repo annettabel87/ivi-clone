@@ -1,0 +1,31 @@
+@import '../../../styles/variables.scss';
+
+
+
+.stores {
+    display: flex;
+    gap: 12px;
+
+    &__text_small {
+        color: $descriptionColor;
+        font-size: 10px;
+        line-height: 12px;
+    }
+
+    .btn__info {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: center;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    &__title {
+        font-weight: 700;
+        line-height: 20px;
+        margin-bottom: 8px;
+    }
+}
