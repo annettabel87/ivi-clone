@@ -1,0 +1,10 @@
+@import '../../styles//variables.scss';
+
+.age {
+    background-color: rgba(7, 5, 14, .7);
+    width: 24px;
+    height: 16px;
+    position: absolute;
+    font-size: 11px;
+    color: $descriptionColor;
+}
