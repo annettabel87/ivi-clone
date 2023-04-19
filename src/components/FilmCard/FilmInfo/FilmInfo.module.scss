@@ -1,0 +1,125 @@
+@import '../../../styles//variables.scss';
+
+
+.filmInfo {
+    width: 37.5%;
+
+    &__title {
+        font-size: 36px;
+        line-height: 40px;
+        text-align: center;
+        font-weight: 700;
+        padding-left: 12px;
+        padding-right: 12px;
+        max-width: 95%;
+        margin: 0 auto 20px;
+    }
+
+    &__text {
+        color: $descriptionColor;
+        opacity: 1;
+        line-height: 22px;
+        transition: all 0.4s;
+
+        &_white {
+            color: $mainColor;
+        }
+
+        &_light {
+            color: rgba(255, 255, 255, .4);
+        }
+
+        &_small {
+            font-size: 13px;
+            line-height: 16px;
+        }
+
+        &_dot {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-transform: capitalize;
+        }
+    }
+
+    &__watchParams {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 24px;
+
+        &_row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            a:hover {
+                color: #fff;
+            }
+        }
+    }
+
+    &__quality {
+        line-height: 16px;
+        box-shadow: 0 4px 12px transparent;
+        background-color: rgba(255, 255, 255, .16);
+        background-color: rgba(255, 255, 255, .16);
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: $mainColor;
+        font-size: 13px;
+        font-weight: 500;
+        text-align: center;
+        text-transform: capitalize;
+    }
+
+    &__description {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom: 24px;
+    }
+
+    &__showOptions {
+        border-top: 1px solid rgba(255, 255, 255, 0.16);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+        margin-bottom: 8px;
+        padding-top: 16px;
+        padding-bottom: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        &_item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            align-items: flex-start;
+
+        }
+    }
+}
+
+.dot {
+    display: block;
+    width: 2px;
+    height: 2px;
+    background-color: rgba(255, 255, 255, .56);
+}
+
+.description__toggle {
+    border: none;
+    background-color: inherit;
+    color: $secondaryColor;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 400;
+    text-align: left;
+    transition: all 0.4s;
+
+    &:hover {
+        color: $mainColor;
+    }
+}
+
