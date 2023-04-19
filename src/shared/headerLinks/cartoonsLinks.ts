@@ -1,0 +1,83 @@
+import { ILinks } from '../footerLinks/footerLinks';
+import {
+  ANIME_CARTOONS_ROUTE,
+  ACTION_CARTOONS_ROUTE,
+  DETECTIVE_CARTOONS_ROUTE,
+  ADULT_CARTOONS_ROUTE,
+  FAMILY_CARTOONS_ROUTE,
+  CHILDREN_CARTOONS_ROUTE,
+  DRAMA_CARTOONS_ROUTE,
+  HISTORY_CARTOONS_ROUTE,
+  COMEDY_CARTOONS_ROUTE,
+  CRIME_CARTOONS_ROUTE,
+  MUSICAL_CARTOONS_ROUTE,
+  FULL_LENGTH_CARTOONS_ROUTE,
+  ADVENTURE_CARTOONS_ROUTE,
+  EDUCATIONAL_CARTOONS_ROUTE,
+  SERIALS_CARTOONS_ROUTE,
+  SPORT_CARTOONS_ROUTE,
+  THRILLER_CARTOONS_ROUTE,
+  HORROR_CARTOONS_ROUTE,
+  FANTASTIC_CARTOONS_ROUTE,
+  FANTASY_CARTOONS_ROUTE,
+  SOVIET_CARTOONS_ROUTE,
+  RUSSIAN_CARTOONS_ROUTE,
+  AMERICAN_CARTOONS_ROUTE,
+  FOREIGN_CARTOONS_ROUTE,
+  Y2023_CARTOONS_ROUTE,
+  Y2022_CARTOONS_ROUTE,
+  Y2021_CARTOONS_ROUTE,
+  Y2020_CARTOONS_ROUTE,
+  NEW_CARTOONS_ROUTE,
+  HD_CARTOONS_ROUTE,
+  DEVELOP_CARTOONS_ROUTE,
+  PARAMOUNT_CARTOONS_ROUTE,
+  DREAMWORKS_CARTOONS_ROUTE,
+  CTC_CARTOONS_ROUTE,
+} from '../constants/cartoonsRoutes';
+
+export const cartoonsGenresLinks: ILinks[] = [
+  { title: 'Аниме', link: ANIME_CARTOONS_ROUTE },
+  { title: 'Боевик', link: ACTION_CARTOONS_ROUTE },
+  { title: 'Детективы', link: DETECTIVE_CARTOONS_ROUTE },
+  { title: 'Для взрослых', link: ADULT_CARTOONS_ROUTE },
+  { title: 'Для всей семьи', link: FAMILY_CARTOONS_ROUTE },
+  { title: 'Для детей', link: CHILDREN_CARTOONS_ROUTE },
+  { title: 'Драмы', link: DRAMA_CARTOONS_ROUTE },
+  { title: 'История', link: HISTORY_CARTOONS_ROUTE },
+  { title: 'Комедия', link: COMEDY_CARTOONS_ROUTE },
+  { title: 'Криминал', link: CRIME_CARTOONS_ROUTE },
+  { title: 'Мюзикл', link: MUSICAL_CARTOONS_ROUTE },
+  { title: 'Полнометражный', link: FULL_LENGTH_CARTOONS_ROUTE },
+  { title: 'Приключения', link: ADVENTURE_CARTOONS_ROUTE },
+  { title: 'Развивающие', link: EDUCATIONAL_CARTOONS_ROUTE },
+  { title: 'Сериалы', link: SERIALS_CARTOONS_ROUTE },
+  { title: 'Спорт', link: SPORT_CARTOONS_ROUTE },
+  { title: 'Триллеры', link: THRILLER_CARTOONS_ROUTE },
+  { title: 'Ужасы', link: HORROR_CARTOONS_ROUTE },
+  { title: 'Фантастика', link: FANTASTIC_CARTOONS_ROUTE },
+  { title: 'Фэнтези', link: FANTASY_CARTOONS_ROUTE },
+];
+
+export const cartoonsByCountriesLinks: ILinks[] = [
+  { title: 'Советские', link: SOVIET_CARTOONS_ROUTE },
+  { title: 'Русские', link: RUSSIAN_CARTOONS_ROUTE },
+  { title: 'Американские', link: AMERICAN_CARTOONS_ROUTE },
+  { title: 'Зарубежные', link: FOREIGN_CARTOONS_ROUTE },
+];
+
+export const cartoonsByYearLinks: ILinks[] = [
+  { title: 'Мультики 2023 года', link: Y2023_CARTOONS_ROUTE },
+  { title: 'Мультики 2022 года', link: Y2022_CARTOONS_ROUTE },
+  { title: 'Мультики 2021 года', link: Y2021_CARTOONS_ROUTE },
+  { title: 'Мультики 2020 года', link: Y2020_CARTOONS_ROUTE },
+];
+
+export const cartoonsAdditionalLinks: ILinks[] = [
+  { title: 'Новинки', link: NEW_CARTOONS_ROUTE },
+  { title: 'Мультики в HD', link: HD_CARTOONS_ROUTE },
+  { title: 'Развивайся с Иви', link: DEVELOP_CARTOONS_ROUTE },
+  { title: 'Мультфильмы Paramount Play', link: PARAMOUNT_CARTOONS_ROUTE },
+  { title: 'Мультфильмы Dreamworks', link: DREAMWORKS_CARTOONS_ROUTE },
+  { title: 'Мультфильмы CTC Kids', link: CTC_CARTOONS_ROUTE },
+];

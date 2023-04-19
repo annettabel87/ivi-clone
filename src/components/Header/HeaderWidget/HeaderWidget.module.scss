@@ -1,0 +1,18 @@
+.widgetWrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.widget {
+  width: 245px;
+  height: 265px;
+  border-radius: 8px;
+  background-color: #302a44;
+}
+
+.btnContent {
+  display: flex;
+  gap: 5px;
+}

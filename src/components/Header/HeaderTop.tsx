@@ -1,27 +1,41 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styles from './Header.module.scss';
 import logo from '../../assets/img/logo.svg';
 import noAvatar from '../../assets/icon/noAvatar.svg';
 import searchIcon from '../../assets/icon/search.svg';
-import bell from '../../assets/icon/bell.svg';
+import bell from '../../assets/icon/bell_01.svg';
 import Link from 'next/link';
 import Image from 'next/image';
 import Button from '../Button/Button';
 import Navbar from '../Navbar/Navbar';
+import { DropdownSectionType } from './Header';
+import { PROFILE_ROUTE } from '@/shared/constants/profileRoutes';
 
-const HeaderTop = () => {
+interface IHeaderTopProps {
+  section: DropdownSectionType;
+  setDropdownSection: (dropdownSection: DropdownSectionType) => void;
+}
+
+export const HeaderTop: FC<IHeaderTopProps> = ({ section, setDropdownSection }) => {
+  const handleMouseEnter = (section: DropdownSectionType) => {
+    setDropdownSection(section);
+  };
+
   return (
-    <div className={styles.header__content}>
-      <div className={styles.header__logo}>
-        <Link href={'#'}>
+    <div className={section ? styles.headerTop__content_openSection : styles.headerTop__content}>
+      <div className={styles.headerTop__logo}>
+        <Link href={'/'}>
           <Image src={logo} alt="Логотип" priority={true} />
         </Link>
       </div>
-      <div className={styles.header__menu}>
-        <Navbar />
+      <div className={styles.headerTop__menu}>
+        <Navbar setDropdownSection={setDropdownSection} />
       </div>
-      <div className={styles.header__wideArea}>
-        <div className={styles.header__subscribeBtn}>
+      <div className={styles.headerTop__wideArea}>
+        <div
+          className={styles.headerTop__subscribeBtn}
+          onMouseEnter={() => handleMouseEnter('subscribe')}
+        >
           <Button
             width={'182px'}
             height={'32px'}
@@ -32,21 +46,20 @@ const HeaderTop = () => {
             as={'link'}
             href={'https://www.ivi.ru/subscribe?from=top_menu&redirect_url=%2Fprofile'}
           >
-            <span className={styles.header__subscribeBtnTitle}>Смотреть 30 дней за 1 ₽</span>
+            <span className={styles.headerTop__subscribeBtnTitle}>Смотреть 30 дней за 1 ₽</span>
           </Button>
         </div>
-        <div className={styles.header__searchBtn}>
+        <div className={styles.headerTop__searchBtn} onMouseEnter={() => handleMouseEnter('')}>
           <Button
             href={'#'}
-            bgColor={'#100e19'}
+            bgColor={'rgba(0, 0, 0, 0)'}
             border={'none'}
             as={'link'}
             height={'40px'}
             width={'70px'}
             radius={'none'}
-            target="_blank"
           >
-            <div className={styles.header__searchBtnContent}>
+            <div className={styles.headerTop__searchBtnContent}>
               <Image
                 src={searchIcon}
                 alt="Поиск"
@@ -54,21 +67,23 @@ const HeaderTop = () => {
                 height={20}
                 className={styles.svgImage}
               />
-              <span className={styles.header__searchBtnTitle}>Поиск</span>
+              <span className={styles.headerTop__searchBtnTitle}>Поиск</span>
             </div>
           </Button>
         </div>
       </div>
-      <div className={styles.header__notify}>
+      <div
+        className={styles.headerTop__notify}
+        onMouseEnter={() => handleMouseEnter('notifications')}
+      >
         <Button
           href={'#'}
-          bgColor={'#100e19'}
+          bgColor={'rgba(0, 0, 0, 0)'}
           border={'none'}
           as={'link'}
           height={'48px'}
           width={'36px'}
           radius={'8px'}
-          target="_blank"
         >
           <div>
             <Image
@@ -82,16 +97,15 @@ const HeaderTop = () => {
           </div>
         </Button>
       </div>
-      <div className={styles.header__avatar}>
+      <div className={styles.headerTop__avatar} onMouseEnter={() => handleMouseEnter('profile')}>
         <Button
-          href={'#'}
-          bgColor={'#100e19'}
+          bgColor={'rgba(0, 0, 0, 0)'}
           border={'none'}
           as={'link'}
+          href={PROFILE_ROUTE}
           height={'48px'}
           width={'48px'}
           radius={'8px'}
-          target="_blank"
         >
           <div>
             <Image
@@ -108,5 +122,3 @@ const HeaderTop = () => {
     </div>
   );
 };
-
-export default HeaderTop;

@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.scss';
 import { Footer } from '../components/Footer/Footer';
-import Header from '../components/Header/Header';
+import { Header } from '../components/Header/Header';
 
 const Home = () => {
   return (

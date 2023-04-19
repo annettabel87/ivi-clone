@@ -1,15 +1,25 @@
 @import '../../styles/variables.scss';
 
-.header {
-  &__container {
-    max-width: $maxWidthContainer;
-    margin: 0 auto;
-  }
+.header__container {
+  max-width: $maxWidthContainer;
+  margin: 0 auto;
+}
 
+.headerTop {
   &__content {
+    margin: 0 -12px;
+    padding: 0 12px;
     display: flex;
     align-items: center;
     height: 72px;
+    border-top: 3px solid #100e19;
+  }
+
+  &__content_openSection {
+    @extend .headerTop__content;
+    background-color: #1f1b2e;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
   }
 
   &__menu {
@@ -50,7 +60,7 @@
   }
 
   &__searchBtnContent:hover {
-    .header__searchBtnTitle {
+    .headerTop__searchBtnTitle {
       color: #ffffff;
     }
     .svgImage {
@@ -92,7 +102,44 @@
     &__subscribeBtn {
       margin-right: 0;
     }
+
+    &__content_openSection {
+      @extend .headerTop__content;
+      background-color: $mainBackgroundColor;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
   }
+}
+
+.headerDropdownWrapper {
+  position: relative;
+  margin: 0 -12px;
+
+  @media screen and (max-width: 1159px) {
+    & {
+      display: none;
+    }
+  }
+}
+
+.headerDropdown {
+  width: 100%;
+  position: absolute;
+  padding: 35px 20px 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  background-color: #1f1b2e;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  z-index: 5;
+  transition: all ease 0.4s;
+  visibility: visible;
+  opacity: 1;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
 }
 
 .svgImage {
