@@ -68,10 +68,10 @@ const FilmInfo: FC<IFilm> = ({
 
           {subtitles_languages.map((language, i) => {
             return (
-              <>
+              <div className={styles.filmInfo__text_dot} key={language}>
                 {i !== 0 && <span className={styles.dot}></span>}
                 <p className={styles.filmInfo__text}>{language}</p>
-              </>
+              </div>
             );
           })}
         </div>
