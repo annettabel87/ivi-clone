@@ -16,6 +16,7 @@ interface IButtonProps {
   target?: '_blank' | '_self' | '_parent' | '_top';
   hoverBg?: string;
   hoverFontColor?: string;
+  hoverBorder?: string;
 }
 
 const Button: FC<IButtonProps> = ({
@@ -31,6 +32,7 @@ const Button: FC<IButtonProps> = ({
   target = '_blank',
   hoverBg = bgColor,
   hoverFontColor,
+  hoverBorder,
 }) => {
   const [isHovering, setIsHovering] = useState(false);
 
@@ -50,7 +52,7 @@ const Button: FC<IButtonProps> = ({
           onClick={onClick}
           style={{
             backgroundColor: isHovering ? hoverBg : bgColor,
-            border,
+            border: isHovering ? hoverBorder : border,
             borderRadius: radius,
             height: height ? height : '40px',
             width: width ? width : '196px',
