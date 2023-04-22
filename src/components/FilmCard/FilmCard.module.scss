@@ -54,4 +54,10 @@
             padding-bottom: 133.33%;
         }
     }
+
+    &__content {
+        display: flex;
+        position: relative;
+        gap: 32px;
+    }
 }
