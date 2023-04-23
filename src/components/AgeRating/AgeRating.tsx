@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import styles from './AgeRating.module.scss';
 
 export interface IAgeRatingProps {
-  ageRating: number;
+  ageRating: string;
   top?: string;
   bottom?: string;
   left?: string;
@@ -20,7 +20,7 @@ const AgeRating: FC<IAgeRatingProps> = ({ ageRating, top, bottom, left, right })
         right,
       }}
     >
-      +{ageRating}
+      {ageRating}
     </span>
   );
 };
