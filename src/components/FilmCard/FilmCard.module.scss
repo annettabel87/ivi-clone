@@ -1,6 +1,7 @@
 @import '../../styles/variables.scss';
 
 .filmCard {
+
     &__container {
         max-width: $maxWidthContainer;
         margin: 0 auto;
@@ -59,5 +60,6 @@
         display: flex;
         position: relative;
         gap: 32px;
+        margin-bottom: 24px;
     }
 }

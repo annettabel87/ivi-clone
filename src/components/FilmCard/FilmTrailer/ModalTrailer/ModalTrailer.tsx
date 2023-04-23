@@ -1,14 +1,13 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
 import ReactPlayer from 'react-player';
-import { ITrailer } from '@/pages/film/[filmId]';
 import close from '@/assets/icon/close.svg';
 import styles from './ModalTrailer.module.scss';
 
 export interface IModalTrailer {
   onClose: () => void;
-  trailer: ITrailer;
-  ageRating: number;
+  trailer: string;
+  ageRating: string;
   name: string;
 }
 
@@ -26,7 +25,7 @@ const ModalTrailer: FC<IModalTrailer> = ({ onClose, trailer, ageRating, name }) 
         </button>
         <div className={styles.videoBlock}>
           <ReactPlayer
-            url={trailer.url}
+            url={trailer}
             origin={'https://localhost:3000/*'}
             className={styles.video}
             controls={true}

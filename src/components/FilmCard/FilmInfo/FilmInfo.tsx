@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { formateTime } from '@/helpers/helpers';
 import { IFilm } from '@/pages/film/[filmId]';
 import RatingWidget from './RatingWidget/RatingWidget';
 import Medallions from './Medallions/Medallions';
@@ -11,7 +10,7 @@ import styles from './FilmInfo.module.scss';
 
 const FilmInfo: FC<IFilm> = ({
   movieName,
-  releaseYear,
+  year,
   movieLength,
   ageRating,
   countries,
@@ -19,35 +18,35 @@ const FilmInfo: FC<IFilm> = ({
   quality,
   languages,
   subtitles_languages,
-  rating,
-  persons,
+  rate,
+  actors,
+  fullDescription,
   description,
-  shortDescription,
 }) => {
   const [isShowFullDescription, setIsShowFullDescription] = useState<boolean>(false);
   return (
     <div className={styles.filmInfo}>
       <h1 className={styles.filmInfo__title}>
-        {movieName} (Фильм {releaseYear}) смотреть онлайн
+        {movieName} (Фильм {year}) смотреть онлайн
       </h1>
       <div className={styles.filmInfo__watchParams}>
         <div className={styles.filmInfo__watchParams_row}>
-          <Link href={`/films/${releaseYear}`} className={styles.filmInfo__text}>
-            {releaseYear}
+          <Link href={`/films/${year}`} className={styles.filmInfo__text}>
+            {year}
           </Link>
-          <p className={styles.filmInfo__text}>{formateTime(movieLength)}</p>
+          <p className={styles.filmInfo__text}>{movieLength}</p>
           <p className={styles.filmInfo__text}>{ageRating}+</p>
         </div>
         <div className={styles.filmInfo__watchParams_row}>
-          <Link href={`/films/${countries[0].name}`} className={styles.filmInfo__text}>
-            {countries[0].name}
+          <Link href={`/films/${countries[0].country}`} className={styles.filmInfo__text}>
+            {countries[0].countryId}
           </Link>
           {genres.map((genre) => {
             return (
-              <div className={styles.filmInfo__text_dot} key={genre.name}>
+              <div className={styles.filmInfo__text_dot} key={genre.genre}>
                 <span className={styles.dot}></span>
-                <Link href={`/films/${genre.name}`} className={styles.filmInfo__text}>
-                  {genre.name}
+                <Link href={`/films/${genre.genreEng}`} className={styles.filmInfo__text}>
+                  {genre.genre}
                 </Link>
               </div>
             );
@@ -76,12 +75,12 @@ const FilmInfo: FC<IFilm> = ({
           })}
         </div>
       </div>
-      <Medallions persons={[...persons].splice(0, 4)} rating={rating} />
+      <Medallions persons={[...actors].splice(0, 4)} rating={rate.kinopoisk} />
       <div className={styles.filmInfo__description}>
-        <p className={styles.filmInfo__text}>{shortDescription}</p>
+        <p className={styles.filmInfo__text}>{description}</p>
         {isShowFullDescription && (
           <>
-            <p className={styles.filmInfo__text}>{description}</p>
+            <p className={styles.filmInfo__text}>{fullDescription}</p>
             <p className={styles.filmInfo__text}>
               Смотреть легендарный «{movieName}» можно онлайн.
             </p>
@@ -119,7 +118,7 @@ const FilmInfo: FC<IFilm> = ({
           {isShowFullDescription ? 'Свернуть детали' : 'Детали о фильме'}
         </button>
       </div>
-      <RatingWidget rating={rating} />
+      <RatingWidget rating={rate} />
     </div>
   );
 };

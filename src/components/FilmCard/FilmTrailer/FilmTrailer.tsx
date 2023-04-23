@@ -2,7 +2,6 @@ import React, { FC, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 const ReactPlayer = dynamic(() => import('react-player'), { ssr: false });
-import { ITrailer } from '@/pages/film/[filmId]';
 import ModalTrailer from './ModalTrailer/ModalTrailer';
 import Modal from '@/components/Modal/Modal';
 import Button from '@/components/Button/Button';
@@ -15,8 +14,8 @@ import directoryIcon from '../../../assets/icon/directory.svg';
 import styles from './FilmTrailer.module.scss';
 
 export interface IFilmTrailerProps {
-  trailer: ITrailer;
-  ageRating: number;
+  trailer: string;
+  ageRating: string;
   name: string;
 }
 const FilmTrailer: FC<IFilmTrailerProps> = ({ trailer, ageRating, name }) => {
@@ -25,7 +24,7 @@ const FilmTrailer: FC<IFilmTrailerProps> = ({ trailer, ageRating, name }) => {
     <div className={styles.filmTrailer}>
       <div className={styles.filmTrailer__video_block}>
         <ReactPlayer
-          url={trailer.url}
+          url={trailer}
           origin={'https://localhost:3000/*'}
           className={styles.filmTrailer__video}
           loop

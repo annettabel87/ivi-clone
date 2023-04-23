@@ -6,7 +6,7 @@ import { IPerson } from '@/pages/film/[filmId]';
 
 export interface IMedallionsProps {
   persons: IPerson[];
-  rating: number;
+  rating: string;
 }
 
 const Medallions: FC<IMedallionsProps> = ({ persons, rating }) => {
@@ -14,7 +14,7 @@ const Medallions: FC<IMedallionsProps> = ({ persons, rating }) => {
     <div className={styles.medallions}>
       <div className={styles.medallions_item}>
         <div className={styles.medallion}>
-          <div className={styles.medallion_content}>{rating.toFixed(1)}</div>
+          <div className={styles.medallion_content}>{rating}</div>
         </div>
         <p className={styles.medallion_caption}>Рейтинг Иви</p>
       </div>
