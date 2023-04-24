@@ -4,7 +4,7 @@ import { LinksList } from '@/components/LinksList/LinksList';
 import { tvPlusLinks } from '@/shared/headerLinks/tvPlusLinks';
 import { HeaderWidget } from '../HeaderWidget/HeaderWidget';
 import Button from '@/components/Button/Button';
-import { SCHEDULE_TV_PLUS_ROUTE } from '@/shared/constants/tvPlusRoutes';
+import { tvShowPostersLinks } from '@/shared/headerLinks/postersFeedLinks';
 
 interface IHeaderTVPlusProps {
   isVisible: boolean;
@@ -26,7 +26,7 @@ export const HeaderTVPlus: FC<IHeaderTVPlusProps> = ({ isVisible }) => {
           radius={'8px'}
           border={'none'}
           as={'link'}
-          href={SCHEDULE_TV_PLUS_ROUTE}
+          href={'https://www.ivi.ru/tvplus/tv-schedule-today'}
         >
           <div className={styles.btnContent}>
             <span>Телепрограмма</span>
@@ -48,7 +48,7 @@ export const HeaderTVPlus: FC<IHeaderTVPlusProps> = ({ isVisible }) => {
         </div>
       </div>
       <div className={styles.headerTVPlus__column}>
-        <HeaderWidget />
+        <HeaderWidget postersLinks={tvShowPostersLinks} />
       </div>
     </div>
   );

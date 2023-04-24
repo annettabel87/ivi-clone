@@ -1,28 +1,12 @@
 import React, { FC, useState, useEffect } from 'react';
-
 import styles from './HeaderDropdownCatalog.module.scss';
 import { LinksList } from '../../LinksList/LinksList';
-import {
-  moviesAdditionalLinks,
-  moviesByCountriesLinks,
-  moviesByYearLinks,
-  moviesGenresLinks,
-} from '@/shared/headerLinks/moviesLinks';
-import {
-  serialsGenresLinks,
-  serialsByCountriesLinks,
-  serialsByYearLinks,
-  serialsAdditionalLinks,
-} from '@/shared/headerLinks/serialsLinks';
-import {
-  cartoonsGenresLinks,
-  cartoonsByCountriesLinks,
-  cartoonsByYearLinks,
-  cartoonsAdditionalLinks,
-} from '@/shared/headerLinks/cartoonsLinks';
+import * as filmsLinks from '@/shared/headerLinks/filmsLinks';
+import * as serialsLinks from '@/shared/headerLinks/serialsLinks';
+import * as cartoonsLinks from '@/shared/headerLinks/cartoonsLinks';
 import { HeaderWidget } from '../HeaderWidget/HeaderWidget';
-
-import { ILinks } from '@/shared/footerLinks/footerLinks';
+import { ILinks } from '@/shared/Interfaces/ILinks';
+import * as postersLinks from '@/shared/headerLinks/postersFeedLinks';
 
 interface IHeaderDropdownCatalogProps {
   section: 'movies' | 'serials' | 'cartoons';
@@ -37,24 +21,24 @@ export const HeaderDropdownCatalog: FC<IHeaderDropdownCatalogProps> = ({ section
 
   useEffect(() => {
     if (section === 'movies') {
-      setGenres(moviesGenresLinks);
-      setCountries(moviesByCountriesLinks);
-      setYears(moviesByYearLinks);
-      setAdditional(moviesAdditionalLinks);
+      setGenres(filmsLinks.filmsGenresLinks);
+      setCountries(filmsLinks.filmsByCountriesLinks);
+      setYears(filmsLinks.filmsByYearLinks);
+      setAdditional(filmsLinks.filmsAdditionalLinks);
     }
 
     if (section === 'serials') {
-      setGenres(serialsGenresLinks);
-      setCountries(serialsByCountriesLinks);
-      setYears(serialsByYearLinks);
-      setAdditional(serialsAdditionalLinks);
+      setGenres(serialsLinks.serialsGenresLinks);
+      setCountries(serialsLinks.serialsByCountriesLinks);
+      setYears(serialsLinks.serialsByYearLinks);
+      setAdditional(serialsLinks.serialsAdditionalLinks);
     }
 
     if (section === 'cartoons') {
-      setGenres(cartoonsGenresLinks);
-      setCountries(cartoonsByCountriesLinks);
-      setYears(cartoonsByYearLinks);
-      setAdditional(cartoonsAdditionalLinks);
+      setGenres(cartoonsLinks.cartoonsGenresLinks);
+      setCountries(cartoonsLinks.cartoonsByCountriesLinks);
+      setYears(cartoonsLinks.cartoonsByYearLinks);
+      setAdditional(cartoonsLinks.cartoonsAdditionalLinks);
     }
   }, [section]);
 
@@ -77,7 +61,15 @@ export const HeaderDropdownCatalog: FC<IHeaderDropdownCatalogProps> = ({ section
         <LinksList list={additional} withDivider={true} />
       </div>
       <div className={styles.headerDropdownCatalog__column}>
-        <HeaderWidget />
+        <HeaderWidget
+          postersLinks={
+            section === 'movies'
+              ? postersLinks.filmsPostersLinks
+              : section === 'serials'
+              ? postersLinks.serialsPostersLinks
+              : postersLinks.cartoonsPostersLinks
+          }
+        />
       </div>
     </div>
   );

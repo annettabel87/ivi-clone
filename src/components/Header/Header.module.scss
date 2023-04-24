@@ -80,17 +80,11 @@
 
   &__avatar {
     margin-left: 12px;
-    border: 2px solid rgb(130, 129, 135);
-    border-radius: 8px;
     transition: all ease 0.4s;
   }
 
   &__avatar:hover {
-    border: 2px solid #ffffff;
     box-shadow: 0 4px 16px rgb(255, 255, 255, 0.24);
-    .svgImage {
-      filter: brightness(0) invert(1);
-    }
   }
 
   @media screen and (max-width: 1159px) {
@@ -126,7 +120,7 @@
 .headerDropdown {
   width: 100%;
   position: absolute;
-  padding: 35px 20px 25px;
+  padding: 32px 20px 32px;
   border-top: 1px solid rgba(255, 255, 255, 0.16);
   background-color: #1f1b2e;
   border-bottom-left-radius: 16px;

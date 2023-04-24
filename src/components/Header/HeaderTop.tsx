@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
 import styles from './Header.module.scss';
 import logo from '../../assets/img/logo.svg';
-import noAvatar from '../../assets/icon/noAvatar.svg';
 import searchIcon from '../../assets/icon/search.svg';
 import bell from '../../assets/icon/bell_01.svg';
 import Link from 'next/link';
 import Image from 'next/image';
 import Button from '../Button/Button';
 import Navbar from '../Navbar/Navbar';
-import { DropdownSectionType } from './Header';
-import { PROFILE_ROUTE } from '@/shared/constants/profileRoutes';
+import { PROFILE_ROUTE } from '@/shared/constants/routes';
+import { DropdownSectionType } from '@/shared/Interfaces/DropdownSectionType';
+import { UserAvatar } from '../UserAvatar/UserAvatar';
 
 interface IHeaderTopProps {
   section: DropdownSectionType;
@@ -25,7 +25,7 @@ export const HeaderTop: FC<IHeaderTopProps> = ({ section, setDropdownSection }) 
     <div className={section ? styles.headerTop__content_openSection : styles.headerTop__content}>
       <div className={styles.headerTop__logo}>
         <Link href={'/'}>
-          <Image src={logo} alt="Логотип" priority={true} />
+          <Image src={logo} alt="Логотип" />
         </Link>
       </div>
       <div className={styles.headerTop__menu}>
@@ -77,7 +77,7 @@ export const HeaderTop: FC<IHeaderTopProps> = ({ section, setDropdownSection }) 
         onMouseEnter={() => handleMouseEnter('notifications')}
       >
         <Button
-          href={'#'}
+          href={'https://www.ivi.ru/profile/pull_notifications'}
           bgColor={'rgba(0, 0, 0, 0)'}
           border={'none'}
           as={'link'}
@@ -89,7 +89,6 @@ export const HeaderTop: FC<IHeaderTopProps> = ({ section, setDropdownSection }) 
             <Image
               src={bell}
               alt="Уведомления"
-              priority={true}
               width={20}
               height={20}
               className={styles.svgImage}
@@ -107,16 +106,14 @@ export const HeaderTop: FC<IHeaderTopProps> = ({ section, setDropdownSection }) 
           width={'48px'}
           radius={'8px'}
         >
-          <div>
-            <Image
-              src={noAvatar}
-              alt="Аватар"
-              priority={true}
-              width={20}
-              height={20}
-              className={styles.svgImage}
-            />
-          </div>
+          <UserAvatar
+            isAuth={true}
+            // imgSrc={
+            //   'https://thumbs.dfs.ivi.ru/storage2/contents/b/d/a9cb7de5701062fd09ff9a9623ce5d.jpg/50x50/?q=85'
+            // }
+            // тестовая аватарка
+            size={'normal'}
+          />
         </Button>
       </div>
     </div>

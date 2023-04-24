@@ -1,16 +1,17 @@
-import { ILinks } from '../footerLinks/footerLinks';
-import {
-  TV_CHANNELS_TV_PLUS_ROUTE,
-  ENTERTAINMENT_TV_PLUS_ROUTE,
-  CHILDREN_TV_PLUS_ROUTE,
-  SPORT_TV_PLUS_ROUTE,
-  DOCUMENTARY_TV_PLUS_ROUTE,
-} from '../constants/tvPlusRoutes';
+import { ILinks } from '../Interfaces/ILinks';
 
 export const tvPlusLinks: ILinks[] = [
-  { title: 'ТВ-каналы', link: TV_CHANNELS_TV_PLUS_ROUTE },
-  { title: 'Развлекательное', link: ENTERTAINMENT_TV_PLUS_ROUTE },
-  { title: 'Дети', link: CHILDREN_TV_PLUS_ROUTE },
-  { title: 'Спортивное ТВ', link: SPORT_TV_PLUS_ROUTE },
-  { title: 'Документальное', link: DOCUMENTARY_TV_PLUS_ROUTE },
+  { title: 'ТВ-каналы', titleEng: 'TV channels', link: 'https://www.ivi.ru/tvplus/tvchannels' },
+  {
+    title: 'Развлекательное',
+    titleEng: 'Entertainment',
+    link: 'https://www.ivi.ru/tvplus/razvlekatelnoe',
+  },
+  { title: 'Дети', titleEng: 'Children', link: 'https://www.ivi.ru/tvplus/deti' },
+  { title: 'Спортивное ТВ', titleEng: 'Sport', link: 'https://www.ivi.ru/tvplus/sport' },
+  {
+    title: 'Документальное',
+    titleEng: 'Documentary',
+    link: 'https://www.ivi.ru/tvplus/documentalnoe',
+  },
 ];

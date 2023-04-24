@@ -2,21 +2,7 @@ import React, { useState } from 'react';
 import styles from './Header.module.scss';
 import { HeaderTop } from './HeaderTop';
 import { HeaderDropdown } from './HeaderDropdown';
-
-type ValueOf<T> = T[keyof T];
-
-const DropdownSection = {
-  MOVIES: 'movies',
-  SERIALS: 'serials',
-  CARTOONS: 'cartoons',
-  TVPLUS: 'tv+',
-  SUBSCRIBE: 'subscribe',
-  NOTIFICATIONS: 'notifications',
-  PROFILE: 'profile',
-  NONE: '',
-} as const;
-
-export type DropdownSectionType = ValueOf<typeof DropdownSection>;
+import { DropdownSectionType } from '@/shared/Interfaces/DropdownSectionType';
 
 export const Header = () => {
   const [dropdownSection, setDropdownSection] = useState<DropdownSectionType>('');

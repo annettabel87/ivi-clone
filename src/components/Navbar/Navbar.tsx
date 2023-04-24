@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import Link from 'next/link';
 import { navbarLinks } from '@/shared/navbarLinks/navbarLinks';
 import styles from './Navbar.module.scss';
-import { DropdownSectionType } from '../Header/Header';
+import { DropdownSectionType } from '@/shared/Interfaces/DropdownSectionType';
 
 interface INavbarProps {
   setDropdownSection: (dropdownSection: DropdownSectionType) => void;
