@@ -1,0 +1,38 @@
+@import '../../../../styles//variables.scss';
+
+.personSmallCard {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 88px;
+
+    &:hover {
+        .personSmallCard__text_light {
+            color: $mainColor;
+        }
+    }
+
+    &__imageBlock {
+        border-radius: 50%;
+
+        &_img {
+            border-radius: 50%;
+            -o-object-fit: cover;
+            object-fit: cover;
+        }
+    }
+
+    &__text {
+        color: #a5a1b2;
+        font-size: 13px;
+        line-height: 16px;
+
+        &_light {
+            font-size: 13px;
+            line-height: 16px;
+            font-weight: 500;
+            color: $cardsTitleColor;
+            transition: all 0.4s;
+        }
+    }
+}
