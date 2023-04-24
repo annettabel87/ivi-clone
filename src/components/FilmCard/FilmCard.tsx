@@ -20,6 +20,7 @@ const FilmCard: FC<IFilm> = (props) => {
           />
           <FilmInfo {...props} />
         </div>
+        <FilmContent {...props} />
       </div>
     </div>
   );

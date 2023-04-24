@@ -1,0 +1,63 @@
+@import '.././../../styles/variables.scss';
+
+.filmContent {
+
+    &__films {
+        margin-bottom: 24px;
+    }
+
+    &__title {
+        font-size: $subTitleFontSize;
+        line-height: 28px;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    &__slider {
+        display: flex;
+        gap: 24px;
+        overflow: hidden;
+    }
+
+    &__list {
+        display: flex;
+        gap: 24px;
+    }
+
+    &__persons {
+        margin-bottom: 48px;
+    }
+
+}
+
+
+
+.roundButton {
+    border-radius: 50%;
+    width: 88px;
+    height: 88px;
+    background-color: #1f1b2e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $additionalColor;
+    transition: all 0.4s;
+
+    &:hover {
+        background-color: #231f34;
+        color: $mainColor;
+    }
+}
+
+.title_link {
+    cursor: pointer;
+    border-bottom: 1px solid $additionalColor;
+    padding-bottom: 2px;
+    display: inline-block;
+    color: $mainColor;
+    margin-bottom: 15px;
+
+    &:hover {
+        border-bottom: 1px solid $mainColor;
+    }
+}
