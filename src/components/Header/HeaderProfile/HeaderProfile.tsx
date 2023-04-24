@@ -23,7 +23,7 @@ interface IHeaderProfileProps {
   isAuth?: boolean; // Временно задаю, что приходит через пропсы
 }
 
-export const HeaderProfile: FC<IHeaderProfileProps> = ({ isVisible, isAuth = true }) => {
+export const HeaderProfile: FC<IHeaderProfileProps> = ({ isVisible, isAuth = false }) => {
   return (
     <div className={isVisible ? styles.headerProfile : styles.hidden}>
       <div className={styles.headerProfile__mainContent}>
@@ -161,6 +161,7 @@ export const HeaderProfile: FC<IHeaderProfileProps> = ({ isVisible, isAuth = tru
               border={'none'}
               as={'link'}
               href={'#'}
+              target={'_self'}
             >
               <span>Войти или зарегистрироваться</span>
             </Button>

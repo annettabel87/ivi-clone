@@ -51,10 +51,11 @@ export const HeaderTop: FC<IHeaderTopProps> = ({ section, setDropdownSection }) 
         </div>
         <div className={styles.headerTop__searchBtn} onMouseEnter={() => handleMouseEnter('')}>
           <Button
-            href={'#'}
             bgColor={'rgba(0, 0, 0, 0)'}
             border={'none'}
             as={'link'}
+            href={'#'}
+            target={'_self'}
             height={'40px'}
             width={'70px'}
             radius={'none'}
@@ -107,7 +108,7 @@ export const HeaderTop: FC<IHeaderTopProps> = ({ section, setDropdownSection }) 
           radius={'8px'}
         >
           <UserAvatar
-            isAuth={true}
+            isAuth={false}
             // imgSrc={
             //   'https://thumbs.dfs.ivi.ru/storage2/contents/b/d/a9cb7de5701062fd09ff9a9623ce5d.jpg/50x50/?q=85'
             // }
