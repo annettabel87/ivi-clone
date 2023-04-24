@@ -1,0 +1,119 @@
+@import '../../../../styles/variables.scss';
+
+.smallFilmCard {
+    max-width: 146px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &:hover {
+        .smallFilmCard__imageBlockInfo {
+            background-color: rgba(7, 5, 14, .8);
+            z-index: 4;
+            opacity: 1;
+        }
+
+        .smallFilmCard__title {
+            color: $mainColor;
+        }
+    }
+
+    &__imageBlock {
+        background-color: #1f1b2e;
+        border-radius: 8px;
+        position: relative;
+    }
+
+    &__poster {
+        border-radius: 8px;
+    }
+
+    &__imageBlockInfo {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        opacity: 0;
+        transition: all 0.4s;
+
+        &_head {
+            display: flex;
+            justify-content: right;
+            padding: 5px;
+        }
+
+        &_description {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        &_rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: $mainColor;
+        }
+
+        &_title {
+            font-size: 24px;
+            line-height: 28px;
+            font-weight: 700;
+        }
+
+        &_titleSmall {
+            font-size: 20px;
+            line-height: 24px;
+        }
+
+        &_chart {
+            margin-bottom: 12px;
+        }
+    }
+
+    &__text {
+        font-size: 13px;
+        line-height: 16px;
+        color: $additionalColor;
+
+        &_light {
+            color: rgb(217, 215, 224);
+            line-height: 1.2;
+        }
+    }
+
+    &__title {
+        color: #d9d7e0;
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 500;
+        transition: all 0.4s;
+
+    }
+}
+
+.progress {
+    width: 100%;
+}
+
+.progress::-webkit-progress-bar {
+    background-color: rgba(126, 121, 143, .32);
+    border-radius: 2px;
+    height: 4px;
+}
+
+.progress::-webkit-progress-value {
+    background-color: #ea003d;
+    border-radius: 2px;
+    height: 4px;
+}
+
+.progress::-moz-progress-bar {
+    background-color: rgba(126, 121, 143, .32);
+    border-radius: 2px;
+    height: 4px;
+}
