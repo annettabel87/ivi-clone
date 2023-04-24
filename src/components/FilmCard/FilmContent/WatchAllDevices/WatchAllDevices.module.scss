@@ -1,0 +1,76 @@
+@import '../../../../styles/variables.scss';
+
+.watchAllDevices {
+    display: grid;
+    grid-template-columns: 536px 1fr;
+    -webkit-column-gap: 24px;
+    -moz-column-gap: 24px;
+    column-gap: 24px;
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+    }
+
+    &__title {
+        font-size: $subTitleFontSize;
+        line-height: 28px;
+        font-weight: 700;
+        color: $mainColor;
+        margin-bottom: 12px;
+    }
+
+    &__text {
+        line-height: 20px;
+        color: $additionalColor;
+        margin-bottom: 24px;
+    }
+
+    &__devices {
+
+        &_container {
+            position: relative;
+            height: 272px;
+            width: 536px;
+            margin: 0 auto;
+        }
+
+        &_imgTv {
+            position: relative;
+            width: 536px;
+            height: 272px;
+            z-index: 1;
+        }
+
+        &_imgTablet {
+            position: absolute;
+            right: 42px;
+            bottom: 0;
+            width: 200px;
+            height: 136px;
+            z-index: 1;
+        }
+
+        &_imgTvPoster {
+            position: absolute;
+            left: 100px;
+            top: 3px;
+            width: 337px;
+            height: 192px;
+            border-radius: 2px;
+        }
+
+        &_imgTabletPoster {
+            position: absolute;
+            right: 48px;
+            bottom: 7px;
+            width: 188px;
+            height: 102px;
+            border-radius: 4px;
+            z-index: 1;
+        }
+
+    }
+}

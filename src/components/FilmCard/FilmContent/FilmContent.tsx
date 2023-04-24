@@ -1,13 +1,14 @@
 import React, { FC, useState } from 'react';
-import styles from './FilmContent.module.scss';
-import { IFilm } from '@/pages/film/[filmId]';
-import Modal from '@/components/Modal/Modal';
 import Link from 'next/link';
-import ModalTrailer from '../FilmTrailer/ModalTrailer/ModalTrailer';
 import { useRouter } from 'next/router';
+import Modal from '@/components/Modal/Modal';
+import { IFilm } from '@/pages/film/[filmId]';
+import ModalTrailer from '../FilmTrailer/ModalTrailer/ModalTrailer';
 import SmallFilmCard from './SmallFilmCard/SmallFilmCard';
 import PersonSmallCard from './SmallPersonCard/PersonSmallCard';
 import TrailerSmallCard from './TrailerSmallCard/TrailerSmallCard';
+import WatchAllDevices from './WatchAllDevices/WatchAllDevices';
+import styles from './FilmContent.module.scss';
 
 const FilmContent: FC<IFilm> = ({
   id,
@@ -76,6 +77,7 @@ const FilmContent: FC<IFilm> = ({
             );
           })}
         </div>
+        <WatchAllDevices movieName={movieName} />
       </div>
       <Modal
         open={router.pathname.includes('person') || isOpenTrailers}
