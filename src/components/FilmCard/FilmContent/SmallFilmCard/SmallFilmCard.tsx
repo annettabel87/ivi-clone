@@ -9,7 +9,7 @@ import styles from './SmallFilmCard.module.scss';
 
 const SmallFilmCard: FC<ISimilarMovies> = (movie) => {
   return (
-    <Link href={`/film/${movie.id}`} key={movie.id} className={styles.smallFilmCard}>
+    <Link href={`/film/${movie.id}`} className={styles.smallFilmCard}>
       <div className={styles.smallFilmCard__imageBlock}>
         <Image
           src={movie.poster}

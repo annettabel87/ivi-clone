@@ -6,7 +6,7 @@ import styles from './PersonSmallCard.module.scss';
 
 const PersonSmallCard: FC<IPerson> = (person) => {
   return (
-    <Link href={`/person/${person.id}`} key={person.id} className={styles.personSmallCard}>
+    <Link href={`/person/${person.id}`} className={styles.personSmallCard}>
       <div className={styles.personSmallCard__imageBlock}>
         <Image
           src={person.photo}
