@@ -103,6 +103,7 @@ export const HeaderTop: FC<IHeaderTopProps> = ({ section, setDropdownSection }) 
           border={'none'}
           as={'link'}
           href={PROFILE_ROUTE}
+          target={'_self'}
           height={'48px'}
           width={'48px'}
           radius={'8px'}
