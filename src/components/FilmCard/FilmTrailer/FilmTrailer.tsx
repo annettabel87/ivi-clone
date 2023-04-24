@@ -44,7 +44,7 @@ const FilmTrailer: FC<IFilmTrailerProps> = ({ trailer, ageRating, name }) => {
           <source src="https://widgets.kinopoisk.ru/discovery/film/196707/trailer/103349?noAd=0&embedId=&hidden=&muted=&loop=0&autoplay=1&from=&extraTrailers=&onlyPlayer=1" />
         </video> */}
         <div className={styles.filmTrailer__overlay}>
-          <button className={styles.fullscreen}>
+          <button className={styles.fullscreen} onClick={() => setIsOpen(true)}>
             <Image src={fullscreenIcon} alt="fullscreen" width={16} height={16} />
             <p className={styles.fullscreen__text}>Развернуть трейлер</p>
           </button>

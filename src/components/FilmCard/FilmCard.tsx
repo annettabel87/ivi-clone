@@ -10,8 +10,8 @@ const FilmCard: FC<IFilm> = (props) => {
   return (
     <div className={styles.filmCard}>
       <div className={styles.filmCard__container}>
-        <div className={styles.content__background}></div>
         <FilmCardHeader genre={props.genres[0].genre} />
+        <div className={styles.filmCard__bg}></div>
         <div className={styles.filmCard__content}>
           <FilmTrailer
             trailer={props.trailerLink}

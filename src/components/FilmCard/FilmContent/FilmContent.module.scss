@@ -10,7 +10,7 @@
         font-size: $subTitleFontSize;
         line-height: 28px;
         font-weight: 700;
-        margin-bottom: 8px;
+        margin-bottom: 24px;
     }
 
     &__slider {
@@ -26,6 +26,10 @@
 
     &__persons {
         margin-bottom: 48px;
+    }
+
+    &__trailers  {
+        margin-bottom: 32px;
     }
 
 }

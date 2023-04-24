@@ -32,15 +32,15 @@ const FilmContent: FC<IFilm> = ({
 
   return (
     <div className={styles.filmContent}>
-      <div className={styles.filmContent__films}>
+      <section className={styles.filmContent__films}>
         <h2 className={styles.filmContent__title}>С фильмом «{movieName}» смотрят</h2>
         <div className={styles.filmContent__slider}>
           {similarMovies.map((movie) => {
             return <SmallFilmCard key={movie.id} {...movie} />;
           })}
         </div>
-      </div>
-      <div className={styles.filmContent__persons}>
+      </section>
+      <section className={styles.filmContent__persons}>
         <Link
           href={`/film/${id}/person`}
           scroll={false}
@@ -62,8 +62,8 @@ const FilmContent: FC<IFilm> = ({
             Ещё
           </Link>
         </div>
-      </div>
-      <div className={styles.filmContent__trailers}>
+      </section>
+      <section className={styles.filmContent__trailers}>
         <h2 className={styles.filmContent__title}>Трейлеры и доп. материалы </h2>
         <div className={styles.filmContent__slider}>
           {[0, 0, 0].map((trailer) => {
@@ -77,8 +77,8 @@ const FilmContent: FC<IFilm> = ({
             );
           })}
         </div>
-        <WatchAllDevices movieName={movieName} />
-      </div>
+      </section>
+      <WatchAllDevices movieName={movieName} />
       <Modal
         open={router.pathname.includes('person') || isOpenTrailers}
         onClose={
