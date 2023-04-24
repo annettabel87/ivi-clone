@@ -11,7 +11,7 @@ const RatingWidget: FC<IRatingWidgetProps> = ({ rating }) => {
   return (
     <div className={styles.rating}>
       <div className={styles.rating__column}>
-        <div className={styles.rating__img}>{rating.kinopoisk}</div>
+        <div className={styles.rating__img}>{(+rating.kinopoisk).toFixed(1)}</div>
         <div className={styles.rating__description}>
           <p className={styles.rating__text_white}>Рейтинг Иви</p>
           <p className={styles.rating__text}>Интересный сюжет</p>
