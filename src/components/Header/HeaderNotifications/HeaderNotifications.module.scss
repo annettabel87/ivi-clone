@@ -1,0 +1,15 @@
+@import '../../../styles/variables.scss';
+
+.headerEmptyNotifications {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: $secondaryColor;
+  height: 270px;
+  gap: 25px;
+}
+
+.hidden {
+  display: none;
+}

@@ -1,0 +1,50 @@
+.avatar {
+  &__authorizedNormal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    transition: all ease 0.4s;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    font-weight: 700;
+
+    img {
+      border-radius: 8px;
+    }
+  }
+
+  &__authorizedSmall {
+    @extend .avatar__authorizedNormal;
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    border-radius: 4px;
+  }
+
+  &__unAuthorizedNormal {
+    @extend .avatar__authorizedNormal;
+    background-color: rgba(0, 0, 0, 0);
+    border: 2px solid rgb(130, 129, 135);
+  }
+
+  &__unAuthorizedSmall {
+    @extend .avatar__authorizedSmall;
+    background-color: #1f1b2e;
+
+    .svgImage {
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  &__unAuthorized:hover {
+    border: 2px solid #ffffff;
+  }
+
+  &:hover {
+    .svgImage {
+      filter: brightness(0) invert(1);
+    }
+  }
+}

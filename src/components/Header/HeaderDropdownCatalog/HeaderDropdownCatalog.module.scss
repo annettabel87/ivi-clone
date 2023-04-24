@@ -1,0 +1,34 @@
+.headerDropdownCatalog {
+  display: flex;
+  justify-content: space-between;
+
+  &__column {
+    height: 340px;
+  }
+
+  &__genresList {
+    display: flex;
+    justify-content: space-between;
+    width: 305px;
+  }
+
+  &__listTitle {
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  &__listTitle:not(:first-child) {
+    margin-top: 30px;
+  }
+}
+
+.btnContent {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 700;
+}
+
+.hidden {
+  display: none;
+}
