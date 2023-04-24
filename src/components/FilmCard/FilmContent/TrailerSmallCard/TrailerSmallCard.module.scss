@@ -1,0 +1,49 @@
+@import '../../../../styles/variables.scss';
+
+.trailerCard {
+    cursor: pointer;
+    border-radius: 8px;
+    padding-top: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &:hover {
+
+        .trailerCard__poster{
+            transform: scale(1.05);
+        }
+
+        .trailerCard__text{
+            color: $mainColor;
+        }
+
+    }
+
+    &__poster {
+        border-radius: 8px;
+        transition: all 0.4s;
+    }
+
+
+    &__img {
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    &__description {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    &__text {
+        color: #d9d7e0;
+    }
+
+    &__smallText {
+        font-size: 13px;
+        line-height: 16px;
+        color: $additionalColor;
+    }
+}
