@@ -1,0 +1,37 @@
+.headerTVPlus {
+  display: flex;
+  justify-content: space-between;
+
+  &__listTitle {
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  &__column {
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__column:nth-child(1) {
+    flex: 0 0 205px;
+  }
+
+  &__column:nth-child(2) {
+    flex: 1 1 auto;
+    border-left: 1px solid rgba(255, 255, 255, 0.16);
+    padding-left: 30px;
+  }
+
+  &__carouselBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: 700;
+  }
+}
+
+.hidden {
+  display: none;
+}

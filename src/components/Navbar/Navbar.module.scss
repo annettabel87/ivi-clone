@@ -1,0 +1,27 @@
+@import '../../styles/variables.scss';
+
+.navbar {
+  &__list {
+    display: flex;
+  }
+
+  &__listItem {
+    font-size: $textFontSize;
+    line-height: 20px;
+    font-weight: 700;
+  }
+
+  &__listItem:not(:first-child) {
+    padding-left: 16px;
+  }
+
+  &__listLink {
+    padding: 10px 0;
+    color: $secondaryColor;
+    transition: all ease 0.4s;
+  }
+
+  &__listLink:hover {
+    color: $mainColor;
+  }
+}

@@ -1,0 +1,61 @@
+.rightNarrowScrollList {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  animation: rightNarrowScroll 90s linear infinite;
+}
+
+.leftNarrowScrollList {
+  @extend .rightNarrowScrollList;
+  animation: leftNarrowScroll 90s linear infinite;
+}
+
+.rightWideScrollList {
+  @extend .rightNarrowScrollList;
+  animation: rightWideScroll 90s linear infinite;
+}
+
+.leftWideScrollList {
+  @extend .rightNarrowScrollList;
+  animation: leftWideScroll 90s linear infinite;
+}
+
+.cardItemImage {
+  border-radius: 8px;
+}
+
+@keyframes rightNarrowScroll {
+  0% {
+    transform: translateX(calc((-136px * 5) - 64px));
+  }
+  100% {
+    transform: translateX(-64px);
+  }
+}
+
+@keyframes leftNarrowScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-136px * 5));
+  }
+}
+
+@keyframes rightWideScroll {
+  0% {
+    transform: translateX(calc((-208px * 5) - 100px));
+  }
+  100% {
+    transform: translateX(-100px);
+  }
+}
+
+@keyframes leftWideScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-208px * 5));
+  }
+}

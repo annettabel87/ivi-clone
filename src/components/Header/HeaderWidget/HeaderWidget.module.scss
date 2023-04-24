@@ -1,0 +1,124 @@
+@import '../../../styles/variables.scss';
+
+.widgetWrapper {
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.widget {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 245px;
+  height: 265px;
+  border-radius: 8px;
+  background-color: #302a44;
+  overflow: hidden;
+
+  &:hover {
+    .widget__subscribeNote,
+    .widget__subscribeBtn {
+      display: block;
+    }
+
+    .widget__bottomPanel {
+      height: 140px;
+    }
+  }
+
+  &__feeds {
+    position: absolute;
+    top: -36px;
+  }
+
+  &__bottomPanel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 72px;
+    z-index: 5;
+    padding: 8px 0 12px 0;
+    background-color: rgba(49, 43, 69, 0.96);
+    transition: all ease 0.3s;
+  }
+
+  &__detailsFade {
+    background-image: linear-gradient(180deg, rgba(49, 43, 69, 0), rgba(49, 43, 69, 0.96));
+    height: 48px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: -48px;
+  }
+
+  &__detailsBlock {
+    width: 212px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__subscriptionBadge {
+    background-color: #ea003d;
+    border-radius: 12px;
+  }
+
+  &__detailsTitle {
+    font-size: 20px;
+  }
+
+  &__subscribeBtnTitle,
+  &__detailsTitle {
+    font-weight: 700;
+  }
+
+  &__detailsExtra {
+    color: $additionalColor;
+    font-size: $smallTextFontSize;
+    margin-top: 4px;
+  }
+
+  &__subscribeBtn {
+    display: none;
+  }
+
+  &__subscribeNote {
+    display: none;
+    color: $additionalColor;
+    font-size: 10px;
+  }
+
+  &::before,
+  &::after {
+    background: linear-gradient(to right, #302a44 0%, #302a4400 100%);
+    content: '';
+    height: 100%;
+    position: absolute;
+    width: 64px;
+    z-index: 2;
+  }
+
+  &::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+  }
+
+  &::before {
+    left: 0;
+    top: 0;
+  }
+}
+
+.btnContent {
+  display: flex;
+  gap: 5px;
+  font-weight: 700;
+}
