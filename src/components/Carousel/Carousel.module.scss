@@ -1,0 +1,10 @@
+@import '../../styles/variables.scss';
+
+.wrapper {
+  max-width: $maxWidthContainer;
+  margin: 0 auto;
+}
+
+.carousel {
+  width: 100%;
+}

@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import styles from '@/styles/Home.module.scss';
 import { Footer } from '@/components/Footer/Footer';
+import { Carousel } from '@/components/Carousel/Carousel';
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+        <Carousel> </Carousel>
         <Footer />
       </main>
     </>
