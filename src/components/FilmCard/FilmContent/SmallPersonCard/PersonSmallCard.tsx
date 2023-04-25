@@ -21,7 +21,12 @@ const PersonSmallCard: FC<IPersonSmallCardProps> = ({ person, size }) => {
         />
       </div>
       <div className={styles.personSmallCard__description}>
-        <p className={styles.personSmallCard__text_light}>{person.name}</p>
+        <p className={`${styles.personSmallCard__text_light} ${styles[size]}`}>
+          {person.name.split(' ')[0]}
+        </p>
+        <p className={`${styles.personSmallCard__text_light} ${styles[size]}`}>
+          {person.name.split(' ').splice(1)}
+        </p>
         <p className={styles.personSmallCard__text}>{person.profession}</p>
       </div>
     </Link>

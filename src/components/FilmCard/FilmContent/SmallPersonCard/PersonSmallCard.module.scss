@@ -39,6 +39,17 @@
             font-weight: 500;
             color: $cardsTitleColor;
             transition: all 0.4s;
+
+            &.small {
+                font-size: 13px;
+                line-height: 16px;
+            }
+
+            &.big {
+                font-size: 15px;
+                line-height: 20px;
+                font-weight: 500;
+            }
         }
     }
 }
