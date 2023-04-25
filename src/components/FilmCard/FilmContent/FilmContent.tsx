@@ -9,6 +9,7 @@ import PersonSmallCard from './SmallPersonCard/PersonSmallCard';
 import TrailerSmallCard from './TrailerSmallCard/TrailerSmallCard';
 import WatchAllDevices from './WatchAllDevices/WatchAllDevices';
 import styles from './FilmContent.module.scss';
+import PersonsModal from './PersonsModal/PersonsModal';
 
 const FilmContent: FC<IFilm> = ({
   id,
@@ -26,6 +27,7 @@ const FilmContent: FC<IFilm> = ({
   movieName,
   poster,
   ageRating,
+  year,
 }) => {
   const [isOpenTrailers, setIsOpenTrailers] = useState<boolean>(false);
   const router = useRouter();
@@ -51,7 +53,7 @@ const FilmContent: FC<IFilm> = ({
         </Link>
         <div className={styles.filmContent__list}>
           {[director[0], ...actors].splice(0, 9).map((person) => {
-            return <PersonSmallCard key={person.id} {...person} />;
+            return <PersonSmallCard key={person.id} person={person} size={'small'} />;
           })}
           <Link
             href={`/film/${id}/person`}
@@ -97,10 +99,20 @@ const FilmContent: FC<IFilm> = ({
             name={movieName}
           />
         ) : (
-          <div>
-            <button onClick={() => router.push(`/film/${id}`)}>x</button>
-            <p>person</p>
-          </div>
+          <PersonsModal
+            onClose={() => router.push(`/film/${id}`)}
+            movieName={movieName}
+            actors={actors}
+            director={director}
+            voice_actors={voice_actors}
+            operator={operator}
+            producers={producers}
+            designers={designers}
+            writers={writers}
+            musics={musics}
+            editor={editor}
+            year={0}
+          />
         )}
       </Modal>
     </div>

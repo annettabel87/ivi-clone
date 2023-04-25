@@ -4,15 +4,19 @@ import React, { FC } from 'react';
 import Image from 'next/image';
 import styles from './PersonSmallCard.module.scss';
 
-const PersonSmallCard: FC<IPerson> = (person) => {
+export interface IPersonSmallCardProps {
+  person: IPerson;
+  size: 'small' | 'big';
+}
+const PersonSmallCard: FC<IPersonSmallCardProps> = ({ person, size }) => {
   return (
-    <Link href={`/person/${person.id}`} className={styles.personSmallCard}>
+    <Link href={`/person/${person.id}`} className={`${styles.personSmallCard} ${styles[size]}`}>
       <div className={styles.personSmallCard__imageBlock}>
         <Image
           src={person.photo}
           alt="фото"
-          width={88}
-          height={88}
+          width={size === 'small' ? 88 : 128}
+          height={size === 'small' ? 88 : 128}
           className={styles.personSmallCard__imageBlock_img}
         />
       </div>
