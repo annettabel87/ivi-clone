@@ -28,7 +28,7 @@ export interface ISimilarMovies {
   name: string;
   originalName: string;
   poster: string;
-  rating: string;
+  rate: string;
   movieLength: string;
   year: string;
   countries: ICountry[];
@@ -196,7 +196,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         id: 326,
         name: 'Побег из Шоушенка',
         originalName: 'The Shawshank Redemption',
-        rating: '9.0',
+        rate: '9.0',
         movieLength: '189 мин. / 03:09',
         year: '2019',
         countries: [{ country: 'США', countryId: 1 }],
@@ -214,7 +214,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         id: 448,
         name: 'Форрест Гамп',
         originalName: 'Forrest Gump',
-        rating: '7.7',
+        rate: '7.7',
         movieLength: '189 мин. / 03:09',
         year: '2019',
         countries: [{ country: 'США', countryId: 1 }],
@@ -232,7 +232,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         id: 723,
         name: 'Планета Ка-Пэкс',
         originalName: 'K-PAX',
-        rating: '8.0',
+        rate: '8.0',
         movieLength: '189 мин. / 03:09',
         year: '2019',
         countries: [{ country: 'США', countryId: 1 }],
@@ -250,7 +250,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         id: 738,
         name: 'Жизнь Дэвида Гейла',
         originalName: 'The Life of David Gale',
-        rating: '6.7',
+        rate: '6.7',
         movieLength: '189 мин. / 03:09',
         year: '2019',
         countries: [{ country: 'США', countryId: 1 }],
@@ -268,7 +268,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         id: 279880,
         name: 'Подмена',
         originalName: 'Changeling',
-        rating: '9.1',
+        rate: '9.1',
         movieLength: '189 мин. / 03:09',
         year: '2019',
         countries: [{ country: 'США', countryId: 1 }],
@@ -286,7 +286,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         id: 357,
         name: 'Убить пересмешника',
         originalName: 'To Kill a Mockingbird',
-        rating: '5.0',
+        rate: '5.0',
         movieLength: '189 мин. / 03:09',
         year: '2019',
         countries: [{ country: 'США', countryId: 1 }],
@@ -304,7 +304,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         id: 273302,
         name: 'Мгла',
         originalName: 'The Mist',
-        rating: '7.7',
+        rate: '7.7',
         year: '2019',
         movieLength: '189 мин. / 03:09',
         countries: [{ country: 'США', countryId: 1 }],
@@ -322,7 +322,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         id: 2271,
         name: 'Пудра',
         originalName: 'Powder',
-        rating: '7.7',
+        rate: '7.7',
         movieLength: '189 мин. / 03:09',
         year: '2019',
         countries: [{ country: 'США', countryId: 1 }],
@@ -340,7 +340,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         id: 646,
         name: 'Танцующая в темноте',
         originalName: 'Dancer in the Dark',
-        rating: '6.7',
+        rate: '6.7',
         movieLength: '189 мин. / 03:09',
         year: '2019',
         countries: [{ country: 'США', countryId: 1 }],
@@ -358,7 +358,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         id: 7363,
         name: 'Мертвец идет',
         originalName: 'Dead Man Walking',
-        rating: '5.7',
+        rate: '5.7',
         movieLength: '189 мин. / 03:09',
         year: '2019',
         countries: [{ country: 'США', countryId: 1 }],
