@@ -5,12 +5,18 @@ import styles from './TrailerSmallCard.module.scss';
 export interface ITrailerSmallCard {
   poster: string;
   movieName: string;
-  onClickHandler: (show: boolean) => void;
+  onClickHandler: (show: boolean, trailer: string) => void;
+  trailer: string;
 }
 
-const TrailerSmallCard: FC<ITrailerSmallCard> = ({ poster, movieName, onClickHandler }) => {
+const TrailerSmallCard: FC<ITrailerSmallCard> = ({
+  poster,
+  movieName,
+  onClickHandler,
+  trailer,
+}) => {
   return (
-    <div className={styles.trailerCard} onClick={() => onClickHandler(true)}>
+    <div className={styles.trailerCard} onClick={() => onClickHandler(true, trailer)}>
       <div className={styles.trailerCard__poster}>
         <Image
           src={poster}
