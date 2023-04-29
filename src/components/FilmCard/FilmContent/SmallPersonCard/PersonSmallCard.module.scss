@@ -6,18 +6,21 @@
     gap: 8px;
     cursor: pointer;
 
+
+    &.small {
+        max-width: 88px;
+    }
+
+    &.big {
+        max-width: 128px;
+    }
+
     &:hover {
         .personSmallCard__text_light {
             color: $mainColor;
         }
     }
-&.small {
-    max-width: 88px;
-}
 
-&.big {
-    max-width: 128px;
-}
     &__imageBlock {
         border-radius: 50%;
 
