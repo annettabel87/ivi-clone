@@ -1,0 +1,114 @@
+@import '../../../../styles/variables.scss';
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 500;
+    background-color: rgba(7, 5, 14, .96);
+}
+
+.persons {
+    color: #fff;
+    position: absolute;
+    top: 0;
+    padding-bottom: 48px;
+    transition: all ease-in 0.3s;
+    z-index: 1000;
+    overflow-y: auto;
+    min-height: 100%;
+    width: 100%;
+
+
+    &__content {
+        padding-top: 100px;
+        padding-bottom: 48px;
+        max-width: $maxWidthContainer;
+        margin: 0 auto;
+        display: flex;
+        gap: 12.5%;
+
+        &_info {
+            width: 50%;
+            margin-left: 12.5%;
+        }
+    }
+
+    &__title {
+        margin-bottom: 20px;
+        font-size: 40px;
+        line-height: 44px;
+        font-weight: 900;
+    }
+
+    &__navigation {
+        margin-bottom: 32px;
+        max-width: 575px;
+
+        &_list {
+            border-bottom: 2px solid rgba(255, 255, 255, .2);
+            display: flex;
+            gap: 24px;
+        }
+
+        &_btn {
+            background-color: transparent;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 15px;
+            line-height: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            color: $additionalColor;
+            transition: all 0.4s;
+
+            &:hover {
+                color: $mainColor;
+            }
+
+            &.active {
+                color: $mainColor;
+                position: relative;
+                cursor: default;
+
+                &::after {
+                    content: '';
+                    height: 4px;
+                    background-color: #ea003d;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: -2px;
+                }
+            }
+        }
+
+        &_sup {
+            color: $additionalColor;
+        }
+    }
+}
+
+.close {
+    position: absolute;
+    top: 35px;
+    left: 35px;
+    height: 20px;
+    border: none;
+    background-color: inherit;
+    transition: all ease-in 0.2s;
+    cursor: pointer;
+    color: #fff;
+    opacity: 0.72;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+}
+
