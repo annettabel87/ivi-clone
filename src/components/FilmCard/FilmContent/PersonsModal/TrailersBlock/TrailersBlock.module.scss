@@ -1,0 +1,26 @@
+@import '../../../../../styles/variables.scss';
+
+.trailers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    width: 100%;
+}
+
+.close {
+    height: 20px;
+    border: none;
+    background-color: inherit;
+    transition: all ease-in 0.2s;
+    cursor: pointer;
+    color: #fff;
+    opacity: 0.72;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+}
