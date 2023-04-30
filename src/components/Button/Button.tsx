@@ -68,11 +68,11 @@ const Button: FC<IButtonProps> = ({
         <Link
           style={{
             backgroundColor: isHovering ? hoverBg : bgColor,
-            border,
             borderRadius: radius,
             height: height ? height : '40px',
             width: width ? width : '196px',
             color: isHovering ? hoverFontColor : '#fff',
+            border: isHovering ? hoverBorder : border,
           }}
           target={target}
           href={href ? href : '#'}

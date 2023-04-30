@@ -30,8 +30,18 @@
         margin-bottom: 48px;
     }
 
-    &__trailers  {
+    &__trailers {
         margin-bottom: 32px;
+    }
+
+    &__comments {
+
+        &_header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
     }
 
 }
@@ -65,5 +75,12 @@
 
     &:hover {
         border-bottom: 1px solid $mainColor;
+    }
+
+    .sup {
+        color: $additionalColor;
+        font-size: 13px;
+        line-height: 16px;
+        margin-left: 4px;
     }
 }
