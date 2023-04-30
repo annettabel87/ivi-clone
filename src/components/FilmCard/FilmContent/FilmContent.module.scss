@@ -1,6 +1,8 @@
 @import '.././../../styles/variables.scss';
 
 .filmContent {
+    position: relative;
+    z-index: 20;
 
     &__films {
         margin-bottom: 24px;
