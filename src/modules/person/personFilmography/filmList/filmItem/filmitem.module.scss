@@ -1,0 +1,65 @@
+.personFilmographyItem{
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    cursor: pointer;
+    width: 100%;
+        .posterImage{
+            border-radius: 8px;
+        }
+        .personFilmographyItemTitle, .personFilmographyItemYear{
+            font-size: 15px;
+            line-height: 22px;
+            font-weight: bold;
+            font-style: normal;
+            color: #fff;
+            margin-left: 20px;
+        }
+        .personFilmographyItemRating{
+            font-size: 13px;
+            line-height: 16px;
+            font-weight: bold;
+            font-style: normal;
+            color: #a5a1b2;
+            margin-left: 20px;
+        }
+        .personFilmographyItemMain{
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+                .personFilmographyItemButton{
+                    width: 100%;
+                    height: 40px;
+                    border-width: 1px;
+                    border-radius: 8px;
+                    padding: 9px 15px;
+                    background-color: #1f1b2e;
+                    border-color: #1f1b2e;
+                    color: #fff;
+                    font-size: 15px;
+                    line-height: 20px;
+                    font-weight: bold;
+                    font-style: normal;
+                    margin-left: 16px;
+                        &:hover{
+                            background-color: #2a253e;
+                        }
+
+                }
+        }
+
+}
+
+@media (max-width: 599.98px) {
+    .personFilmographyItemButton {
+        margin-top: 6px;
+        color: red !important;
+        width: 100% !important;
+    }
+    .personFilmographyItemInfos{
+        width: 100%;
+    }
+}
+

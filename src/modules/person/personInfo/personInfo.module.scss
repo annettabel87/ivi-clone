@@ -1,0 +1,31 @@
+.personImage{
+    height: 144px;
+    width: 120px;
+    position: relative;
+    overflow:hidden;
+        & img{
+            border-radius: 14px;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+            object-fit:cover;
+        }
+}
+
+.personHeaderTitle{
+    font-size: 56px;
+    font-weight: 700;
+}
+@media (max-width: 599.98px) {
+    .personHeaderTitle {
+        font-size: 40px;} }
+
+.personHeaderAlternate{
+    color: #a5a1b2;
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 400;
+    font-style: normal;
+    margin-top: 16px;
+}
