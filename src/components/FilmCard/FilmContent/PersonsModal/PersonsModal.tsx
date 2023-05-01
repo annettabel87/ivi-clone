@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Image from 'next/image';
 import SmallFilmCard from '@/components/SmallFilmCard/SmallFilmCard';
 import { IFilm } from '@/pages/film/[filmId]';
@@ -10,15 +10,18 @@ import styles from './PersonsModal.module.scss';
 export interface IPersonsModal {
   onClose: () => void;
   movie: IFilm;
+  show: IPersonsModalType;
+  setShow: (show: IPersonsModalType) => void;
 }
 
-type IPersonsState = 'persons' | 'comments' | 'trailers';
-const PersonsModal: FC<IPersonsModal> = ({ movie, onClose }) => {
-  const [isShow, setIsShow] = useState<IPersonsState>('persons');
+export type IPersonsModalType = 'persons' | 'comments' | 'trailers';
+
+const PersonsModal: FC<IPersonsModal> = ({ movie, onClose, show, setShow }) => {
+  useEffect(() => setShow(localStorage.getItem('personModal') as IPersonsModalType), []);
 
   return (
     <>
-      <div className={styles.overlay}> </div>
+      <div className={styles.overlay}></div>
       <div className={styles.persons}>
         <button className={styles.close} onClick={onClose}>
           <Image src={arrowIcon} alt="закрыть" width={20} height={20} />
@@ -33,9 +36,9 @@ const PersonsModal: FC<IPersonsModal> = ({ movie, onClose }) => {
               <ul className={styles.persons__navigation_list}>
                 <li className={styles.persons__navigation_item}>
                   <button
-                    onClick={() => setIsShow('persons')}
+                    onClick={() => setShow('persons')}
                     className={`${styles.persons__navigation_btn} ${
-                      isShow === 'persons' && styles.active
+                      show === 'persons' && styles.active
                     }`}
                   >
                     Создатели
@@ -43,9 +46,9 @@ const PersonsModal: FC<IPersonsModal> = ({ movie, onClose }) => {
                 </li>
                 <li className={styles.persons__navigation_item}>
                   <button
-                    onClick={() => setIsShow('comments')}
+                    onClick={() => setShow('comments')}
                     className={`${styles.persons__navigation_btn} ${
-                      isShow === 'comments' && styles.active
+                      show === 'comments' && styles.active
                     }`}
                   >
                     Комментарии
@@ -54,9 +57,9 @@ const PersonsModal: FC<IPersonsModal> = ({ movie, onClose }) => {
                 </li>
                 <li className={styles.persons__navigation_item}>
                   <button
-                    onClick={() => setIsShow('trailers')}
+                    onClick={() => setShow('trailers')}
                     className={`${styles.persons__navigation_btn} ${
-                      isShow === 'trailers' && styles.active
+                      show === 'trailers' && styles.active
                     }`}
                   >
                     Трейлеры
@@ -65,8 +68,8 @@ const PersonsModal: FC<IPersonsModal> = ({ movie, onClose }) => {
                 </li>
               </ul>
             </div>
-            {isShow === 'persons' && <PersonsBlock {...movie} />}
-            {isShow === 'trailers' && (
+            {show === 'persons' && <PersonsBlock {...movie} />}
+            {show === 'trailers' && (
               <TrailersBlock
                 trailers={[movie.trailerLink, movie.trailerLink, movie.trailerLink]}
                 movieName={movie.movieName}

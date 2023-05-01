@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Modal from '@/components/Modal/Modal';
@@ -8,10 +8,11 @@ import SmallFilmCard from '../../SmallFilmCard/SmallFilmCard';
 import PersonSmallCard from './SmallPersonCard/PersonSmallCard';
 import TrailerSmallCard from './TrailerSmallCard/TrailerSmallCard';
 import WatchAllDevices from './WatchAllDevices/WatchAllDevices';
-import styles from './FilmContent.module.scss';
-import PersonsModal from './PersonsModal/PersonsModal';
+import PersonsModal, { IPersonsModalType } from './PersonsModal/PersonsModal';
 import Comments, { IComments } from '@/components/Comments/Comments';
 import Button from '@/components/Button/Button';
+import styles from './FilmContent.module.scss';
+
 const commentsData: IComments = {
   id: 1,
   entityKinopoiskId: 435,
@@ -49,6 +50,11 @@ const commentsData: IComments = {
 const FilmContent: FC<IFilm> = (movie) => {
   const [isOpenTrailers, setIsOpenTrailers] = useState<boolean>(false);
   const router = useRouter();
+  const [isShow, setIsShow] = useState<IPersonsModalType>('persons');
+
+  const showHandler = (type: IPersonsModalType) => {
+    localStorage.setItem('personModal', type);
+  };
 
   return (
     <div className={styles.filmContent}>
@@ -63,9 +69,9 @@ const FilmContent: FC<IFilm> = (movie) => {
       <section className={styles.filmContent__persons}>
         <Link
           href={`/film/${movie.id}/person`}
-          scroll={false}
           shallow={true}
           className={`${styles.filmContent__title} ${styles.title_link}`}
+          onClick={() => showHandler('persons')}
         >
           Актёры и создатели
         </Link>
@@ -75,16 +81,28 @@ const FilmContent: FC<IFilm> = (movie) => {
           })}
           <Link
             href={`/film/${movie.id}/person`}
-            scroll={false}
             shallow={true}
             className={styles.roundButton}
+            onClick={() => showHandler('persons')}
           >
             Ещё
           </Link>
         </div>
       </section>
       <section className={styles.filmContent__trailers}>
-        <h2 className={styles.filmContent__title}>Трейлеры и доп. материалы </h2>
+        <h2 className={styles.filmContent__title}>
+          <Link
+            onClick={() => {
+              showHandler('trailers');
+            }}
+            href={`/film/${movie.id}/person`}
+            shallow={true}
+            className={`${styles.filmContent__title} ${styles.title_link}`}
+          >
+            Трейлеры
+          </Link>{' '}
+          и доп. материалы
+        </h2>
         <div className={styles.filmContent__slider}>
           {[movie.trailerLink, movie.trailerLink, movie.trailerLink].map((trailer) => {
             return (
@@ -102,8 +120,10 @@ const FilmContent: FC<IFilm> = (movie) => {
       <section className={styles.filmContent__comments}>
         <div className={styles.filmContent__comments_header}>
           <Link
+            onClick={() => {
+              showHandler('comments');
+            }}
             href={`/film/${movie.id}/person`}
-            scroll={false}
             shallow={true}
             className={`${styles.filmContent__title} ${styles.title_link}`}
           >
@@ -119,6 +139,10 @@ const FilmContent: FC<IFilm> = (movie) => {
             as={'link'}
             href={`/film/${movie.id}/person`}
             hoverBorder={'1px solid #fff'}
+            target={'_self'}
+            onClick={() => {
+              showHandler('comments');
+            }}
           >
             Оставить коментарий
           </Button>
@@ -144,7 +168,12 @@ const FilmContent: FC<IFilm> = (movie) => {
             name={movie.movieName}
           />
         ) : (
-          <PersonsModal onClose={() => router.push(`/film/${movie.id}`)} movie={movie} />
+          <PersonsModal
+            onClose={() => router.push(`/film/${movie.id}`)}
+            movie={movie}
+            show={isShow}
+            setShow={setIsShow}
+          />
         )}
       </Modal>
     </div>
