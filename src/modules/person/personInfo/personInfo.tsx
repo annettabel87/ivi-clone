@@ -1,7 +1,13 @@
 import Image from 'next/image';
 import styles from './personInfo.module.scss';
 
-const Personify = ({ photoLink, name, enName }) => {
+interface IPersonifyProps {
+  photoLink: string;
+  name: string;
+  enName: string;
+}
+
+const Personify = ({ photoLink, name, enName }: IPersonifyProps) => {
   return (
     <>
       <div className={styles.personImage}>

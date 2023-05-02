@@ -1,6 +1,10 @@
 import FilmItem from "./filmItem/filmitem";
+import { IFilm } from '../personFilmography';
 
-const FilmList = ({ filmArray }) => {
+interface IFilmListProps {
+  filmArray: Array<IFilm>;
+}
+const FilmList = ({ filmArray }: IFilmListProps) => {
   return (
     <div>
       {filmArray.map((item) => (

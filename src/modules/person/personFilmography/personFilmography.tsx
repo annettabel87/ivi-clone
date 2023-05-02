@@ -1,8 +1,18 @@
-import FilmList from "./filmList/filmList";
+import FilmList from './filmList/filmList';
 import styles from './personFilmography.module.scss';
 import { useState } from 'react';
 
-const filmArray = [
+export interface IFilm {
+  poster: string;
+  name: string;
+  year: string;
+  rate?: {
+    kinopoisk: string;
+  };
+  filmId: number;
+}
+
+const filmArray: Array<IFilm> = [
   {
     poster:
       'https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/38b9f26a-706f-4d19-8ad8-dbca62ac8ed3/3840x',
@@ -96,25 +106,50 @@ const filmArray = [
     },
     filmId: 9,
   },
+  {
+    poster:
+      'https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/8d713823-91d8-4604-88e5-00434787bae4/3840x',
+    name: 'Садоводы',
+    year: '2021',
+    rate: {
+      kinopoisk: '6.6',
+    },
+    filmId: 10,
+  },
 ];
 
 const PersonFilmography = () => {
-    const [filmCount, setFilmCount] = useState (filmArray.slice(0, 4))
-    const [showAllFilms, setShowAllFilms] = useState (false)
-    const handleSwitchFilmCount = (array) => {
-        setFilmCount(array);
-        setShowAllFilms(true);
-    }
+  const [filmSlice, setFilmCount] = useState(filmArray.slice(0, 4));
+  const [showAllFilms, setShowAllFilms] = useState(false);
+  const handleSwitchFilmCount = (array: Array<Film>) => {
+    setFilmCount(array);
+    setShowAllFilms(true);
+  };
+  const pluralize = require('numeralize-ru').pluralize;
+  const filmQuantity = filmArray.length;
 
   return (
     <>
       <div className={styles.personFilmographyHeader}>
         <h2 className={styles.personFilmographyTitle}>Полная фильмография</h2>
-        <p className={styles.personFilmographyExtraTitle}>16 фильмов</p>
+        <p className={styles.personFilmographyExtraTitle}>
+          {filmArray.length} {pluralize(filmQuantity, 'фильм', 'фильма', 'фильмов')}
+        </p>
       </div>
 
-      <FilmList filmArray={filmCount} />
-      {(filmCount.length >= 4 && !showAllFilms) ? (<p onClick={() => {handleSwitchFilmCount(filmArray)}}>Показать еще</p>):(<></>)}
+      <FilmList filmArray={filmSlice} />
+      {filmSlice.length >= 4 && !showAllFilms ? (
+        <p
+          onClick={() => {
+            handleSwitchFilmCount(filmArray);
+          }}
+          className={styles.personFilmographyMoreLink}
+        >
+          Показать еще
+        </p>
+      ) : (
+        <></>
+      )}
     </>
   );
 };

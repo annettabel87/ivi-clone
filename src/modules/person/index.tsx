@@ -6,23 +6,26 @@ import Container from '@/components/container/container';
 import PersonFilmography from './personFilmography/personFilmography';
 import FilmList from './personFilmography/filmList/filmList';
 import { useRouter } from 'next/router';
+import { IPerson } from '@/pages/person/[personId]';
 
-const Person = ({ personData }) => {
-  console.log(personData);
+interface IPersonProps {
+  personData: IPerson;
+}
+const Person = ({ personData }: IPersonProps) => {
   const { kinopoiskId, name, enName, photoLink } = personData;
   const router = useRouter();
   return (
     <>
       <div onClick={() => router.back()} className={styles.backArrow}>
-        <Image src={arrowIcon} alt={'Назад'} width={8} height={20}/>
+        <Image src={arrowIcon} alt={'Назад'} width={8} height={20} />
         <p>Назад</p>
       </div>
       <Container>
         <Personify photoLink={photoLink} name={name} enName={enName} />
         <div></div>
-        <PersonFilmography>
-        <FilmList/>
-        </PersonFilmography>
+        <PersonFilmography />
+          {/* <FilmList /> */}
+        {/* </PersonFilmography> */}
       </Container>
     </>
   );
