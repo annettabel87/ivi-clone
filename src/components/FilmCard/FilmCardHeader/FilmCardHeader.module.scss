@@ -9,6 +9,11 @@
     position: relative;
     z-index: 15;
 
+    @media screen and (max-width: 599px) {
+        padding-top: 16px;
+
+    }
+
     &_controls {
         display: flex;
         align-items: center;
@@ -29,8 +34,8 @@
         &:hover {
             color: $mainColor;
         }
-
     }
+
     &_badge {
         background-color: #ea003d;
         backdrop-filter: blur(0);
@@ -49,7 +54,7 @@
         background-color: rgba(255, 255, 255, .56);
     }
 
-    &_backBtn  {
+    &_backBtn {
         display: none;
         cursor: pointer;
         background-color: inherit;
