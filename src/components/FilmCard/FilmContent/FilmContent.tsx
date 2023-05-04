@@ -150,7 +150,7 @@ const FilmContent: FC<IFilm> = (movie) => {
         </div>
         <Comments {...commentsData} />
       </section>
-      <WatchAllDevices movieName={movie.movieName} />
+      <WatchAllDevices movieName={movie.movieName} poster={movie.poster} />
       <Modal
         open={router.pathname.includes('person') || isOpenTrailers}
         onClose={

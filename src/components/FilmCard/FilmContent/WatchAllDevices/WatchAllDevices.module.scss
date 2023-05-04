@@ -61,6 +61,7 @@
             width: 337px;
             height: 192px;
             border-radius: 2px;
+            object-fit: cover;
         }
 
         &_imgTabletPoster {
@@ -71,6 +72,7 @@
             height: 102px;
             border-radius: 4px;
             z-index: 1;
+            object-fit: cover;
         }
 
     }

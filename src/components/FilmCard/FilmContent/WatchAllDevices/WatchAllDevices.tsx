@@ -9,8 +9,9 @@ import styles from './WatchAllDevices.module.scss';
 
 export interface IWatchAllDevicesProps {
   movieName: string;
+  poster: string;
 }
-const WatchAllDevices: FC<IWatchAllDevicesProps> = ({ movieName }) => {
+const WatchAllDevices: FC<IWatchAllDevicesProps> = ({ movieName, poster }) => {
   return (
     <section className={styles.watchAllDevices}>
       <div className={styles.watchAllDevices__info}>
@@ -44,14 +45,18 @@ const WatchAllDevices: FC<IWatchAllDevicesProps> = ({ movieName }) => {
             className={styles.watchAllDevices__devices_imgTablet}
           />
           <Image
-            src={tvImage}
+            src={poster}
             alt="телевизор"
             className={styles.watchAllDevices__devices_imgTvPoster}
+            width={337}
+            height={192}
           />
           <Image
-            src={ipadImage}
+            src={poster}
             alt="планшет"
             className={styles.watchAllDevices__devices_imgTabletPoster}
+            width={200}
+            height={135}
           />
         </div>
       </div>
