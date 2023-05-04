@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
+import clockIcon from '@/assets/icon/clock.svg';
 import styles from './TrailerSmallCard.module.scss';
 
 export interface ITrailerSmallCard {
@@ -7,6 +8,7 @@ export interface ITrailerSmallCard {
   movieName: string;
   onClickHandler: (show: boolean, trailer: string) => void;
   trailer: string;
+  withClock?: boolean;
 }
 
 const TrailerSmallCard: FC<ITrailerSmallCard> = ({
@@ -14,6 +16,7 @@ const TrailerSmallCard: FC<ITrailerSmallCard> = ({
   movieName,
   onClickHandler,
   trailer,
+  withClock = false,
 }) => {
   return (
     <div className={styles.trailerCard} onClick={() => onClickHandler(true, trailer)}>
@@ -28,7 +31,10 @@ const TrailerSmallCard: FC<ITrailerSmallCard> = ({
       </div>
       <div className={styles.trailerCard__description}>
         <p className={styles.trailerCard__text}>{movieName}</p>
-        <p className={styles.trailerCard__smallText}>1 мин.</p>
+        <div className={styles.trailerCard__time}>
+          {withClock && <Image src={clockIcon} alt="продолжительность" width={16} height={16} />}
+          <p className={styles.trailerCard__smallText}>1 мин</p>
+        </div>
       </div>
     </div>
   );

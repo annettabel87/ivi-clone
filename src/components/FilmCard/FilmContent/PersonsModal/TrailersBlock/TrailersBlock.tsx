@@ -30,6 +30,7 @@ const TrailersBlock: FC<ITrailersBlockProps> = ({ trailers, movieName, poster })
               movieName={movieName}
               onClickHandler={onClickHandler}
               trailer={trailer}
+              withClock={true}
             />
           );
         })}

@@ -46,4 +46,9 @@
         line-height: 16px;
         color: $additionalColor;
     }
+
+    &__time {
+        display: flex;
+        gap: 5px;
+    }
 }
