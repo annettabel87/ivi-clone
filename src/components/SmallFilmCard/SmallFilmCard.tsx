@@ -9,6 +9,7 @@ import clockIcon from '@/assets/icon/clock.svg';
 import starIcon from '@/assets/icon/star.svg';
 import banIcon from '@/assets/icon/ban.svg';
 import diagramIcon from '@/assets/icon/diagram.svg';
+import { ONE_FILM_ROUTE } from '@/shared/constants/routes';
 import styles from './SmallFilmCard.module.scss';
 
 export interface ISmallFilmCardProps {
@@ -21,7 +22,7 @@ const SmallFilmCard: FC<ISmallFilmCardProps> = ({ movie, type }) => {
 
   return (
     <Link
-      href={`/film/${movie.id}`}
+      href={`${ONE_FILM_ROUTE}/${movie.id}`}
       className={`${type !== 'posterRecommend' ? styles.smallFilmCard : styles.bigSize}`}
     >
       <div

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Modal from '@/components/Modal/Modal';
 import { IFilm } from '@/pages/film/[filmId]';
+import { ONE_FILM_ROUTE } from '@/shared/constants/routes';
 import ModalTrailer from '../FilmTrailer/ModalTrailer/ModalTrailer';
 import SmallFilmCard from '../../SmallFilmCard/SmallFilmCard';
 import PersonSmallCard from './SmallPersonCard/PersonSmallCard';
@@ -68,7 +69,7 @@ const FilmContent: FC<IFilm> = (movie) => {
       </section>
       <section className={styles.filmContent__persons}>
         <Link
-          href={`/film/${movie.id}/person`}
+          href={`${ONE_FILM_ROUTE}/${movie.id}/person`}
           shallow={true}
           className={`${styles.filmContent__title} ${styles.title_link}`}
           onClick={() => showHandler('persons')}
@@ -80,7 +81,7 @@ const FilmContent: FC<IFilm> = (movie) => {
             return <PersonSmallCard key={person.id} person={person} size={'small'} />;
           })}
           <Link
-            href={`/film/${movie.id}/person`}
+            href={`${ONE_FILM_ROUTE}/${movie.id}/person`}
             shallow={true}
             className={styles.roundButton}
             onClick={() => showHandler('persons')}
@@ -95,7 +96,7 @@ const FilmContent: FC<IFilm> = (movie) => {
             onClick={() => {
               showHandler('trailers');
             }}
-            href={`/film/${movie.id}/person`}
+            href={`${ONE_FILM_ROUTE}/${movie.id}/person`}
             shallow={true}
             className={`${styles.filmContent__title} ${styles.title_link}`}
           >
@@ -123,7 +124,7 @@ const FilmContent: FC<IFilm> = (movie) => {
             onClick={() => {
               showHandler('comments');
             }}
-            href={`/film/${movie.id}/person`}
+            href={`${ONE_FILM_ROUTE}/${movie.id}/person`}
             shallow={true}
             className={`${styles.filmContent__title} ${styles.title_link}`}
           >
@@ -156,7 +157,7 @@ const FilmContent: FC<IFilm> = (movie) => {
           isOpenTrailers
             ? () => setIsOpenTrailers(false)
             : () => {
-                router.push(`/film/${movie.id}`);
+                router.push(`${ONE_FILM_ROUTE}/${movie.id}`);
               }
         }
       >
@@ -169,7 +170,7 @@ const FilmContent: FC<IFilm> = (movie) => {
           />
         ) : (
           <PersonsModal
-            onClose={() => router.push(`/film/${movie.id}`)}
+            onClose={() => router.push(`${ONE_FILM_ROUTE}/${movie.id}`)}
             movie={movie}
             show={isShow}
             setShow={setIsShow}

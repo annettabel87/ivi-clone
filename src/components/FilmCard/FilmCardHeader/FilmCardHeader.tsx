@@ -3,6 +3,7 @@ import Link from 'next/link';
 import arrow from '../../../assets/icon/arrow-left.svg';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { FILMS_ROUTE } from '@/shared/constants/routes';
 import styles from './FilmCardHeader.module.scss';
 export interface IFilmCardHeaderProps {
   genre: string;
@@ -14,11 +15,11 @@ const FilmCardHeader: FC<IFilmCardHeaderProps> = ({ genre }) => {
   return (
     <div className={styles.filmCard__header}>
       <div className={styles.filmCard__header_controls}>
-        <Link href="/movies" className={styles.filmCard__header_link}>
+        <Link href={FILMS_ROUTE} className={styles.filmCard__header_link}>
           Фильмы
         </Link>
         <span className={styles.dot}></span>
-        <Link href={`movies/${genre}`} className={styles.filmCard__header_link}>
+        <Link href={`${FILMS_ROUTE}/${genre}`} className={styles.filmCard__header_link}>
           {genre}
         </Link>
       </div>

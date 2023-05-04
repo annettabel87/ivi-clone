@@ -2,6 +2,7 @@ import { IPerson } from '@/pages/film/[filmId]';
 import Link from 'next/link';
 import React, { FC } from 'react';
 import Image from 'next/image';
+import { PERSON_ROUTE } from '@/shared/constants/routes';
 import styles from './PersonSmallCard.module.scss';
 
 export interface IPersonSmallCardProps {
@@ -10,7 +11,10 @@ export interface IPersonSmallCardProps {
 }
 const PersonSmallCard: FC<IPersonSmallCardProps> = ({ person, size }) => {
   return (
-    <Link href={`/person/${person.id}`} className={`${styles.personSmallCard} ${styles[size]}`}>
+    <Link
+      href={`${PERSON_ROUTE}/${person.id}`}
+      className={`${styles.personSmallCard} ${styles[size]}`}
+    >
       <div className={styles.personSmallCard__imageBlock}>
         <Image
           src={person.photo}

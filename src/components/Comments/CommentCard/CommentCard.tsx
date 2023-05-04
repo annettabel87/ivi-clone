@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 import { IComment } from '../Comments';
-import styles from './CommentCard.module.scss';
+import { FILMS_ROUTE } from '@/shared/constants/routes';
 import Link from 'next/link';
 import Image from 'next/image';
 import likeIcon from '@/assets/icon/like.svg';
 import dislikeIcon from '@/assets/icon/dislike.svg';
+import styles from './CommentCard.module.scss';
 
 export interface ICommentCardProps {
   comment: IComment;
@@ -12,7 +13,7 @@ export interface ICommentCardProps {
 }
 const CommentCard: FC<ICommentCardProps> = ({ comment, filmId }) => {
   return (
-    <Link href={`/film/${filmId}/person`} className={styles.commentCard}>
+    <Link href={`${FILMS_ROUTE}/${filmId}/person`} className={styles.commentCard}>
       <p className={styles.commentCard__text_grayBold}>{comment.author}</p>
       <h3 className={styles.commentCard__title}>{comment.title}</h3>
       <p className={styles.commentCard__text}>{comment.text.slice(0, 200)}...</p>

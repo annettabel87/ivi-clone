@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from './Medallions.module.scss';
 import { IPerson } from '@/pages/film/[filmId]';
+import { PERSON_ROUTE } from '@/shared/constants/routes';
+import styles from './Medallions.module.scss';
 
 export interface IMedallionsProps {
   persons: IPerson[];
@@ -21,7 +22,11 @@ const Medallions: FC<IMedallionsProps> = ({ persons, rating }) => {
 
       {persons.map((person) => {
         return (
-          <Link href={`/person/${person.id}`} className={styles.medallions_item} key={person.id}>
+          <Link
+            href={`${PERSON_ROUTE}/${person.id}`}
+            className={styles.medallions_item}
+            key={person.id}
+          >
             <div className={styles.medallion}>
               <div className={styles.medallion_content}>
                 <Image

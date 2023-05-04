@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { IFilm } from '@/pages/film/[filmId]';
+import { FILMS_ROUTE } from '@/shared/constants/routes';
 import RatingWidget from './RatingWidget/RatingWidget';
 import Medallions from './Medallions/Medallions';
 import volumeIcon from '../../../assets/icon/volume.svg';
@@ -31,21 +32,21 @@ const FilmInfo: FC<IFilm> = ({
       </h1>
       <div className={styles.filmInfo__watchParams}>
         <div className={styles.filmInfo__watchParams_row}>
-          <Link href={`/films/${year}`} className={styles.filmInfo__text}>
+          <Link href={`${FILMS_ROUTE}/${year}`} className={styles.filmInfo__text}>
             {year}
           </Link>
           <p className={styles.filmInfo__text}>{movieLength}</p>
           <p className={styles.filmInfo__text}>{ageRating}+</p>
         </div>
         <div className={styles.filmInfo__watchParams_row}>
-          <Link href={`/films/${countries[0].country}`} className={styles.filmInfo__text}>
+          <Link href={`${FILMS_ROUTE}/${countries[0].country}`} className={styles.filmInfo__text}>
             {countries[0].countryId}
           </Link>
           {genres.map((genre) => {
             return (
               <div className={styles.filmInfo__text_dot} key={genre.genre}>
                 <span className={styles.dot}></span>
-                <Link href={`/films/${genre.genreEng}`} className={styles.filmInfo__text}>
+                <Link href={`${FILMS_ROUTE}/${genre.genreEng}`} className={styles.filmInfo__text}>
                   {genre.genre}
                 </Link>
               </div>
