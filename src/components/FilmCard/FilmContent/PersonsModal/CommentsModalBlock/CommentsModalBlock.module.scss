@@ -1,0 +1,12 @@
+@import '../../../../../styles/variables.scss';
+
+.comments {
+
+    &__list {
+        margin-top: 32px;
+        padding-left: 36px;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+    }
+}

@@ -173,6 +173,7 @@ const FilmContent: FC<IFilm> = (movie) => {
             movie={movie}
             show={isShow}
             setShow={setIsShow}
+            comments={commentsData}
           />
         )}
       </Modal>

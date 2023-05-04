@@ -5,18 +5,21 @@ import { IFilm } from '@/pages/film/[filmId]';
 import PersonsBlock from './PersonsBlock/PersonsBlock';
 import TrailersBlock from './TrailersBlock/TrailersBlock';
 import arrowIcon from '@/assets/icon/arrow-left.svg';
+import { IComments } from '@/components/Comments/Comments';
 import styles from './PersonsModal.module.scss';
+import CommentsModalBlock from './CommentsModalBlock/CommetsModalBlock';
 
 export interface IPersonsModal {
   onClose: () => void;
   movie: IFilm;
   show: IPersonsModalType;
   setShow: (show: IPersonsModalType) => void;
+  comments: IComments;
 }
 
 export type IPersonsModalType = 'persons' | 'comments' | 'trailers';
 
-const PersonsModal: FC<IPersonsModal> = ({ movie, onClose, show, setShow }) => {
+const PersonsModal: FC<IPersonsModal> = ({ movie, onClose, show, setShow, comments }) => {
   useEffect(() => setShow(localStorage.getItem('personModal') as IPersonsModalType), []);
 
   return (
@@ -53,7 +56,7 @@ const PersonsModal: FC<IPersonsModal> = ({ movie, onClose, show, setShow }) => {
                   >
                     Комментарии
                   </button>
-                  <sup className={styles.persons__navigation_sup}>3</sup>
+                  <sup className={styles.persons__navigation_sup}>{comments.entityJSON.length}</sup>
                 </li>
                 <li className={styles.persons__navigation_item}>
                   <button
@@ -76,6 +79,7 @@ const PersonsModal: FC<IPersonsModal> = ({ movie, onClose, show, setShow }) => {
                 poster={movie.poster}
               />
             )}
+            {show === 'comments' && <CommentsModalBlock {...comments} />}
           </div>
           <div className={styles.persons__content_poster}>
             <SmallFilmCard movie={movie} type={'poster'} />
