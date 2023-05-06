@@ -1,12 +1,8 @@
 import React, { FC, useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
 import { IFilm } from '@/pages/film/[filmId]';
-import { FILMS_ROUTE } from '@/shared/constants/routes';
 import RatingWidget from './RatingWidget/RatingWidget';
+import WatchParams from '../WatchParams/WatchParams';
 import Medallions from './Medallions/Medallions';
-import volumeIcon from '../../../assets/icon/volume.svg';
-import keyBoardIcon from '../../../assets/icon/keyboard.svg';
 import styles from './FilmInfo.module.scss';
 
 const FilmInfo: FC<IFilm> = ({
@@ -30,52 +26,17 @@ const FilmInfo: FC<IFilm> = ({
       <h1 className={styles.filmInfo__title}>
         {movieName} (Фильм {year}) смотреть онлайн
       </h1>
-      <div className={styles.filmInfo__watchParams}>
-        <div className={styles.filmInfo__watchParams_row}>
-          <Link href={`${FILMS_ROUTE}/${year}`} className={styles.filmInfo__text}>
-            {year}
-          </Link>
-          <p className={styles.filmInfo__text}>{movieLength}</p>
-          <p className={styles.filmInfo__text}>{ageRating}+</p>
-        </div>
-        <div className={styles.filmInfo__watchParams_row}>
-          <Link href={`${FILMS_ROUTE}/${countries[0].country}`} className={styles.filmInfo__text}>
-            {countries[0].countryId}
-          </Link>
-          {genres.map((genre) => {
-            return (
-              <div className={styles.filmInfo__text_dot} key={genre.genre}>
-                <span className={styles.dot}></span>
-                <Link href={`${FILMS_ROUTE}/${genre.genreEng}`} className={styles.filmInfo__text}>
-                  {genre.genre}
-                </Link>
-              </div>
-            );
-          })}
-        </div>
-        <div className={styles.filmInfo__watchParams_row}>
-          <p className={styles.filmInfo__quality}>{quality}</p>
-          <Image src={volumeIcon} alt={'язык'} width={15} height={15} />
-          {languages.map((language, i) => {
-            return (
-              <div className={styles.filmInfo__text_dot} key={language}>
-                {i !== 0 && <span className={styles.dot}></span>}
-                <p className={styles.filmInfo__text}>{language}</p>
-              </div>
-            );
-          })}
-          <Image src={keyBoardIcon} alt={'субтитры'} width={15} height={15} />
-
-          {subtitles_languages.map((language, i) => {
-            return (
-              <div className={styles.filmInfo__text_dot} key={language}>
-                {i !== 0 && <span className={styles.dot}></span>}
-                <p className={styles.filmInfo__text}>{language}</p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      <WatchParams
+        year={year}
+        movieLength={movieLength}
+        ageRating={ageRating}
+        countries={countries}
+        genres={genres}
+        languages={languages}
+        subtitles_languages={subtitles_languages}
+        quality={quality}
+        align="center"
+      />
       <Medallions persons={[...actors].splice(0, 4)} rating={rate.kinopoisk} />
       <div className={styles.filmInfo__description}>
         <p className={styles.filmInfo__text}>{description}</p>
