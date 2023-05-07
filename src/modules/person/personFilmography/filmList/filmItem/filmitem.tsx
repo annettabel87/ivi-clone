@@ -1,18 +1,25 @@
 import Image from 'next/image';
-import styles from './filmitem.module.scss';
+import styles from './filmItem.module.scss';
 import { useRouter } from 'next/router';
 import { IFilm } from '../../personFilmography';
+import { FC } from 'react';
 
 interface IFilmItemProps {
   film: IFilm;
 }
-const FilmItem = ({ film }: IFilmItemProps): JSX.Element => {
+const FilmItem: FC<IFilmItemProps> = ({ film }) => {
   const router = useRouter();
   return (
     <>
       <div className={styles.personFilmographyItem}>
         <div>
-        <Image src={film.poster} width={80} height={123} className={styles.posterImage}></Image>
+          <Image
+            src={film.poster}
+            height={123}
+            width={80}
+            className={styles.posterImage}
+            alt={film.name}
+          ></Image>
         </div>
         <div className={styles.personFilmographyItemMain}>
           <div className={styles.personFilmographyItemInfos}>

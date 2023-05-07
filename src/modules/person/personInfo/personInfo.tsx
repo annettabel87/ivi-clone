@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from './personInfo.module.scss';
+import { FC } from 'react';
 
 interface IPersonifyProps {
   photoLink: string;
@@ -7,7 +8,7 @@ interface IPersonifyProps {
   enName: string;
 }
 
-const Personify = ({ photoLink, name, enName }: IPersonifyProps) => {
+const Personify: FC<IPersonifyProps> = ({ photoLink, name, enName }) => {
   return (
     <>
       <div className={styles.personImage}>

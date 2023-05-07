@@ -1,14 +1,17 @@
 import FilmList from './filmList/filmList';
 import styles from './personFilmography.module.scss';
-import { useState } from 'react';
+import { FC, useState } from 'react';
+import numeralize from 'numeralize-ru';
 
 export interface IFilm {
   poster: string;
   name: string;
   year: string;
-  rate?: {
-    kinopoisk: string;
-  };
+  rate?:
+    | {
+        kinopoisk: string;
+      }
+    | undefined;
   filmId: number;
 }
 
@@ -118,14 +121,14 @@ const filmArray: Array<IFilm> = [
   },
 ];
 
-const PersonFilmography = () => {
+const PersonFilmography: FC = () => {
   const [filmSlice, setFilmCount] = useState(filmArray.slice(0, 4));
   const [showAllFilms, setShowAllFilms] = useState(false);
-  const handleSwitchFilmCount = (array: Array<Film>) => {
+  const pluralize = numeralize.pluralize;
+  const handleSwitchFilmCount = (array: Array<IFilm>) => {
     setFilmCount(array);
     setShowAllFilms(true);
   };
-  const pluralize = require('numeralize-ru').pluralize;
   const filmQuantity = filmArray.length;
 
   return (

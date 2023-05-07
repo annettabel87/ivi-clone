@@ -6,12 +6,14 @@ import Container from '@/components/container/container';
 import PersonFilmography from './personFilmography/personFilmography';
 import FilmList from './personFilmography/filmList/filmList';
 import { useRouter } from 'next/router';
-import { IPerson } from '@/pages/person/[personId]';
+import { IPerson } from '@/pages/person/constants';
+import { FC } from 'react';
 
 interface IPersonProps {
   personData: IPerson;
 }
-const Person = ({ personData }: IPersonProps) => {
+const Person: FC<IPersonProps> = ({ personData }) => {
+  console.log(personData);
   const { kinopoiskId, name, enName, photoLink } = personData;
   const router = useRouter();
   return (
@@ -24,7 +26,7 @@ const Person = ({ personData }: IPersonProps) => {
         <Personify photoLink={photoLink} name={name} enName={enName} />
         <div></div>
         <PersonFilmography />
-          {/* <FilmList /> */}
+        {/* <FilmList /> */}
         {/* </PersonFilmography> */}
       </Container>
     </>

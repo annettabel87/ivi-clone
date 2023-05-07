@@ -1,14 +1,15 @@
-import FilmItem from "./filmItem/filmitem";
+import FilmItem from './filmItem/filmItem';
 import { IFilm } from '../personFilmography';
+import { FC } from 'react';
 
 interface IFilmListProps {
   filmArray: Array<IFilm>;
 }
-const FilmList = ({ filmArray }: IFilmListProps) => {
+const FilmList: FC<IFilmListProps> = ({ filmArray }) => {
   return (
     <div>
       {filmArray.map((item) => (
-        <FilmItem film={item} />
+        <FilmItem key={item.filmId} film={item} />
       ))}
     </div>
   );
