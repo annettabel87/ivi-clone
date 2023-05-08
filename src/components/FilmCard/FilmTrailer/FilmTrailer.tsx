@@ -1,8 +1,9 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 const ReactPlayer = dynamic(() => import('react-player'), { ssr: false });
 import ModalTrailer from './ModalTrailer/ModalTrailer';
+import { useWindowSize } from '@/hooks/useWindowSize ';
 import Modal from '@/components/Modal/Modal';
 import Button from '@/components/Button/Button';
 import WatchParams from '../WatchParams/WatchParams';
@@ -14,7 +15,6 @@ import favoriteIcon from '../../../assets/icon/favorite.svg';
 import shareIcon from '../../../assets/icon/share.svg';
 import directoryIcon from '../../../assets/icon/directory.svg';
 import styles from './FilmTrailer.module.scss';
-import { useWindowSize } from '@/hooks/useWindowSize ';
 
 export interface IFilmTrailerProps {
   trailer: string;
@@ -173,6 +173,51 @@ const FilmTrailer: FC<IFilmTrailerProps> = ({
             <div className={styles.filmTrailer__button_content}>
               <Image src={directoryIcon} alt={'бесплатные фильмы'} width={16} height={16} />
               <p className={styles.filmTrailer__text}>Бесплатные фильмы</p>
+            </div>
+          </Button>
+        </div>
+      </div>
+      <div className={styles.filmTrailer__buttons_mobile}>
+        <div className={styles.filmTrailer__buttons_bigBtn}>
+          <Button
+            border={'none'}
+            bgColor={'transparent'}
+            height={'40px'}
+            radius={'8px'}
+            width={'115px'}
+            as={'button'}
+            hoverFontColor={'#fff'}
+            onClick={() => setIsOpen(true)}
+          >
+            <div className={styles.filmTrailer__button_content}>
+              <Image src={playIcon} alt={'проигрывать'} width={20} height={20} />
+              <p className={styles.filmTrailer__text}>Трейлер</p>
+            </div>
+          </Button>
+          <Button
+            border={'none'}
+            bgColor={'transparent'}
+            height={'40px'}
+            radius={'8px'}
+            width={'44px'}
+            as={'button'}
+            hoverFontColor={'#fff'}
+          >
+            <div className={styles.filmTrailer__button_content}>
+              <Image src={favoriteIcon} alt={'закладки'} width={20} height={20} />
+            </div>
+          </Button>
+          <Button
+            border={'none'}
+            bgColor={'transparent'}
+            height={'40px'}
+            radius={'8px'}
+            width={'44px'}
+            as={'button'}
+            hoverFontColor={'#fff'}
+          >
+            <div className={styles.filmTrailer__button_content}>
+              <Image src={shareIcon} alt={'поделиться'} width={20} height={20} />
             </div>
           </Button>
         </div>

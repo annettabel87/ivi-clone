@@ -4,6 +4,12 @@
     display: flex;
     gap: 4%;
     align-items: center;
+    justify-content: center;
+
+    @media screen and (min-width: 272px) and (max-width: 599px) {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
 
     &_item {
         display: flex;
@@ -39,6 +45,11 @@
     align-items: center;
     justify-content: center;
 
+    @media screen and (max-width: 599px) {
+        width: 44px;
+        height: 44px;
+    }
+
     &_img {
         border-radius: 8px;
         position: absolute;
@@ -50,6 +61,11 @@
         object-fit: cover;
         width: 44px;
         height: 44px;
+
+        @media screen and (max-width: 599px) {
+            width: 36px;
+            height: 36px;
+        }
     }
 
     &_content {
@@ -67,7 +83,12 @@
         font-size: 15px;
         line-height: 20px;
         font-weight: 500;
-        color:  $mainColor;
+        color: $mainColor;
+
+        @media screen and (max-width: 599px) {
+            width: 36px;
+            height: 36px;
+        }
     }
 
     &_caption {

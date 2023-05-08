@@ -1,16 +1,16 @@
 import React, { FC, useState } from 'react';
+import Image from 'next/image';
+import { useWindowSize } from '@/hooks/useWindowSize ';
 import { IFilm } from '@/pages/film/[filmId]';
 import RatingWidget from './RatingWidget/RatingWidget';
 import WatchParams from '../WatchParams/WatchParams';
 import Medallions from './Medallions/Medallions';
-import styles from './FilmInfo.module.scss';
-import { useWindowSize } from '@/hooks/useWindowSize ';
 import Button from '@/components/Button/Button';
 import playIcon from '../../../assets/icon/play.svg';
 import favoriteIcon from '../../../assets/icon/favorite.svg';
 import shareIcon from '../../../assets/icon/share.svg';
 import directoryIcon from '../../../assets/icon/directory.svg';
-import Image from 'next/image';
+import styles from './FilmInfo.module.scss';
 
 export interface IFilmInfoProps {
   setIsOpen: (open: boolean) => void;
@@ -55,7 +55,10 @@ const FilmInfo: FC<IFilmInfoProps> = ({ filmInfo, setIsOpen }) => {
         />
       </div>
       <div className={styles.filmInfo__column}>
-        {windowWidth !== null && windowWidth > 1159 ? (
+        {windowWidth !== null && windowWidth < 391 ? (
+          <Medallions persons={[...actors].splice(0, 3)} rating={rate.kinopoisk} />
+        ) : (windowWidth !== null && windowWidth > 1159) ||
+          (windowWidth !== null && windowWidth < 512) ? (
           <Medallions persons={[...actors].splice(0, 4)} rating={rate.kinopoisk} />
         ) : (
           <Medallions persons={[...actors].splice(0, 5)} rating={rate.kinopoisk} />
@@ -121,6 +124,22 @@ const FilmInfo: FC<IFilmInfoProps> = ({ filmInfo, setIsOpen }) => {
           </button>
         </div>
         <RatingWidget rating={rate} />
+        <div className={styles.filmInfo__mobileShowOptions}>
+          <div className={styles.filmInfo__mobileShowOptions_item}>
+            <h3 className={styles.filmInfo__text}>Языки</h3>
+            <p className={styles.filmInfo__text_white}>{languages.join(', ')}</p>
+          </div>
+          <div className={styles.filmInfo__mobileShowOptions_item}>
+            <h3 className={styles.filmInfo__text}>Субтитры</h3>
+            <p className={styles.filmInfo__text_white}>{subtitles_languages.join(', ')}</p>
+          </div>
+          <div className={styles.filmInfo__mobileShowOptions_item}>
+            <h3 className={styles.filmInfo__text}>Качество</h3>
+            <div className={styles.filmInfo__quality}>
+              <p className={styles.filmInfo__text}>{quality}</p>
+            </div>
+          </div>
+        </div>
       </div>
       <div className={styles.filmInfo__column_buttons}>
         <Button
