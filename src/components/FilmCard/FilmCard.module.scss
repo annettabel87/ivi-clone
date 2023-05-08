@@ -55,12 +55,22 @@
     }
 
     &__content {
-        display: flex;
-        gap: 32px;
         margin-bottom: 24px;
         position: relative;
         z-index: 5;
         margin-bottom: 48px;
+
+        @media screen and (max-width: 1159px) {
+             display: flex;
+            gap: 32px;
+            flex-direction: column;
+        }
+
+        @media screen and (max-width: 879px) {
+            margin-right: -16px;
+            margin-left: -16px;
+        }
+
     }
 
 }

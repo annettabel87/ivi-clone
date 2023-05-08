@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { IFilm } from '@/pages/film/[filmId]';
 import FilmCardHeader from './FilmCardHeader/FilmCardHeader';
 import FilmTrailer from './FilmTrailer/FilmTrailer';
@@ -7,6 +7,8 @@ import FilmInfo from './FilmInfo/FilmInfo';
 import styles from './FilmCard.module.scss';
 
 const FilmCard: FC<IFilm> = (props) => {
+  const [isOpenTrailer, setIsOpenTrailer] = useState<boolean>(false);
+
   return (
     <div className={styles.filmCard}>
       <div className={styles.filmCard__container}>
@@ -17,8 +19,18 @@ const FilmCard: FC<IFilm> = (props) => {
             trailer={props.trailerLink}
             ageRating={props.ageRating}
             name={props.movieName}
+            year={props.year}
+            movieLength={props.movieLength}
+            countries={props.countries}
+            genres={props.genres}
+            languages={props.languages}
+            subtitles_languages={props.subtitles_languages}
+            quality={props.quality}
+            movieName={props.movieName}
+            isOpen={isOpenTrailer}
+            setIsOpen={setIsOpenTrailer}
           />
-          <FilmInfo {...props} />
+          <FilmInfo filmInfo={props} setIsOpen={setIsOpenTrailer} />
         </div>
         <FilmContent {...props} />
       </div>

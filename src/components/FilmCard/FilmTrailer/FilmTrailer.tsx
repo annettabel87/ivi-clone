@@ -1,10 +1,12 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 const ReactPlayer = dynamic(() => import('react-player'), { ssr: false });
 import ModalTrailer from './ModalTrailer/ModalTrailer';
 import Modal from '@/components/Modal/Modal';
 import Button from '@/components/Button/Button';
+import WatchParams from '../WatchParams/WatchParams';
+import { ICountry, IGenre } from '@/pages/film/[filmId]';
 import fullscreenIcon from '../../../assets/icon/fullscreen.svg';
 import AgeRating from '@/components/AgeRating/AgeRating';
 import playIcon from '../../../assets/icon/play.svg';
@@ -12,16 +14,59 @@ import favoriteIcon from '../../../assets/icon/favorite.svg';
 import shareIcon from '../../../assets/icon/share.svg';
 import directoryIcon from '../../../assets/icon/directory.svg';
 import styles from './FilmTrailer.module.scss';
+import { useWindowSize } from '@/hooks/useWindowSize ';
 
 export interface IFilmTrailerProps {
   trailer: string;
   ageRating: string;
   name: string;
+  year: number;
+  movieLength: string;
+  countries: ICountry[];
+  genres: IGenre[];
+  languages: string[];
+  subtitles_languages: string[];
+  quality: string;
+  movieName: string;
+  isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
 }
-const FilmTrailer: FC<IFilmTrailerProps> = ({ trailer, ageRating, name }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+const FilmTrailer: FC<IFilmTrailerProps> = ({
+  trailer,
+  ageRating,
+  name,
+  year,
+  movieLength,
+  countries,
+  genres,
+  languages,
+  subtitles_languages,
+  quality,
+  movieName,
+  isOpen,
+  setIsOpen,
+}) => {
+  const windowWidth = useWindowSize();
+
   return (
     <div className={styles.filmTrailer}>
+      <div className={styles.filmTrailer__header}>
+        <h1 className={styles.filmTrailer__title}>
+          {movieName} (Фильм {year}) смотреть онлайн
+        </h1>
+        <WatchParams
+          year={year}
+          movieLength={movieLength}
+          ageRating={ageRating}
+          countries={countries}
+          genres={genres}
+          languages={languages}
+          subtitles_languages={subtitles_languages}
+          quality={quality}
+          align="left"
+        />
+      </div>
       <div className={styles.filmTrailer__video_block}>
         <ReactPlayer
           url={trailer}
@@ -54,7 +99,7 @@ const FilmTrailer: FC<IFilmTrailerProps> = ({ trailer, ageRating, name }) => {
               bgColor={'rgba(234,0,61,.8)'}
               height={'48px'}
               radius={'8px'}
-              width={'320px'}
+              width={windowWidth !== null && windowWidth > 599 ? '320px' : '272px'}
               as={'link'}
               href={'https://www.ivi.ru/subscribe'}
               hoverBg={'#ff0f4d'}

@@ -3,6 +3,22 @@
 
 .filmInfo {
     width: 37.5%;
+    display: inline-block;
+
+    @media screen and (max-width: 1159px) {
+        width: 100%;
+        display: flex;
+        gap: 40px;
+        align-items: flex-start;
+    }
+
+    &__header {
+
+        @media screen and (max-width: 1159px) {
+            display: none;
+        }
+
+    }
 
     &__title {
         font-size: 36px;
@@ -49,6 +65,14 @@
         text-transform: capitalize;
     }
 
+    &__column {
+
+        @media screen and (max-width: 1159px) {
+
+        max-width: 63%;
+        }
+    }
+
     &__description {
         display: flex;
         flex-direction: column;
@@ -73,6 +97,37 @@
             align-items: flex-start;
         }
     }
+        &__column_buttons {
+            width: 35%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+
+        @media screen and (min-width: 1159px) {
+            display: none;
+        }
+
+    }
+
+    &__buttons_item {
+        flex-grow: 1;
+    }
+
+    &__button_content {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    &__btn {
+        width: 100%;
+        margin: 24px 0;
+
+
+        @media screen and (min-width: 1159px) {
+            display: none;
+        }
+    }
 }
 
 .description__toggle {
@@ -89,4 +144,3 @@
         color: $mainColor;
     }
 }
-

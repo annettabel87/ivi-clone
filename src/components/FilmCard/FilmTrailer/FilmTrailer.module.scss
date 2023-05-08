@@ -1,15 +1,54 @@
 @import '../../../styles/variables.scss';
 
 .filmTrailer {
-    width: 62.5%;
-    position: sticky;
-    top: 32px;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+
+
+    @media screen and (min-width: 1160px) {
+        width: 62.5%;
+        gap: 24px;
+        position: sticky;
+        top: 32px;
+        display: inline-block;
+        vertical-align: top;
+        padding-right: 32px;
+    }
+
+    &__header {
+
+        @media screen and (min-width: 1160px) {
+            display: none;
+        }
+    }
+
+    &__title {
+        font-size: 36px;
+        line-height: 40px;
+        text-align: center;
+        font-weight: 700;
+        margin: 0 auto 20px;
+
+         @media screen and (min-width: 880px) {
+            text-align: left;
+        }
+
+        @media screen and (max-width: 599px) {
+            font-size: 24px;
+            line-height: 28px;
+        }
+
+    }
 
     &__video_block {
         position: relative;
+
+        @media screen and (min-width: 600px) and (max-width: 879px) {
+            margin-right: -32px;
+            margin-left: -32px;
+        }
+
     }
 
     &__video {
@@ -76,18 +115,24 @@
         font-weight: 600;
         color: $descriptionColor;
     }
-&__buttons {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 16px;
 
-    &_column {
+    &__buttons {
         display: flex;
         align-items: center;
-        gap: 16px;
+        justify-content: space-between;
+        padding-bottom: 16px;
+        padding-top: 24px;
+
+        @media screen and (max-width: 1159px) {
+            display: none;
+        }
+
+        &_column {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
     }
-}
 }
 
 .fullscreen {
@@ -108,4 +153,9 @@
     &:hover {
         color: $mainColor;
     }
+
+    @media screen and (max-width: 599px) {
+        display: none;
+    }
+
 }
