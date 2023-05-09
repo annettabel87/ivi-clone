@@ -9,6 +9,7 @@
     flex-direction: column;
     justify-content: space-between;
     transition: all 0.4s;
+    overflow: hidden;
 
     &:hover {
         background-color: #231f34;

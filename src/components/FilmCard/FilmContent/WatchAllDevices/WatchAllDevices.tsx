@@ -2,16 +2,17 @@ import React, { FC } from 'react';
 import Image from 'next/image';
 import Button from '@/components/Button/Button';
 import tvPoster from '@/assets/image/tv-without-poster.png';
-import tvImage from '@/assets/image/tv.jpg';
 import ipadPoster from '@/assets/image/ipad-without-poster.png';
-import ipadImage from '@/assets/image/ipad.jpg';
 import styles from './WatchAllDevices.module.scss';
+import { useWindowSize } from '@/hooks/useWindowSize ';
 
 export interface IWatchAllDevicesProps {
   movieName: string;
   poster: string;
 }
 const WatchAllDevices: FC<IWatchAllDevicesProps> = ({ movieName, poster }) => {
+  const windowWidth = useWindowSize();
+
   return (
     <section className={styles.watchAllDevices}>
       <div className={styles.watchAllDevices__info}>
@@ -27,7 +28,7 @@ const WatchAllDevices: FC<IWatchAllDevicesProps> = ({ movieName, poster }) => {
           bgColor={'#ea003d'}
           height={'40px'}
           radius={'8px'}
-          width={'215px'}
+          width={windowWidth !== null && windowWidth > 599 ? '215px' : '100%'}
           as={'link'}
           hoverBg={'#ff0f4d'}
           hoverBorder={'#ff0f4d'}

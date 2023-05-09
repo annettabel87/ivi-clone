@@ -8,11 +8,31 @@
     column-gap: 24px;
     margin-bottom: 8px;
 
+    @media screen and (min-width: 600px) and (max-width: 879px) {
+        grid-template-columns: 1fr 256px;
+    }
+
+    @media screen and (min-width: 272px) and (max-width: 599px) {
+        grid-template-columns: initial;
+        grid-template-rows: 1fr -webkit-min-content;
+        grid-template-rows: 1fr min-content;
+        row-gap: 24px;
+        padding: 24px;
+        background-color: #1f1b2e;
+        border-radius: 8px;
+    }
+
     &__info {
         display: flex;
         flex-direction: column;
         justify-content: center;
 
+        @media screen and (min-width: 272px) and (max-width: 599px) {
+            -webkit-box-ordinal-group: 2;
+            -webkit-order: 1;
+            -ms-flex-order: 1;
+            order: 1;            
+        }
     }
 
     &__title {
@@ -21,21 +41,43 @@
         font-weight: 700;
         color: $mainColor;
         margin-bottom: 12px;
+
+        @media screen and (min-width: 272px) and (max-width: 599px) {
+            font-size: 17px;
+            line-height: 22px;
+            margin-bottom: 8px;
+        }
     }
 
     &__text {
         line-height: 20px;
         color: $additionalColor;
         margin-bottom: 24px;
+
+        @media screen and (min-width: 272px) and (max-width: 599px) {
+            font-size: 13px;
+            line-height: 16px;
+        }
     }
 
     &__devices {
+        @media screen and (min-width: 272px) and (max-width: 599px) {
+            display: flex;
+            justify-content: center;
+        }
 
         &_container {
             position: relative;
             height: 272px;
             width: 536px;
             margin: 0 auto;
+
+            @media screen and (min-width: 272px) and (max-width: 599px) {
+                width: 268px;
+                height: 136px;
+                margin-left: -24px;
+                margin-right: -24px;
+            }
         }
 
         &_imgTv {
@@ -43,6 +85,11 @@
             width: 536px;
             height: 272px;
             z-index: 1;
+
+            @media screen and (min-width: 272px) and (max-width: 599px) {
+                width: 268px;
+                height: 136px;
+            }
         }
 
         &_imgTablet {
@@ -52,6 +99,13 @@
             width: 200px;
             height: 136px;
             z-index: 1;
+
+            @media screen and (min-width: 272px) and (max-width: 599px) {
+                width: 100px;
+                height: 67px;
+                right: 22px;
+                bottom: 0;
+            }
         }
 
         &_imgTvPoster {
@@ -62,6 +116,13 @@
             height: 192px;
             border-radius: 2px;
             object-fit: cover;
+
+            @media screen and (min-width: 272px) and (max-width: 599px) {
+                width: 168px;
+                height: 96px;
+                left: 50px;
+                top: 1px;
+            }
         }
 
         &_imgTabletPoster {
@@ -73,6 +134,14 @@
             border-radius: 4px;
             z-index: 1;
             object-fit: cover;
+
+            @media screen and (min-width: 272px) and (max-width: 599px) {
+                width: 94px;
+                height: 51px;
+                bottom: 3px;
+                right: 25px;
+                border-radius: 2px;
+            }
         }
 
     }

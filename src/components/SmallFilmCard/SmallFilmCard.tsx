@@ -31,8 +31,8 @@ const SmallFilmCard: FC<ISmallFilmCardProps> = ({ movie, type }) => {
         <Image
           src={movie.poster}
           alt="постер"
-          width={type !== 'posterRecommend' ? 146 : 175}
-          height={type !== 'posterRecommend' ? 224 : 268}
+          width={type !== 'posterRecommend' ? 153 : 175}
+          height={type !== 'posterRecommend' ? 235 : 268}
           className={styles.smallFilmCard__poster}
         />
         <AgeRating ageRating={movie.ageRating} bottom="5px" right="5px" />
