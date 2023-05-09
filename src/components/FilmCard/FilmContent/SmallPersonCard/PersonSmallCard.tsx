@@ -1,14 +1,15 @@
-import { IPerson } from '@/pages/film/[filmId]';
-import Link from 'next/link';
 import React, { FC } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { PERSON_ROUTE } from '@/shared/constants/routes';
+import { IPerson } from '@/pages/film/[filmId]';
 import styles from './PersonSmallCard.module.scss';
 
 export interface IPersonSmallCardProps {
   person: IPerson;
-  size: 'small' | 'big';
+  size: 'xs' | 'small' | 'big';
 }
+
 const PersonSmallCard: FC<IPersonSmallCardProps> = ({ person, size }) => {
   return (
     <Link
@@ -19,8 +20,8 @@ const PersonSmallCard: FC<IPersonSmallCardProps> = ({ person, size }) => {
         <Image
           src={person.photo}
           alt="фото"
-          width={size === 'small' ? 88 : 128}
-          height={size === 'small' ? 88 : 128}
+          width={size === 'small' ? 88 : 'xs' ? 72 : 128}
+          height={size === 'small' ? 88 : 'xs' ? 72 : 128}
           className={styles.personSmallCard__imageBlock_img}
         />
       </div>

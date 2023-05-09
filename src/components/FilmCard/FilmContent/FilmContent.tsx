@@ -13,6 +13,7 @@ import PersonsModal, { IPersonsModalType } from './PersonsModal/PersonsModal';
 import Comments, { IComments } from '@/components/Comments/Comments';
 import Button from '@/components/Button/Button';
 import styles from './FilmContent.module.scss';
+import { useWindowSize } from '@/hooks/useWindowSize ';
 
 const commentsData: IComments = {
   id: 1,
@@ -52,6 +53,36 @@ const FilmContent: FC<IFilm> = (movie) => {
   const [isOpenTrailers, setIsOpenTrailers] = useState<boolean>(false);
   const router = useRouter();
   const [isShow, setIsShow] = useState<IPersonsModalType>('persons');
+  const [personCardsCount, setPersonCardsCount] = useState<number>(9);
+  const windowWidth = useWindowSize();
+
+  useEffect(() => {
+    if (windowWidth !== null) {
+      if (windowWidth < 385) {
+        setPersonCardsCount(2);
+      } else if (windowWidth < 473) {
+        setPersonCardsCount(3);
+      } else if (windowWidth < 563) {
+        setPersonCardsCount(4);
+      } else if (windowWidth < 600) {
+        setPersonCardsCount(5);
+      } else if (windowWidth < 613) {
+        setPersonCardsCount(3);
+      } else if (windowWidth < 725) {
+        setPersonCardsCount(4);
+      } else if (windowWidth < 837) {
+        setPersonCardsCount(5);
+      } else if (windowWidth < 949) {
+        setPersonCardsCount(6);
+      } else if (windowWidth < 1060) {
+        setPersonCardsCount(7);
+      } else if (windowWidth < 1160) {
+        setPersonCardsCount(8);
+      } else {
+        setPersonCardsCount(9);
+      }
+    }
+  }, [windowWidth]);
 
   const showHandler = (type: IPersonsModalType) => {
     localStorage.setItem('personModal', type);
@@ -77,8 +108,14 @@ const FilmContent: FC<IFilm> = (movie) => {
           Актёры и создатели
         </Link>
         <div className={styles.filmContent__list}>
-          {[movie.director[0], ...movie.actors].splice(0, 9).map((person) => {
-            return <PersonSmallCard key={person.id} person={person} size={'small'} />;
+          {[movie.director[0], ...movie.actors].splice(0, personCardsCount).map((person) => {
+            return (
+              <PersonSmallCard
+                key={person.id}
+                person={person}
+                size={windowWidth !== null && windowWidth > 599 ? 'small' : 'xs'}
+              />
+            );
           })}
           <Link
             href={`${ONE_FILM_ROUTE}/${movie.id}/person`}

@@ -15,6 +15,10 @@
         max-width: 128px;
     }
 
+    &.xs {
+        max-width: 72px;
+    }
+
     &:hover {
         .personSmallCard__text_light {
             color: $mainColor;
