@@ -50,6 +50,20 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 16px;
+
+            a {
+                @media screen and (max-width: 599px) {
+                    display: none;
+                }
+            }
+        }
+
+        .bigCommentBtn {
+            margin-bottom: 32px;
+            
+            @media screen and (min-width: 599px) {
+                display: none;
+            }
         }
     }
 

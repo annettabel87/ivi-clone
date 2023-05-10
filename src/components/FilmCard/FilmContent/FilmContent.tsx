@@ -169,7 +169,6 @@ const FilmContent: FC<IFilm> = (movie) => {
           >
             Комментарии<sup className={styles.sup}>{commentsData.entityJSON.length}</sup>
           </Link>
-
           <Button
             border={'1px solid #a5a1b2'}
             bgColor={'transparent'}
@@ -188,6 +187,24 @@ const FilmContent: FC<IFilm> = (movie) => {
           </Button>
         </div>
         <Comments {...commentsData} />
+        <div className={styles.bigCommentBtn}>
+          <Button
+            border={'1px solid #a5a1b2'}
+            bgColor={'transparent'}
+            height={'37px'}
+            radius={'8px'}
+            width={'100%'}
+            as={'link'}
+            href={`/film/${movie.id}/person`}
+            hoverBorder={'1px solid #fff'}
+            target={'_self'}
+            onClick={() => {
+              showHandler('comments');
+            }}
+          >
+            Оставить коментарий
+          </Button>
+        </div>
       </section>
       <WatchAllDevices movieName={movie.movieName} poster={movie.poster} />
       {scrollPosition > 500 && (
