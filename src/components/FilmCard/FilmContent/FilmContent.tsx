@@ -12,8 +12,9 @@ import WatchAllDevices from './WatchAllDevices/WatchAllDevices';
 import PersonsModal, { IPersonsModalType } from './PersonsModal/PersonsModal';
 import Comments, { IComments } from '@/components/Comments/Comments';
 import Button from '@/components/Button/Button';
-import styles from './FilmContent.module.scss';
 import { useWindowSize } from '@/hooks/useWindowSize ';
+import useScrollPosition from '@/hooks/useScrollPosition ';
+import styles from './FilmContent.module.scss';
 
 const commentsData: IComments = {
   id: 1,
@@ -55,6 +56,7 @@ const FilmContent: FC<IFilm> = (movie) => {
   const [isShow, setIsShow] = useState<IPersonsModalType>('persons');
   const [personCardsCount, setPersonCardsCount] = useState<number>(9);
   const windowWidth = useWindowSize();
+  const scrollPosition = useScrollPosition();
 
   useEffect(() => {
     if (windowWidth !== null) {
@@ -188,6 +190,27 @@ const FilmContent: FC<IFilm> = (movie) => {
         <Comments {...commentsData} />
       </section>
       <WatchAllDevices movieName={movie.movieName} poster={movie.poster} />
+      {scrollPosition > 500 && (
+        <div className={styles.filmContent__watchButton}>
+          <Button
+            border={'1px solid #ea003d'}
+            bgColor={'#ea003d'}
+            height={'48px'}
+            radius={'8px'}
+            width={'100%'}
+            as={'link'}
+            href={'https://www.ivi.ru/subscribe'}
+            hoverBg={'#ff0f4d'}
+            hoverBorder={'1px solid #ff0f4d'}
+            target="_self"
+          >
+            <div className={styles.describe}>
+              <p className={styles.filmContent__text_bold}>Смотреть</p>
+              <p className={styles.filmContent__text_small}>по подписке Иви</p>
+            </div>
+          </Button>
+        </div>
+      )}
       <Modal
         open={router.pathname.includes('person') || isOpenTrailers}
         onClose={

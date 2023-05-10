@@ -53,6 +53,40 @@
         }
     }
 
+    &__watchButton {
+        display: none;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: calc(calc(48px + env(safe-area-inset-bottom)) - 1px);
+        z-index: 20;
+        padding: 16px 24px;
+        background: linear-gradient(180deg, rgba(17, 15, 26, 0) 0, #110f1a 55.73%);
+        transition: transform 80ms, -webkit-transform 80ms, -o-transform 80ms;
+   
+        @media screen and (max-width: 599px) {
+            display: block;;
+        }
+    }
+
+    .describe {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__text_bold {
+        line-height: 20px;
+        font-weight: 500;
+    }
+
+    &__text_small {
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: 500;
+        transition: all 0.4s;
+        color: rgba(255, 255, 255, .72);
+    }
 }
 
 
