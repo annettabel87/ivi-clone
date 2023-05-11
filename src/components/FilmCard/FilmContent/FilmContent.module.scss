@@ -3,6 +3,7 @@
 .filmContent {
     position: relative;
     z-index: 20;
+    overflow-x: hidden;
 
     &__films {
         margin-bottom: 24px;

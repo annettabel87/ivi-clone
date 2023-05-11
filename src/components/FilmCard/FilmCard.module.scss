@@ -5,6 +5,7 @@
     &__container {
         max-width: $maxWidthContainer;
         margin: 0 auto;
+        overflow-x: hidden;
 
         @media screen and (max-width: 1297px) {
             padding-left: 20px;

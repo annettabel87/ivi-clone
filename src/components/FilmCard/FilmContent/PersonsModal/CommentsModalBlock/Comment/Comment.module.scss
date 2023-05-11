@@ -1,6 +1,7 @@
 @import '../../../../../../styles/variables.scss';
 
 .comment {
+    position: relative;
 
     &__header {
         display: flex;
@@ -42,6 +43,12 @@
         color: $additionalColor;
         font-size: 13px;
         line-height: 16px;
+
+        @media screen and (max-width: 599px) {
+            position: absolute;
+            bottom: -20px;
+        }
+
     }
 
     &__title {
@@ -64,6 +71,7 @@
         font-size: 15px;
         line-height: 22px;
         transition: all 0.4s;
+        margin-bottom: 8px;
 
         &:hover {
             color: $mainColor;
