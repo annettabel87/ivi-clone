@@ -16,13 +16,13 @@ const PersonSmallCard: FC<IPersonSmallCardProps> = ({ person, size }) => {
       href={`${PERSON_ROUTE}/${person.id}`}
       className={`${styles.personSmallCard} ${styles[size]}`}
     >
-      <div className={styles.personSmallCard__imageBlock}>
+      <div className={`${styles.personSmallCard__imageBlock}  ${styles[size]}`}>
         <Image
           src={person.photo}
           alt="фото"
           width={size === 'small' ? 88 : 'xs' ? 72 : 128}
           height={size === 'small' ? 88 : 'xs' ? 72 : 128}
-          className={styles.personSmallCard__imageBlock_img}
+          className={`${styles.personSmallCard__imageBlock_img} ${styles[size]}`}
         />
       </div>
       <div className={styles.personSmallCard__description}>

@@ -207,7 +207,7 @@ const FilmContent: FC<IFilm> = (movie) => {
         </div>
       </section>
       <WatchAllDevices movieName={movie.movieName} poster={movie.poster} />
-      {scrollPosition > 500 && (
+      {scrollPosition !== null && scrollPosition > 500 && (
         <div className={styles.filmContent__watchButton}>
           <Button
             border={'1px solid #ea003d'}
