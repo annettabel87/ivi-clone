@@ -57,11 +57,12 @@ const FilmInfo: FC<IFilmInfoProps> = ({ filmInfo, setIsOpen }) => {
       <div className={styles.filmInfo__column}>
         {windowWidth !== null && windowWidth < 391 ? (
           <Medallions persons={[...actors].splice(0, 3)} rating={rate.kinopoisk} />
-        ) : (windowWidth !== null && windowWidth > 1159) ||
-          (windowWidth !== null && windowWidth < 512) ? (
+        ) : windowWidth !== null && windowWidth < 512 ? (
           <Medallions persons={[...actors].splice(0, 4)} rating={rate.kinopoisk} />
-        ) : (
+        ) : windowWidth !== null && windowWidth < 1159 ? (
           <Medallions persons={[...actors].splice(0, 5)} rating={rate.kinopoisk} />
+        ) : (
+          <Medallions persons={[...actors].splice(0, 4)} rating={rate.kinopoisk} />
         )}
         <div className={styles.filmInfo__btn}>
           <Button
