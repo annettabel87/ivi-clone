@@ -8,7 +8,7 @@ import Medallions from './Medallions/Medallions';
 import Button from '@/components/Button/Button';
 import playIcon from '../../../assets/icon/play.svg';
 import favoriteIcon from '../../../assets/icon/favorite.svg';
-import shareIcon from '../../../assets/icon/share.svg';
+import shareIcon from '../../../assets/icon/shareTrailer.svg';
 import directoryIcon from '../../../assets/icon/directory.svg';
 import styles from './FilmInfo.module.scss';
 

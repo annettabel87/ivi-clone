@@ -12,7 +12,7 @@ import fullscreenIcon from '../../../assets/icon/fullscreen.svg';
 import AgeRating from '@/components/AgeRating/AgeRating';
 import playIcon from '../../../assets/icon/play.svg';
 import favoriteIcon from '../../../assets/icon/favorite.svg';
-import shareIcon from '../../../assets/icon/share.svg';
+import shareIcon from '../../../assets/icon/shareTrailer.svg';
 import directoryIcon from '../../../assets/icon/directory.svg';
 import styles from './FilmTrailer.module.scss';
 
