@@ -27,7 +27,36 @@ const reviewsData: IReviews = {
       reviewId: '3023304',
       userId: '15579515',
       reviewDate: '05 мая 2021',
-      comments: [],
+      comments: [
+        {
+          id: 1,
+          commentAuthor: 'Anna',
+          commentText:
+            'Хм фильм на реальных событиях, при чем тут «авторы наделили огромными финансовыми возможностями»?',
+          commentDate: '12 декабря 2013',
+        },
+        {
+          id: 1,
+          commentAuthor: 'Anna',
+          commentText:
+            'Хм фильм на реальных событиях, при чем тут «авторы наделили огромными финансовыми возможностями»?',
+          commentDate: '12 декабря 2013',
+        },
+        {
+          id: 2,
+          commentAuthor: 'Max',
+          commentText:
+            'Хм фильм на реальных событиях, при чем тут «авторы наделили огромными финансовыми возможностями»?',
+          commentDate: '12 декабря 2013',
+        },
+        {
+          id: 3,
+          commentAuthor: 'Leo',
+          commentText:
+            'Хм фильм на реальных событиях, при чем тут «авторы наделили огромными финансовыми возможностями»?',
+          commentDate: '12 декабря 2013',
+        },
+      ],
     },
     {
       author: 'masha-pervushina2003',

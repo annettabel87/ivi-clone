@@ -1,7 +1,13 @@
 import React, { FC } from 'react';
 import styles from './Reviews.module.scss';
-import CommentCard from './CommentCard/ReviewCard';
+import CommentCard from './ReviewCard/ReviewCard';
 
+export interface IComment {
+  id: number;
+  commentAuthor: string;
+  commentText: string;
+  commentDate: string;
+}
 export interface IReview {
   author: string;
   title: string;
@@ -9,7 +15,7 @@ export interface IReview {
   userId: string;
   reviewId: string;
   reviewDate: string;
-  comments: [];
+  comments: IComment[];
 }
 export interface IReviews {
   id: number;
