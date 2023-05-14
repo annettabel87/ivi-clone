@@ -1,14 +1,13 @@
 @import '../../../../../styles/variables.scss';
 
 .personsList {
-    margin-bottom: 16px;
+  margin-bottom: 16px;
 
-    @media screen and (max-width: 599px) {
-        margin-bottom: 8px;
-    }
-
+  @media screen and (max-width: 599px) {
+    margin-bottom: 8px;
+  }
 }
 
 .persons {
-    width: 97%;
+  width: 97%;
 }

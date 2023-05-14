@@ -1,16 +1,16 @@
-import { IComments } from '@/components/Comments/Comments';
+import { IReviews } from '@/components/Reviews/Reviews';
 import React, { FC, useState } from 'react';
 import Button from '@/components/Button/Button';
-import Comment from './Comment/Comment';
-import styles from './CommentsModalBlock.module.scss';
-import CommentForm from './CommentForm/CommentForm';
+import Review from './Review/Review';
+import styles from './ReviewsModalBlock.module.scss';
+import ReviewForm from './ReviewForm/ReviewForm';
 
-const CommentsModalBlock: FC<IComments> = (comments) => {
+const ReviewsModalBlock: FC<IReviews> = (reviews) => {
   const [isShowForm, setIsShowForm] = useState<boolean>(false);
   return (
     <div className={styles.comments}>
       {isShowForm ? (
-        <CommentForm onClose={() => setIsShowForm(false)} />
+        <ReviewForm onClose={() => setIsShowForm(false)} />
       ) : (
         <Button
           border={'1px solid rgba(255,255,255,0.32)'}
@@ -22,17 +22,17 @@ const CommentsModalBlock: FC<IComments> = (comments) => {
           hoverBorder={'1px solid #fff'}
           onClick={() => setIsShowForm(true)}
         >
-          Написать комментарий
+          Написать рецензию
         </Button>
       )}
 
       <ul className={styles.comments__list}>
-        {comments.entityJSON.map((comment) => {
-          return <Comment key={comment.reviewId} {...comment} />;
+        {reviews.entityJSON.map((review) => {
+          return <Review key={review.reviewId} {...review} />;
         })}
       </ul>
     </div>
   );
 };
 
-export default CommentsModalBlock;
+export default ReviewsModalBlock;

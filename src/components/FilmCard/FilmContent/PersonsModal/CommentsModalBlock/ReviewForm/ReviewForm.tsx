@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import userIcon from '@/assets/icon/user.svg';
 import Image from 'next/image';
 import Button from '@/components/Button/Button';
-import styles from './CommentForm.module.scss';
+import styles from './ReviewForm.module.scss';
 
 const MIN_LENGTH_TITLE = 10;
 const MAX_LENGTH_TEXT = 1000;
@@ -11,13 +11,13 @@ const MIN_LENGTH_TEXT = 500;
 
 type FormValues = {
   title: string;
-  comment: string;
+  review: string;
 };
 
-export interface ICommentFormProps {
+export interface IReviewFormProps {
   onClose: () => void;
 }
-const CommentForm: FC<ICommentFormProps> = ({ onClose }) => {
+const ReviewForm: FC<IReviewFormProps> = ({ onClose }) => {
   const {
     register,
     handleSubmit,
@@ -33,7 +33,7 @@ const CommentForm: FC<ICommentFormProps> = ({ onClose }) => {
     const subscription = watch((value, { name, type }) => {
       if (type === 'change') {
         setTitleLength(value.title ? value.title.length : 0);
-        setTextLength(value.comment ? value.comment.length : 0);
+        setTextLength(value.review ? value.review.length : 0);
       }
       return () => subscription.unsubscribe();
     });
@@ -51,7 +51,7 @@ const CommentForm: FC<ICommentFormProps> = ({ onClose }) => {
         <div className={styles.commentForm__header_avatar}>
           <Image src={userIcon} alt="аватарка" width={12} height={12} />
         </div>
-        <p className={styles.commentForm__text}>Ваш комментарий</p>
+        <p className={styles.commentForm__text}>Ваша рецензия</p>
       </div>
       <form onSubmit={onSubmit} className={styles.form}>
         <input
@@ -69,19 +69,19 @@ const CommentForm: FC<ICommentFormProps> = ({ onClose }) => {
         {errors?.title && <span className={styles.form__error}>{errors.title.message}</span>}
         <textarea
           className={`${styles.form__input} ${styles.form__textarea} ${
-            errors?.comment && styles.form__error_input
+            errors?.review && styles.form__error_input
           }`}
-          {...register('comment', {
-            required: 'введите коментарий',
+          {...register('review', {
+            required: 'Напишите рецензию',
             maxLength: { value: MAX_LENGTH_TEXT, message: 'комментарий слишком длинный' },
             minLength: {
               value: MIN_LENGTH_TEXT,
               message: `Минимум ${MIN_LENGTH_TEXT} символов, вы ввели ${textLength}`,
             },
           })}
-          placeholder="Комментарий"
+          placeholder="Рецензия"
         />
-        {errors.comment && <span className={styles.form__error}>{errors.comment.message}</span>}
+        {errors.review && <span className={styles.form__error}>{errors.review.message}</span>}
         <div className={styles.form__buttons}>
           <Button
             border={'1px solid rgba(255,255,255,.32)'}
@@ -104,4 +104,4 @@ const CommentForm: FC<ICommentFormProps> = ({ onClose }) => {
   );
 };
 
-export default CommentForm;
+export default ReviewForm;

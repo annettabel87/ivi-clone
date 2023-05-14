@@ -5,19 +5,19 @@ import { IFilm } from '@/pages/film/[filmId]';
 import PersonsBlock from './PersonsBlock/PersonsBlock';
 import TrailersBlock from './TrailersBlock/TrailersBlock';
 import arrowIcon from '@/assets/icon/arrow-left.svg';
-import { IComments } from '@/components/Comments/Comments';
+import { IReviews } from '@/components/Reviews/Reviews';
 import styles from './PersonsModal.module.scss';
-import CommentsModalBlock from './CommentsModalBlock/CommetsModalBlock';
+import ReviewsModalBlock from './CommentsModalBlock/ReviewsModalBlock';
 
 export interface IPersonsModal {
   onClose: () => void;
   movie: IFilm;
   show: IPersonsModalType;
   setShow: (show: IPersonsModalType) => void;
-  comments: IComments;
+  comments: IReviews;
 }
 
-export type IPersonsModalType = 'persons' | 'comments' | 'trailers';
+export type IPersonsModalType = 'persons' | 'reviews' | 'trailers';
 
 const PersonsModal: FC<IPersonsModal> = ({ movie, onClose, show, setShow, comments }) => {
   useEffect(() => setShow(localStorage.getItem('personModal') as IPersonsModalType), []);
@@ -49,12 +49,12 @@ const PersonsModal: FC<IPersonsModal> = ({ movie, onClose, show, setShow, commen
                 </li>
                 <li className={styles.persons__navigation_item}>
                   <button
-                    onClick={() => setShow('comments')}
+                    onClick={() => setShow('reviews')}
                     className={`${styles.persons__navigation_btn} ${
-                      show === 'comments' && styles.active
+                      show === 'reviews' && styles.active
                     }`}
                   >
-                    Комментарии
+                    Рецензии
                   </button>
                   <sup className={styles.persons__navigation_sup}>{comments.entityJSON.length}</sup>
                 </li>
@@ -79,7 +79,7 @@ const PersonsModal: FC<IPersonsModal> = ({ movie, onClose, show, setShow, commen
                 poster={movie.poster}
               />
             )}
-            {show === 'comments' && <CommentsModalBlock {...comments} />}
+            {show === 'reviews' && <ReviewsModalBlock {...comments} />}
           </div>
           <div className={styles.persons__content_poster}>
             <SmallFilmCard movie={movie} type={'poster'} />

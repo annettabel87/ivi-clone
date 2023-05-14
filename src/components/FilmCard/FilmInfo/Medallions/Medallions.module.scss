@@ -1,97 +1,97 @@
 @import '../../../../styles/variables.scss';
 
 .medallions {
+  display: flex;
+  gap: 4%;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (min-width: 272px) and (max-width: 599px) {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  &_item {
     display: flex;
-    gap: 4%;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 8px;
+    font-size: 13px;
+    line-height: 13px;
+    color: $secondaryColor;
+    cursor: pointer;
+    transition: all 0.4s;
+    min-width: 72px;
+    max-width: 90px;
+    height: 96px;
 
-    @media screen and (min-width: 272px) and (max-width: 599px) {
-        padding-left: 8px;
-        padding-right: 8px;
+    &:hover {
+      color: $mainColor;
+
+      .medallion {
+        background-color: rgba(255, 255, 255, 0.24);
+      }
     }
-
-    &_item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        font-size: 13px;
-        line-height: 13px;
-        color: $secondaryColor;
-        cursor: pointer;
-        transition: all 0.4s;
-        min-width: 72px;
-        max-width: 90px;
-        height: 96px;
-
-        &:hover {
-            color: $mainColor;
-
-            .medallion {
-                background-color: rgba(255, 255, 255, 0.24);
-            }
-        }
-    }
+  }
 }
 
 .medallion {
-    background-color: rgba(255, 255, 255, .16);
-    width: 56px;
-    height: 56px;
-    transition: all 0.4s;
-    border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.16);
+  width: 56px;
+  height: 56px;
+  transition: all 0.4s;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (max-width: 599px) {
+    width: 44px;
+    height: 44px;
+  }
+
+  &_img {
+    border-radius: 8px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    -o-object-fit: cover;
+    object-fit: cover;
+    width: 44px;
+    height: 44px;
+
+    @media screen and (max-width: 599px) {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  &_content {
+    width: 44px;
+    height: 44px;
+    background-color: #73a32f;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 8px;
+    line-height: 20px;
+    font-weight: 500;
+    color: $descriptionColor;
+    position: relative;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 500;
+    color: $mainColor;
 
     @media screen and (max-width: 599px) {
-        width: 44px;
-        height: 44px;
+      width: 36px;
+      height: 36px;
     }
+  }
 
-    &_img {
-        border-radius: 8px;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        -o-object-fit: cover;
-        object-fit: cover;
-        width: 44px;
-        height: 44px;
-
-        @media screen and (max-width: 599px) {
-            width: 36px;
-            height: 36px;
-        }
-    }
-
-    &_content {
-        width: 44px;
-        height: 44px;
-        background-color: #73a32f;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 8px;
-        line-height: 20px;
-        font-weight: 500;
-        color: $descriptionColor;
-        position: relative;
-        font-size: 15px;
-        line-height: 20px;
-        font-weight: 500;
-        color: $mainColor;
-
-        @media screen and (max-width: 599px) {
-            width: 36px;
-            height: 36px;
-        }
-    }
-
-    &_caption {
-        text-align: center;
-    }
+  &_caption {
+    text-align: center;
+  }
 }

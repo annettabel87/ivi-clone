@@ -1,63 +1,63 @@
 @import '../../../../styles/variables.scss';
 
 .rating {
-    width: 100%;
-    background-color: rgba(255, 255, 255, .08);
-    border-radius: 12px;
-    padding: 10px;
-    cursor: pointer;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 500;
+  }
+
+  &__column {
     display: flex;
-    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__img {
+    width: 64px;
+    height: 64px;
+    background-color: #73a32f;
+    border-radius: 8px;
+    display: flex;
     align-items: center;
+    justify-content: center;
+    font-size: $subTitleFontSize;
+    line-height: 28px;
+    font-weight: 700;
+  }
 
-    button {
-        font-size: 13px;
-        line-height: 16px;
-        font-weight: 500;
+  &__text {
+    color: $descriptionColor;
+    opacity: 1;
+    line-height: 22px;
+    transition: all 0.4s;
+
+    &_white {
+      color: $mainColor;
     }
 
-    &__column {
-        display: flex;
-        gap: 16px;
+    &_small {
+      font-size: 13px;
+      line-height: 16px;
+      color: $descriptionColor;
+
+      @media screen and (max-width: 879px) {
+        display: none;
+      }
     }
-
-    &__description {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-    }
-
-    &__img {
-        width: 64px;
-        height: 64px;
-        background-color: #73a32f;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: $subTitleFontSize;
-        line-height: 28px;
-        font-weight: 700;
-    }
-
-    &__text {
-        color: $descriptionColor;
-        opacity: 1;
-        line-height: 22px;
-        transition: all 0.4s;
-
-        &_white {
-            color: $mainColor;
-        }
-
-        &_small {
-            font-size: 13px;
-            line-height: 16px;
-            color: $descriptionColor;
-
-            @media screen and (max-width: 879px) {
-                display: none;
-            }
-        }
-    }
+  }
 }

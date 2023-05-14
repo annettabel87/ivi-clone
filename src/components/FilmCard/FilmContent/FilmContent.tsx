@@ -10,13 +10,13 @@ import PersonSmallCard from './SmallPersonCard/PersonSmallCard';
 import TrailerSmallCard from './TrailerSmallCard/TrailerSmallCard';
 import WatchAllDevices from './WatchAllDevices/WatchAllDevices';
 import PersonsModal, { IPersonsModalType } from './PersonsModal/PersonsModal';
-import Comments, { IComments } from '@/components/Comments/Comments';
+import Reviews, { IReviews } from '@/components/Reviews/Reviews';
 import Button from '@/components/Button/Button';
 import { useWindowSize } from '@/hooks/useWindowSize ';
 import useScrollPosition from '@/hooks/useScrollPosition ';
 import styles from './FilmContent.module.scss';
 
-const commentsData: IComments = {
+const reviewsData: IReviews = {
   id: 1,
   entityKinopoiskId: 435,
   entityJSON: [
@@ -161,13 +161,13 @@ const FilmContent: FC<IFilm> = (movie) => {
         <div className={styles.filmContent__comments_header}>
           <Link
             onClick={() => {
-              showHandler('comments');
+              showHandler('reviews');
             }}
             href={`${ONE_FILM_ROUTE}/${movie.id}/person`}
             shallow={true}
             className={`${styles.filmContent__title} ${styles.title_link}`}
           >
-            Комментарии<sup className={styles.sup}>{commentsData.entityJSON.length}</sup>
+            Рецензии<sup className={styles.sup}>{reviewsData.entityJSON.length}</sup>
           </Link>
           <Button
             border={'1px solid #a5a1b2'}
@@ -180,13 +180,13 @@ const FilmContent: FC<IFilm> = (movie) => {
             hoverBorder={'1px solid #fff'}
             target={'_self'}
             onClick={() => {
-              showHandler('comments');
+              showHandler('reviews');
             }}
           >
-            Оставить коментарий
+            Оставить рецезию
           </Button>
         </div>
-        <Comments {...commentsData} />
+        <Reviews {...reviewsData} />
         <div className={styles.bigCommentBtn}>
           <Button
             border={'1px solid #a5a1b2'}
@@ -199,10 +199,10 @@ const FilmContent: FC<IFilm> = (movie) => {
             hoverBorder={'1px solid #fff'}
             target={'_self'}
             onClick={() => {
-              showHandler('comments');
+              showHandler('reviews');
             }}
           >
-            Оставить коментарий
+            Оставить рецензию
           </Button>
         </div>
       </section>
@@ -251,7 +251,7 @@ const FilmContent: FC<IFilm> = (movie) => {
             movie={movie}
             show={isShow}
             setShow={setIsShow}
-            comments={commentsData}
+            comments={reviewsData}
           />
         )}
       </Modal>
