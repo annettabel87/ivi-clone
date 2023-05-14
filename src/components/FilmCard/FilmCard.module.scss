@@ -1,6 +1,11 @@
 @import '../../styles/variables.scss';
 
 .filmCard {
+
+  &.fixed {
+    position: fixed;
+  }
+  
   &__container {
     max-width: $maxWidthContainer;
     margin: 0 auto;

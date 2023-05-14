@@ -9,12 +9,14 @@ import SmallFilmCard from '../../SmallFilmCard/SmallFilmCard';
 import PersonSmallCard from './SmallPersonCard/PersonSmallCard';
 import TrailerSmallCard from './TrailerSmallCard/TrailerSmallCard';
 import WatchAllDevices from './WatchAllDevices/WatchAllDevices';
-import PersonsModal, { IPersonsModalType } from './PersonsModal/PersonsModal';
+import PersonsModal from './PersonsModal/PersonsModal';
 import Reviews, { IReviews } from '@/components/Reviews/Reviews';
 import Button from '@/components/Button/Button';
 import { useWindowSize } from '@/hooks/useWindowSize ';
 import useScrollPosition from '@/hooks/useScrollPosition ';
 import styles from './FilmContent.module.scss';
+import { useAppDispatch } from '@/store/hooks/hooks';
+import { filmPageSlice } from '@/store/reducers/filmPageReducer';
 
 const reviewsData: IReviews = {
   id: 1,
@@ -82,10 +84,11 @@ const reviewsData: IReviews = {
 const FilmContent: FC<IFilm> = (movie) => {
   const [isOpenTrailers, setIsOpenTrailers] = useState<boolean>(false);
   const router = useRouter();
-  const [isShow, setIsShow] = useState<IPersonsModalType>('persons');
+  const { SET_MODAL_TYPE, SET_OPEN } = filmPageSlice.actions;
   const [personCardsCount, setPersonCardsCount] = useState<number>(9);
   const windowWidth = useWindowSize();
   const scrollPosition = useScrollPosition();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (windowWidth !== null) {
@@ -115,10 +118,6 @@ const FilmContent: FC<IFilm> = (movie) => {
     }
   }, [windowWidth]);
 
-  const showHandler = (type: IPersonsModalType) => {
-    localStorage.setItem('personModal', type);
-  };
-
   return (
     <div className={styles.filmContent}>
       <section className={styles.filmContent__films}>
@@ -134,7 +133,7 @@ const FilmContent: FC<IFilm> = (movie) => {
           href={`${ONE_FILM_ROUTE}/${movie.id}/person`}
           shallow={true}
           className={`${styles.filmContent__title} ${styles.title_link}`}
-          onClick={() => showHandler('persons')}
+          onClick={() => dispatch(SET_MODAL_TYPE('persons'))}
         >
           Актёры и создатели
         </Link>
@@ -152,7 +151,9 @@ const FilmContent: FC<IFilm> = (movie) => {
             href={`${ONE_FILM_ROUTE}/${movie.id}/person`}
             shallow={true}
             className={styles.roundButton}
-            onClick={() => showHandler('persons')}
+            onClick={() => {
+              dispatch(SET_MODAL_TYPE('persons'));
+            }}
           >
             Ещё
           </Link>
@@ -162,7 +163,7 @@ const FilmContent: FC<IFilm> = (movie) => {
         <h2 className={styles.filmContent__title}>
           <Link
             onClick={() => {
-              showHandler('trailers');
+              dispatch(SET_MODAL_TYPE('trailers'));
             }}
             href={`${ONE_FILM_ROUTE}/${movie.id}/person`}
             shallow={true}
@@ -190,7 +191,7 @@ const FilmContent: FC<IFilm> = (movie) => {
         <div className={styles.filmContent__comments_header}>
           <Link
             onClick={() => {
-              showHandler('reviews');
+              dispatch(SET_MODAL_TYPE('reviews'));
             }}
             href={`${ONE_FILM_ROUTE}/${movie.id}/person`}
             shallow={true}
@@ -209,7 +210,7 @@ const FilmContent: FC<IFilm> = (movie) => {
             hoverBorder={'1px solid #fff'}
             target={'_self'}
             onClick={() => {
-              showHandler('reviews');
+              dispatch(SET_MODAL_TYPE('reviews'));
             }}
           >
             Оставить рецезию
@@ -228,7 +229,7 @@ const FilmContent: FC<IFilm> = (movie) => {
             hoverBorder={'1px solid #fff'}
             target={'_self'}
             onClick={() => {
-              showHandler('reviews');
+              dispatch(SET_MODAL_TYPE('reviews'));
             }}
           >
             Оставить рецензию
@@ -264,6 +265,7 @@ const FilmContent: FC<IFilm> = (movie) => {
             ? () => setIsOpenTrailers(false)
             : () => {
                 router.push(`${ONE_FILM_ROUTE}/${movie.id}`);
+                dispatch(SET_OPEN(false));
               }
         }
       >
@@ -276,10 +278,11 @@ const FilmContent: FC<IFilm> = (movie) => {
           />
         ) : (
           <PersonsModal
-            onClose={() => router.push(`${ONE_FILM_ROUTE}/${movie.id}`)}
+            onClose={() => {
+              dispatch(SET_OPEN(false));
+              router.push(`${ONE_FILM_ROUTE}/${movie.id}`);
+            }}
             movie={movie}
-            show={isShow}
-            setShow={setIsShow}
             comments={reviewsData}
           />
         )}

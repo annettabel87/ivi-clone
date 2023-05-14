@@ -5,12 +5,14 @@ import FilmTrailer from './FilmTrailer/FilmTrailer';
 import FilmContent from './FilmContent/FilmContent';
 import FilmInfo from './FilmInfo/FilmInfo';
 import styles from './FilmCard.module.scss';
+import { useAppSelector } from '@/store/hooks/hooks';
 
 const FilmCard: FC<IFilm> = (props) => {
   const [isOpenTrailer, setIsOpenTrailer] = useState<boolean>(false);
+  const { isOpen } = useAppSelector((store) => store.filmPageReducer);
 
   return (
-    <div className={styles.filmCard}>
+    <div className={`${styles.filmCard} ${isOpen && styles.fixed}`}>
       <div className={styles.filmCard__container}>
         <FilmCardHeader genre={props.genres[0].genre} />
         <div className={styles.filmCard__bg}></div>

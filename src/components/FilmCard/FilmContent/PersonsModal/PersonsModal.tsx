@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import Image from 'next/image';
 import SmallFilmCard from '@/components/SmallFilmCard/SmallFilmCard';
 import { IFilm } from '@/pages/film/[filmId]';
@@ -6,21 +6,28 @@ import PersonsBlock from './PersonsBlock/PersonsBlock';
 import TrailersBlock from './TrailersBlock/TrailersBlock';
 import arrowIcon from '@/assets/icon/arrow-left.svg';
 import { IReviews } from '@/components/Reviews/Reviews';
-import styles from './PersonsModal.module.scss';
 import ReviewsModalBlock from './CommentsModalBlock/ReviewsModalBlock';
+import { IPersonsModalType, filmPageSlice } from '@/store/reducers/filmPageReducer';
+import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
+import styles from './PersonsModal.module.scss';
 
 export interface IPersonsModal {
   onClose: () => void;
   movie: IFilm;
-  show: IPersonsModalType;
-  setShow: (show: IPersonsModalType) => void;
   comments: IReviews;
 }
 
-export type IPersonsModalType = 'persons' | 'reviews' | 'trailers';
+const PersonsModal: FC<IPersonsModal> = ({ movie, onClose, comments }) => {
+  const dispatch = useAppDispatch();
+  const { modalType } = useAppSelector((store) => store.filmPageReducer);
+  const { SET_MODAL_TYPE, SET_OPEN } = filmPageSlice.actions;
 
-const PersonsModal: FC<IPersonsModal> = ({ movie, onClose, show, setShow, comments }) => {
-  useEffect(() => setShow(localStorage.getItem('personModal') as IPersonsModalType), []);
+  useEffect(() => {
+    const type = localStorage.getItem('personModal') as IPersonsModalType;
+    const isOpen = !!localStorage.getItem('isOpenPersonModal');
+    dispatch(SET_MODAL_TYPE(type));
+    dispatch(SET_OPEN(isOpen));
+  }, []);
 
   return (
     <>
@@ -39,9 +46,9 @@ const PersonsModal: FC<IPersonsModal> = ({ movie, onClose, show, setShow, commen
               <ul className={styles.persons__navigation_list}>
                 <li className={styles.persons__navigation_item}>
                   <button
-                    onClick={() => setShow('persons')}
+                    onClick={() => dispatch(SET_MODAL_TYPE('persons'))}
                     className={`${styles.persons__navigation_btn} ${
-                      show === 'persons' && styles.active
+                      modalType === 'persons' && styles.active
                     }`}
                   >
                     Создатели
@@ -49,9 +56,9 @@ const PersonsModal: FC<IPersonsModal> = ({ movie, onClose, show, setShow, commen
                 </li>
                 <li className={styles.persons__navigation_item}>
                   <button
-                    onClick={() => setShow('reviews')}
+                    onClick={() => dispatch(SET_MODAL_TYPE('reviews'))}
                     className={`${styles.persons__navigation_btn} ${
-                      show === 'reviews' && styles.active
+                      modalType === 'reviews' && styles.active
                     }`}
                   >
                     Рецензии
@@ -60,9 +67,9 @@ const PersonsModal: FC<IPersonsModal> = ({ movie, onClose, show, setShow, commen
                 </li>
                 <li className={styles.persons__navigation_item}>
                   <button
-                    onClick={() => setShow('trailers')}
+                    onClick={() => dispatch(SET_MODAL_TYPE('trailers'))}
                     className={`${styles.persons__navigation_btn} ${
-                      show === 'trailers' && styles.active
+                      modalType === 'trailers' && styles.active
                     }`}
                   >
                     Трейлеры
@@ -71,15 +78,15 @@ const PersonsModal: FC<IPersonsModal> = ({ movie, onClose, show, setShow, commen
                 </li>
               </ul>
             </div>
-            {show === 'persons' && <PersonsBlock {...movie} />}
-            {show === 'trailers' && (
+            {modalType === 'persons' && <PersonsBlock {...movie} />}
+            {modalType === 'trailers' && (
               <TrailersBlock
                 trailers={[movie.trailerLink, movie.trailerLink, movie.trailerLink]}
                 movieName={movie.movieName}
                 poster={movie.poster}
               />
             )}
-            {show === 'reviews' && <ReviewsModalBlock {...comments} />}
+            {modalType === 'reviews' && <ReviewsModalBlock {...comments} />}
           </div>
           <div className={styles.persons__content_poster}>
             <SmallFilmCard movie={movie} type={'poster'} />
