@@ -15,6 +15,17 @@ const nextConfig = {
         port: '',
         pathname: '/get-kinopoisk-image/**',
       },
+      {
+        hostname: 'thumbs.dfs.ivi.ru',
+        port: '',
+        pathname: '/storage**/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'gambit-parent.dfs.ivi.ru',
+        port: '',
+        pathname: '/static/**',
+      },
     ],
   },
 };

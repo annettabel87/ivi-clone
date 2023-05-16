@@ -1,8 +1,4 @@
-export interface ILinks {
-  title: string;
-  link: string;
-  certificate?: boolean;
-}
+import { ILinks } from '../Interfaces/ILinks';
 
 export const aboutLinks: ILinks[] = [
   {

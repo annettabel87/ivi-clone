@@ -1,0 +1,141 @@
+@import '../../styles/variables.scss';
+
+.header__container {
+  max-width: $maxWidthContainer;
+  margin: 0 auto;
+}
+
+.headerTop {
+  &__content {
+    margin: 0 -12px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    height: 72px;
+    border-top: 3px solid #100e19;
+  }
+
+  &__content_openSection {
+    @extend .headerTop__content;
+    background-color: #1f1b2e;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+
+  &__menu {
+    display: flex;
+    align-items: center;
+    margin-left: 32px;
+  }
+
+  &__wideArea {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0 12px 0 16px;
+  }
+
+  &__subscribeBtn {
+    margin-right: 20px;
+  }
+
+  &__subscribeBtnTitle {
+    font-size: $smallTextFontSize;
+    line-height: 16px;
+    font-weight: 700;
+  }
+
+  &__searchBtnContent {
+    width: 70px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $secondaryColor;
+    font-size: $textFontSize;
+    line-height: 20px;
+    font-weight: 700;
+    transition: all ease 0.4s;
+  }
+
+  &__searchBtnContent:hover {
+    .headerTop__searchBtnTitle {
+      color: #ffffff;
+    }
+    .svgImage {
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  &__searchBtnTitle {
+    transition: all ease 0.4s;
+  }
+
+  &__notify:hover {
+    .svgImage {
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  &__avatar {
+    margin-left: 12px;
+    transition: all ease 0.4s;
+  }
+
+  &__avatar:hover {
+    box-shadow: 0 4px 16px rgb(255, 255, 255, 0.24);
+  }
+
+  @media screen and (max-width: 1159px) {
+    &__searchBtn,
+    &__menu {
+      display: none;
+    }
+
+    &__subscribeBtn {
+      margin-right: 0;
+    }
+
+    &__content_openSection {
+      @extend .headerTop__content;
+      background-color: $mainBackgroundColor;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+}
+
+.headerDropdownWrapper {
+  position: relative;
+  margin: 0 -12px;
+
+  @media screen and (max-width: 1159px) {
+    & {
+      display: none;
+    }
+  }
+}
+
+.headerDropdown {
+  width: 100%;
+  position: absolute;
+  padding: 32px 20px 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  background-color: #1f1b2e;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  z-index: 5;
+  transition: all ease 0.4s;
+  visibility: visible;
+  opacity: 1;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.svgImage {
+  transition: all ease 0.4s;
+}

@@ -10,6 +10,26 @@
     line-height: 20px;
   }
 
+  &__listItem_divider {
+    @extend .linksList__listItem;
+    position: relative;
+    padding-left: 15px;
+  }
+
+  &__listItem_divider::before {
+    content: '';
+    position: absolute;
+    left: -1px;
+    width: 1px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0);
+    transition: all ease 0.4s;
+  }
+
+  &__listItem_divider:hover::before {
+    background-color: #ffffff;
+  }
+
   &__link {
     cursor: pointer;
     color: $secondaryColor;
@@ -29,4 +49,8 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+}
+
+.leftDivider {
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
 }
