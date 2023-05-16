@@ -36,7 +36,7 @@ const WatchParams: FC<IWatchParamsProps> = ({
           {year}
         </Link>
         <p className={styles.watchParams__text}>{movieLength}</p>
-        <p className={styles.watchParams__text}>{ageRating}+</p>
+        <p className={styles.watchParams__text}>{ageRating}</p>
       </div>
       <div className={styles.watchParams__row}>
         <Link href={`${FILMS_ROUTE}/${countries[0].country}`} className={styles.watchParams__text}>
