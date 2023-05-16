@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { IFilm, ISimilarMovies } from '@/pages/film/[filmId]';
+import { ISimilarMovies, IFilm } from '@/shared/Interfaces/FilmPageInterfaces';
 import Link from 'next/link';
 import Image from 'next/image';
 import AgeRating from '@/components/AgeRating/AgeRating';

@@ -4,10 +4,8 @@ import arrow from '../../../assets/icon/arrow-left.svg';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { FILMS_ROUTE } from '@/shared/constants/routes';
+import { IFilmCardHeaderProps } from '@/shared/Interfaces/FilmPageInterfaces';
 import styles from './FilmCardHeader.module.scss';
-export interface IFilmCardHeaderProps {
-  genre: string;
-}
 
 const FilmCardHeader: FC<IFilmCardHeaderProps> = ({ genre }) => {
   const router = useRouter();

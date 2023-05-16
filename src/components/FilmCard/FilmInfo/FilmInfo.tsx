@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import Image from 'next/image';
 import { useWindowSize } from '@/hooks/useWindowSize ';
-import { IFilm } from '@/pages/film/[filmId]';
+import { IFilmInfoProps } from '@/shared/Interfaces/FilmPageInterfaces';
 import RatingWidget from './RatingWidget/RatingWidget';
 import WatchParams from '../WatchParams/WatchParams';
 import Medallions from './Medallions/Medallions';
@@ -12,10 +12,6 @@ import shareIcon from '../../../assets/icon/shareTrailer.svg';
 import directoryIcon from '../../../assets/icon/directory.svg';
 import styles from './FilmInfo.module.scss';
 
-export interface IFilmInfoProps {
-  setIsOpen: (open: boolean) => void;
-  filmInfo: IFilm;
-}
 const FilmInfo: FC<IFilmInfoProps> = ({ filmInfo, setIsOpen }) => {
   const {
     movieName,

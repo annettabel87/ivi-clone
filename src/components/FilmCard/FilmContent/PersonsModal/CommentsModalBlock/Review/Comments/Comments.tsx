@@ -1,15 +1,10 @@
 import { FC } from 'react';
 import Image from 'next/image';
 import Comment from './Comment/Comment';
-import { IComment } from '@/components/Reviews/Reviews';
+import { ICommentProps } from '@/shared/Interfaces/FilmPageInterfaces';
 import CommentForm from './CommentForm/CommentForm';
 import hiddenIcon from '../../../../../../../assets/icon/arrow-left-gray.svg';
 import styles from './Comments.module.scss';
-
-export interface ICommentProps {
-  comments: IComment[];
-  hiddenComments: () => void;
-}
 
 const Comments: FC<ICommentProps> = ({ comments, hiddenComments }) => {
   return (

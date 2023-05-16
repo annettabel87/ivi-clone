@@ -1,14 +1,9 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { IPerson } from '@/pages/film/[filmId]';
+import { IMedallionsProps } from '@/shared/Interfaces/FilmPageInterfaces';
 import { PERSON_ROUTE } from '@/shared/constants/routes';
 import styles from './Medallions.module.scss';
-
-export interface IMedallionsProps {
-  persons: IPerson[];
-  rating: string;
-}
 
 const Medallions: FC<IMedallionsProps> = ({ persons, rating }) => {
   return (

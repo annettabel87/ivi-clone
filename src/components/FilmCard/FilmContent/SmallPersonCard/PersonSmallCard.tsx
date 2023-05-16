@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { PERSON_ROUTE } from '@/shared/constants/routes';
-import { IPerson } from '@/pages/film/[filmId]';
+import { IPerson } from '@/shared/Interfaces/FilmPageInterfaces';
 import styles from './PersonSmallCard.module.scss';
 
 export interface IPersonSmallCardProps {

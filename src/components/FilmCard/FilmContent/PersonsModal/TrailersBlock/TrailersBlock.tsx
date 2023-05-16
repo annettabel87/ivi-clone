@@ -2,14 +2,9 @@ import React, { FC, useState } from 'react';
 import Image from 'next/image';
 import ReactPlayer from 'react-player';
 import TrailerSmallCard from '../../TrailerSmallCard/TrailerSmallCard';
+import { ITrailersBlockProps } from '@/shared/Interfaces/FilmPageInterfaces';
 import arrowIcon from '@/assets/icon/arrow-left.svg';
 import styles from './TrailersBlock.module.scss';
-
-export interface ITrailersBlockProps {
-  trailers: string[];
-  movieName: string;
-  poster: string;
-}
 
 const TrailersBlock: FC<ITrailersBlockProps> = ({ trailers, movieName, poster }) => {
   const [isOpenTrailers, setIsOpenTrailers] = useState<boolean>(false);

@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { IReviewFormProps } from '@/shared/Interfaces/FilmPageInterfaces';
 import userIcon from '@/assets/icon/user.svg';
 import Image from 'next/image';
 import Button from '@/components/Button/Button';
@@ -14,9 +15,6 @@ type FormValues = {
   review: string;
 };
 
-export interface IReviewFormProps {
-  onClose: () => void;
-}
 const ReviewForm: FC<IReviewFormProps> = ({ onClose }) => {
   const {
     register,

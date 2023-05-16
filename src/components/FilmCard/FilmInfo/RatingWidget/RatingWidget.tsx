@@ -1,11 +1,7 @@
 import Button from '@/components/Button/Button';
 import React, { FC } from 'react';
+import { IRatingWidgetProps } from '@/shared/Interfaces/FilmPageInterfaces';
 import styles from './RatingWidget.module.scss';
-import { IRate } from '@/pages/film/[filmId]';
-
-export interface IRatingWidgetProps {
-  rating: IRate;
-}
 
 const RatingWidget: FC<IRatingWidgetProps> = ({ rating }) => {
   return (

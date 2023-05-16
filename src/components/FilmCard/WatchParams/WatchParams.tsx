@@ -2,22 +2,11 @@ import React, { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FILMS_ROUTE } from '@/shared/constants/routes';
-import { ICountry, IGenre } from '@/pages/film/[filmId]';
+import { IWatchParamsProps } from '@/shared/Interfaces/FilmPageInterfaces';
 import volumeIcon from '../../../assets/icon/volume.svg';
 import keyBoardIcon from '../../../assets/icon/keyboard.svg';
 import styles from './WatchParams.module.scss';
 
-export interface IWatchParamsProps {
-  year: number;
-  movieLength: string;
-  ageRating: string;
-  countries: ICountry[];
-  genres: IGenre[];
-  languages: string[];
-  subtitles_languages: string[];
-  quality: string;
-  align: 'left' | 'center';
-}
 const WatchParams: FC<IWatchParamsProps> = ({
   year,
   movieLength,

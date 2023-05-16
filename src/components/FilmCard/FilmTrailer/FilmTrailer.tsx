@@ -7,7 +7,7 @@ import { useWindowSize } from '@/hooks/useWindowSize ';
 import Modal from '@/components/Modal/Modal';
 import Button from '@/components/Button/Button';
 import WatchParams from '../WatchParams/WatchParams';
-import { ICountry, IGenre } from '@/pages/film/[filmId]';
+import { IFilmTrailerProps } from '@/shared/Interfaces/FilmPageInterfaces';
 import fullscreenIcon from '../../../assets/icon/fullscreen.svg';
 import AgeRating from '@/components/AgeRating/AgeRating';
 import playIcon from '../../../assets/icon/play.svg';
@@ -15,22 +15,6 @@ import favoriteIcon from '../../../assets/icon/favorite.svg';
 import shareIcon from '../../../assets/icon/shareTrailer.svg';
 import directoryIcon from '../../../assets/icon/directory.svg';
 import styles from './FilmTrailer.module.scss';
-
-export interface IFilmTrailerProps {
-  trailer: string;
-  ageRating: string;
-  name: string;
-  year: number;
-  movieLength: string;
-  countries: ICountry[];
-  genres: IGenre[];
-  languages: string[];
-  subtitles_languages: string[];
-  quality: string;
-  movieName: string;
-  isOpen: boolean;
-  setIsOpen: (open: boolean) => void;
-}
 
 const FilmTrailer: FC<IFilmTrailerProps> = ({
   trailer,

@@ -1,13 +1,6 @@
 import React, { FC } from 'react';
+import { IAgeRatingProps } from '@/shared/Interfaces/FilmPageInterfaces';
 import styles from './AgeRating.module.scss';
-
-export interface IAgeRatingProps {
-  ageRating: string;
-  top?: string;
-  bottom?: string;
-  left?: string;
-  right?: string;
-}
 
 const AgeRating: FC<IAgeRatingProps> = ({ ageRating, top, bottom, left, right }) => {
   return (

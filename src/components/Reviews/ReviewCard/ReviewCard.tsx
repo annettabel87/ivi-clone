@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { IReview } from '../Reviews';
+import { IReviewCardProps } from '@/shared/Interfaces/FilmPageInterfaces';
 import { FILMS_ROUTE } from '@/shared/constants/routes';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -7,10 +7,6 @@ import likeIcon from '@/assets/icon/like.svg';
 import dislikeIcon from '@/assets/icon/dislike.svg';
 import styles from './ReviewCard.module.scss';
 
-export interface IReviewCardProps {
-  review: IReview;
-  filmId: number;
-}
 const ReviewCard: FC<IReviewCardProps> = ({ review, filmId }) => {
   return (
     <Link href={`${FILMS_ROUTE}/${filmId}/person`} className={styles.commentCard}>

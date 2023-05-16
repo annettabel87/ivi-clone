@@ -1,15 +1,8 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
+import { ITrailerSmallCard } from '@/shared/Interfaces/FilmPageInterfaces';
 import clockIcon from '@/assets/icon/clock.svg';
 import styles from './TrailerSmallCard.module.scss';
-
-export interface ITrailerSmallCard {
-  poster: string;
-  movieName: string;
-  onClickHandler: (show: boolean, trailer: string) => void;
-  trailer: string;
-  withClock?: boolean;
-}
 
 const TrailerSmallCard: FC<ITrailerSmallCard> = ({
   poster,

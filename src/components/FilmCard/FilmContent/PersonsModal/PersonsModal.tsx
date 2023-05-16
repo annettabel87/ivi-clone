@@ -1,21 +1,14 @@
 import React, { FC, useEffect } from 'react';
 import Image from 'next/image';
 import SmallFilmCard from '@/components/SmallFilmCard/SmallFilmCard';
-import { IFilm } from '@/pages/film/[filmId]';
 import PersonsBlock from './PersonsBlock/PersonsBlock';
 import TrailersBlock from './TrailersBlock/TrailersBlock';
 import arrowIcon from '@/assets/icon/arrow-left.svg';
-import { IReviews } from '@/components/Reviews/Reviews';
 import ReviewsModalBlock from './CommentsModalBlock/ReviewsModalBlock';
 import { IPersonsModalType, filmPageSlice } from '@/store/reducers/filmPageReducer';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
+import { IPersonsModal } from '@/shared/Interfaces/FilmPageInterfaces';
 import styles from './PersonsModal.module.scss';
-
-export interface IPersonsModal {
-  onClose: () => void;
-  movie: IFilm;
-  comments: IReviews;
-}
 
 const PersonsModal: FC<IPersonsModal> = ({ movie, onClose, comments }) => {
   const dispatch = useAppDispatch();

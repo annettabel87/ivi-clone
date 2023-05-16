@@ -1,12 +1,8 @@
 import React, { FC } from 'react';
 import PersonSmallCard from '../../SmallPersonCard/PersonSmallCard';
-import { IPerson } from '@/pages/film/[filmId]';
+import { IPersonsList } from '@/shared/Interfaces/FilmPageInterfaces';
 import styles from './PersonsList.module.scss';
 
-export interface IPersonsList {
-  persons: IPerson[];
-  title: string;
-}
 const PersonsList: FC<IPersonsList> = ({ persons, title }) => {
   return (
     <div className={styles.personsList}>

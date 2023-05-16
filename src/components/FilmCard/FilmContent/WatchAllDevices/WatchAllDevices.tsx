@@ -1,15 +1,12 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
 import Button from '@/components/Button/Button';
+import { IWatchAllDevicesProps } from '@/shared/Interfaces/FilmPageInterfaces';
 import tvPoster from '@/assets/image/tv-without-poster.png';
 import ipadPoster from '@/assets/image/ipad-without-poster.png';
 import styles from './WatchAllDevices.module.scss';
 import { useWindowSize } from '@/hooks/useWindowSize ';
 
-export interface IWatchAllDevicesProps {
-  movieName: string;
-  poster: string;
-}
 const WatchAllDevices: FC<IWatchAllDevicesProps> = ({ movieName, poster }) => {
   const windowWidth = useWindowSize();
 

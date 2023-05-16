@@ -1,15 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
 import Image from 'next/image';
 import ReactPlayer from 'react-player';
+import { IModalTrailer } from '@/shared/Interfaces/FilmPageInterfaces';
 import close from '@/assets/icon/close.svg';
 import styles from './ModalTrailer.module.scss';
-
-export interface IModalTrailer {
-  onClose: () => void;
-  trailer: string;
-  ageRating: string;
-  name: string;
-}
 
 const ModalTrailer: FC<IModalTrailer> = ({ onClose, trailer, ageRating, name }) => {
   const [isVisibleHeader, setIsVisibleHeader] = useState<boolean>(true);
