@@ -85,7 +85,7 @@ const FilmContent: FC<IFilm> = (movie) => {
   const [isOpenTrailers, setIsOpenTrailers] = useState<boolean>(false);
   const router = useRouter();
   const { SET_MODAL_TYPE, SET_OPEN } = filmPageSlice.actions;
-  const [personCardsCount, setPersonCardsCount] = useState<number>(9);
+  const [personCardsCount, setPersonCardsCount] = useState<number>(10);
   const windowWidth = useWindowSize();
   const scrollPosition = useScrollPosition();
   const dispatch = useAppDispatch();
@@ -112,8 +112,10 @@ const FilmContent: FC<IFilm> = (movie) => {
         setPersonCardsCount(7);
       } else if (windowWidth < 1160) {
         setPersonCardsCount(8);
-      } else {
+      } else if (windowWidth < 1299) {
         setPersonCardsCount(9);
+      } else {
+        setPersonCardsCount(10);
       }
     }
   }, [windowWidth]);
@@ -143,7 +145,7 @@ const FilmContent: FC<IFilm> = (movie) => {
               <PersonSmallCard
                 key={person.id}
                 person={person}
-                size={windowWidth !== null && windowWidth > 599 ? 'small' : 'xs'}
+                size={!windowWidth || (windowWidth !== null && windowWidth > 599) ? 'small' : 'xs'}
               />
             );
           })}
