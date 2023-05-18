@@ -14,8 +14,8 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+        <Header />
         <div style={{ paddingLeft: '16px', paddingRight: '16px' }}>
-          <Header />
           <div style={{ marginLeft: '-16px', marginRight: '-16px' }}>
             <Carousel
               isMultiple={false}

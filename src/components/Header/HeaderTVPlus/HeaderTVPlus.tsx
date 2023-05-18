@@ -11,6 +11,7 @@ import { HeaderWidget } from '../HeaderWidget/HeaderWidget';
 import Button from '@/components/Button/Button';
 import { tvShowPostersLinks } from '@/shared/headerLinks/postersFeedLinks';
 import { TVPlusCarouselItem } from './TVPlusCarouselItem';
+import { Carousel } from '@/components/Carousel/Carousel';
 
 interface IHeaderTVPlusProps {
   isVisible: boolean;
@@ -34,49 +35,74 @@ export const HeaderTVPlus: FC<IHeaderTVPlusProps> = ({ isVisible }) => {
           as={'link'}
           href={'https://www.ivi.ru/tvplus/tv-schedule-today'}
         >
-          <div className={styles.btnContent}>
-            <span>Телепрограмма</span>
-          </div>
+          <div className={styles.headerTVPlus__btnTitle}>Телепрограмма</div>
         </Button>
       </div>
       <div className={styles.headerTVPlus__column}>
         <div className={styles.headerTVPlus__carouselBlock}>
-          <div>Федеральные каналы</div>
-          <div>
-            <div style={{ width: '88px' }}>
+          <div className={styles.headerTVPlus__carouselBlockTitle}>Федеральные каналы</div>
+          <Carousel
+            staticItemWidth={103}
+            itemRightPadding={16}
+            arrowSize={'small'}
+            initialViewingItems={6}
+            showArrows={'onHover'}
+            isVisible={isVisible}
+            withShadow={true}
+          >
+            {tvPlusCarouselFederalChannels.map((item) => (
               <TVPlusCarouselItem
+                key={item.link}
                 purpose={'channel'}
-                link={tvPlusCarouselFederalChannels[0].link}
-                imageSrc={tvPlusCarouselFederalChannels[0].imageSrc}
+                link={item.link}
+                imageSrc={item.imageSrc}
               />
-            </div>
-          </div>
+            ))}
+          </Carousel>
         </div>
         <div className={styles.headerTVPlus__carouselBlock}>
-          <div>Спортивные каналы</div>
-          <div>
-            <div style={{ width: '88px' }}>
+          <div className={styles.headerTVPlus__carouselBlockTitle}>Спортивные каналы</div>
+          <Carousel
+            staticItemWidth={103}
+            itemRightPadding={16}
+            arrowSize={'small'}
+            initialViewingItems={6}
+            showArrows={'onHover'}
+            isVisible={isVisible}
+            withShadow={true}
+          >
+            {tvPlusCarouselSportChannels.map((item) => (
               <TVPlusCarouselItem
+                key={item.link}
                 purpose={'channel'}
-                link={tvPlusCarouselSportChannels[0].link}
-                imageSrc={tvPlusCarouselSportChannels[0].imageSrc}
+                link={item.link}
+                imageSrc={item.imageSrc}
               />
-            </div>
-          </div>
+            ))}
+          </Carousel>
         </div>
         <div className={styles.headerTVPlus__carouselBlock}>
-          <div>Популярные трансляции</div>
-          <div>
-            <div style={{ width: '254px' }}>
+          <div className={styles.headerTVPlus__carouselBlockTitle}>Популярные трансляции</div>
+          <Carousel
+            staticItemWidth={270}
+            itemRightPadding={16}
+            arrowSize={'small'}
+            initialViewingItems={2}
+            showArrows={'onHover'}
+            isVisible={isVisible}
+            withShadow={true}
+          >
+            {tvPlusCarouselTranslations.map((item) => (
               <TVPlusCarouselItem
+                key={item.link}
                 purpose={'translation'}
-                link={tvPlusCarouselTranslations[0].link}
-                imageSrc={tvPlusCarouselTranslations[0].imageSrc}
-                title={tvPlusCarouselTranslations[0].title}
-                date={tvPlusCarouselTranslations[0].date}
+                link={item.link}
+                imageSrc={item.imageSrc}
+                title={item.title}
+                date={item.date}
               />
-            </div>
-          </div>
+            ))}
+          </Carousel>
         </div>
       </div>
       <div className={styles.headerTVPlus__column}>
