@@ -1,7 +1,9 @@
-import React, { FC, ReactNode, Children, useEffect, useRef, useState } from 'react';
+import React, { FC, ReactNode, Children, useEffect, useRef, useState, TouchEvent } from 'react';
 import styles from './Carousel.module.scss';
 import { CarouselItem } from './CarouselItem';
 import { CarouselArrow } from './CarouselArrow';
+import { useWindowSize } from '@/hooks/useWindowSize ';
+import { checkIsMobile } from '@/helpers/checkIsMobile';
 
 interface ICarouselProps {
   children: ReactNode[];
@@ -16,6 +18,11 @@ interface ICarouselProps {
   showArrows?: 'default' | 'always' | 'onHover';
   isVisible?: boolean;
   withShadow?: boolean;
+}
+
+interface ITouchCoords {
+  x: number | null;
+  y: number | null;
 }
 
 export const Carousel: FC<ICarouselProps> = ({
@@ -35,18 +42,24 @@ export const Carousel: FC<ICarouselProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
+  const MAX_CONTAINER_WIDTH = 1216;
   const CLONES_COUNT = 2; // Используется только при isInfinite = true
   const TRANSITION_DURATION = 400;
+  const AUTOPLAY_DELAY = 10000;
+  const RESIZE_COEFFICIENT = 0.87;
+  const STATIC_OFFSET = 320;
   const isAdaptiveItemWidth = staticItemWidth || widthByContent ? false : true;
   const totalItemsCount = Children.count(children);
 
+  const windowSize = useWindowSize();
   const [renderingItems, setRenderingItems] = useState(children);
-  const [listWidth, setListWidth] = useState<number>(0);
+  const [listWidth, setListWidth] = useState<number>(listRef?.current?.scrollWidth || 0);
   const [containerWidth, setContainerWidth] = useState<number>(
     containerRef?.current?.offsetWidth || 0
   );
   const [startingItemWidth, setStartingItemWidth] = useState<number>(0);
   const [itemWidth, setItemWidth] = useState<number>(staticItemWidth ? staticItemWidth : 0);
+  const [rightPadding, setRightPadding] = useState<number>(itemRightPadding);
   const [viewingItemsCount, setViewingItemsCount] = useState<number>(
     initialViewingItems ? initialViewingItems : 1
   );
@@ -59,11 +72,19 @@ export const Carousel: FC<ICarouselProps> = ({
   const [isRightArrowHidden, setIsRightArrowHidden] = useState<boolean>(false);
   const [isLeftArrowHidden, setIsLeftArrowHidden] = useState<boolean>(false);
   const [isHovering, setIsHovering] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [carouselContainerStyle, setCarouselContainerStyle] = useState({});
+
+  const originTouchCoords: ITouchCoords = { x: null, y: null };
+  const currentTouchCoords: ITouchCoords = { x: null, y: null };
+  let xDiff = 0;
+  let yDiff = 0;
+  let touchStartTimeStamp = 0;
+  let touchDirection: 'right' | 'left' | 'top' | 'down' | null = null;
 
   useEffect(() => {
-    if (!isMultiple) {
-      setViewingItemsCount(1);
-    }
+    const isMobile = checkIsMobile();
+    const containerWidth = containerRef?.current?.offsetWidth;
 
     if (isInfinite) {
       setCurrentFirstItemNumber(CLONES_COUNT + 1);
@@ -79,30 +100,96 @@ export const Carousel: FC<ICarouselProps> = ({
       setIsLeftArrowHidden(true);
     }
 
-    const containerWidth = containerRef?.current?.offsetWidth;
-
     if (containerWidth && isAdaptiveItemWidth) {
       if (isMultiple) {
-        setItemWidth(Math.trunc((containerWidth + itemRightPadding) / initialViewingItems));
-        setStartingItemWidth(Math.trunc((containerWidth + itemRightPadding) / initialViewingItems));
+        const startingItemWidth = Math.trunc(
+          (MAX_CONTAINER_WIDTH + rightPadding) / initialViewingItems
+        );
+
+        setStartingItemWidth(startingItemWidth);
+        setItemWidth(startingItemWidth);
+        setViewingItemsCount(Math.trunc((containerWidth + rightPadding) / startingItemWidth));
       }
+
       if (!isMultiple) {
         setItemWidth(containerWidth);
+        setViewingItemsCount(1);
       }
     }
 
-    resizeHandler();
+    if (containerWidth && staticItemWidth) {
+      setContainerWidth(containerWidth);
+    }
 
-    window.addEventListener('resize', resizeHandler);
-
-    return () => {
-      window.removeEventListener('resize', resizeHandler);
-    };
+    if (containerWidth) {
+      setIsMobile(isMobile);
+      resizeHandler();
+    }
   }, [isVisible]);
 
   useEffect(() => {
+    if (isMobile) {
+      setRightPadding(16);
+      setArrows();
+    }
+  }, [isMobile]);
+
+  useEffect(() => {
+    const clientWidth = document.documentElement.clientWidth;
+    const thresholdClientWidth = 1293;
+    if (clientWidth && clientWidth > thresholdClientWidth) {
+      setCarouselContainerStyle({});
+
+      if (staticItemWidth) {
+        const newContainerWidth = containerRef?.current?.offsetWidth;
+
+        if (newContainerWidth) {
+          setContainerWidth(newContainerWidth);
+        }
+      }
+
+      if (!staticItemWidth) {
+        setContainerWidth(MAX_CONTAINER_WIDTH);
+      }
+    }
+
+    if (clientWidth && clientWidth < thresholdClientWidth) {
+      const newContainerWidth = clientWidth - 64;
+      setCarouselContainerStyle({ width: newContainerWidth + 'px' });
+      setContainerWidth(
+        newContainerWidth <= MAX_CONTAINER_WIDTH ? newContainerWidth : MAX_CONTAINER_WIDTH
+      );
+    }
+  }, [windowSize]);
+
+  useEffect(() => {
+    if (isAdaptiveItemWidth && containerWidth) {
+      if (isMobile) {
+        const newItemWidth = (containerWidth + rightPadding) / viewingItemsCount;
+        if (isMultiple) {
+          if (viewingItemsCount === 1) {
+            setItemWidth(startingItemWidth);
+          }
+
+          if (viewingItemsCount !== 1) {
+            setItemWidth(newItemWidth);
+          }
+        }
+
+        if (!isMultiple) {
+          setItemWidth(newItemWidth);
+        }
+      }
+
+      if (!isMobile) {
+        setItemWidth((containerWidth + rightPadding) / viewingItemsCount);
+      }
+    }
+  }, [viewingItemsCount, rightPadding, containerWidth]);
+
+  useEffect(() => {
     if (!autoPlay) return;
-    const timerId = setTimeout(handleRightArrowClick, 10000);
+    const timerId = setTimeout(handleRightArrowClick, AUTOPLAY_DELAY);
 
     return () => {
       clearTimeout(timerId);
@@ -113,11 +200,14 @@ export const Carousel: FC<ICarouselProps> = ({
     if (!isInfinite) {
       if (containerWidth && isMultiple) {
         if (isAdaptiveItemWidth) {
-          if (itemWidth < startingItemWidth * 0.977) {
-            setViewingItemsCount((prev) => prev - 1);
+          if (itemWidth < startingItemWidth * RESIZE_COEFFICIENT) {
+            setViewingItemsCount((prev) => {
+              const newCount = prev - 1;
+              return newCount >= 1 ? newCount : 1;
+            });
           }
 
-          if (containerWidth / (startingItemWidth * 0.977) > viewingItemsCount + 1) {
+          if (containerWidth / (startingItemWidth * RESIZE_COEFFICIENT) > viewingItemsCount + 1) {
             setViewingItemsCount((prev) => prev + 1);
           }
 
@@ -147,25 +237,14 @@ export const Carousel: FC<ICarouselProps> = ({
         return;
       }
     }
-  }, [itemWidth, currentFirstItemNumber]);
+  }, [itemWidth, currentFirstItemNumber, containerWidth]);
 
   useEffect(() => {
     if (isAdaptiveItemWidth || staticItemWidth) {
       setIsEnd(totalItemsCount === currentFirstItemNumber + viewingItemsCount - 1);
     }
-
-    if (showArrows === 'default' || (showArrows === 'onHover' && isHovering)) {
-      if (!widthByContent) {
-        setIsRightArrowHidden(totalItemsCount === currentFirstItemNumber + viewingItemsCount - 1);
-      }
-
-      if (widthByContent) {
-        if (listWidth && containerWidth) {
-          setIsRightArrowHidden(Math.abs(offset) >= listWidth - containerWidth - itemRightPadding);
-        }
-      }
-
-      setIsLeftArrowHidden(offset === 0);
+    if (!isMobile) {
+      setArrows();
     }
   }, [offset]);
 
@@ -174,16 +253,14 @@ export const Carousel: FC<ICarouselProps> = ({
 
     if (containerWidth && isEnd) {
       if (staticItemWidth) {
-        setOffset(-(totalItemsCount * staticItemWidth - containerWidth - itemRightPadding));
+        setOffset(-(totalItemsCount * staticItemWidth - containerWidth - rightPadding));
       }
     }
   }, [isEnd]);
 
   useEffect(() => {
-    if (isAdaptiveItemWidth && containerWidth) {
-      setItemWidth((containerWidth + itemRightPadding) / viewingItemsCount);
-    }
-  }, [viewingItemsCount, containerWidth]);
+    resizeHandler();
+  }, [isMobile, windowSize, itemWidth]);
 
   useEffect(() => {
     if (transitionDuration === 0) {
@@ -211,16 +288,46 @@ export const Carousel: FC<ICarouselProps> = ({
     }, TRANSITION_DURATION);
   };
 
-  const resizeHandler = () => {
-    const listWidth = listRef?.current?.scrollWidth;
-    const containerWidth = containerRef?.current?.offsetWidth;
+  const setArrows = () => {
+    if (!isMobile) {
+      if (showArrows === 'default' || (showArrows === 'onHover' && isHovering)) {
+        if (!widthByContent) {
+          setIsRightArrowHidden(totalItemsCount === currentFirstItemNumber + viewingItemsCount - 1);
+        }
 
-    if (containerWidth) {
-      setContainerWidth(containerWidth);
+        if (widthByContent) {
+          if (listWidth && containerWidth) {
+            setIsRightArrowHidden(Math.abs(offset) >= listWidth - containerWidth - rightPadding);
+          }
+        }
+        setIsLeftArrowHidden(offset === 0);
+      }
+
+      if (showArrows === 'onHover' && !isHovering) {
+        setIsRightArrowHidden(true);
+        setIsLeftArrowHidden(true);
+      }
     }
 
-    if (listWidth && widthByContent) {
-      setListWidth(listWidth);
+    if (isMobile) {
+      setIsRightArrowHidden(true);
+      setIsLeftArrowHidden(true);
+    }
+  };
+
+  const resizeHandler = () => {
+    let newListWidth;
+
+    if (widthByContent) {
+      newListWidth = listRef?.current?.scrollWidth;
+    }
+
+    if (!widthByContent) {
+      newListWidth = totalItemsCount * itemWidth;
+    }
+
+    if (newListWidth) {
+      setListWidth(newListWidth - rightPadding);
     }
   };
 
@@ -236,8 +343,8 @@ export const Carousel: FC<ICarouselProps> = ({
       if (widthByContent) {
         if (listWidth && containerWidth)
           setOffset((prev) => {
-            const newOffset = Math.abs(prev) + 320;
-            const lastOffset = listWidth - containerWidth - itemRightPadding;
+            const newOffset = Math.abs(prev) + STATIC_OFFSET;
+            const lastOffset = listWidth - containerWidth - rightPadding;
             return -(newOffset < lastOffset ? newOffset : lastOffset);
           });
       }
@@ -259,7 +366,7 @@ export const Carousel: FC<ICarouselProps> = ({
 
       if (widthByContent) {
         setOffset((prev) => {
-          const newOffset = Math.abs(prev) - 320;
+          const newOffset = Math.abs(prev) - STATIC_OFFSET;
           return -(newOffset >= 0 ? newOffset : 0);
         });
       }
@@ -285,15 +392,112 @@ export const Carousel: FC<ICarouselProps> = ({
       setIsLeftArrowHidden(true);
     }
   };
+
+  const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
+    const touch = event.touches[0];
+    touchStartTimeStamp = event.timeStamp;
+    originTouchCoords.x = touch.clientX;
+    originTouchCoords.y = touch.clientY;
+  };
+
+  const handleTouchMove = (event: TouchEvent<HTMLDivElement>) => {
+    if (originTouchCoords.x === null || originTouchCoords.y === null) return;
+
+    if (listRef && listRef.current) {
+      const touch = event.touches[0];
+
+      currentTouchCoords.x = touch.clientX;
+      currentTouchCoords.y = touch.clientY;
+
+      xDiff = currentTouchCoords.x - originTouchCoords.x;
+      yDiff = currentTouchCoords.y - originTouchCoords.y;
+
+      if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        if (xDiff > 0) touchDirection = 'right';
+        if (xDiff < 0) touchDirection = 'left';
+      }
+
+      if (Math.abs(xDiff) < Math.abs(yDiff)) {
+        if (yDiff > 0) touchDirection = 'down';
+        if (yDiff < 0) touchDirection = 'top';
+      }
+
+      if (touchDirection === 'right' || touchDirection === 'left') {
+        let newOffset = offset + xDiff;
+
+        if (Math.abs(newOffset) > listWidth - containerWidth) {
+          newOffset = -(listWidth - containerWidth);
+        }
+
+        if (newOffset > 0) {
+          newOffset = 0;
+        }
+
+        listRef.current.style.transform = `translateX(${newOffset}px)`;
+        listRef.current.style.transition = `all ease ${0}ms`;
+      }
+    }
+  };
+
+  const handleTouchEnd = (event: TouchEvent<HTMLDivElement>) => {
+    if (listRef && listRef.current) {
+      if (touchDirection === 'right' || touchDirection === 'left') {
+        if (isMultiple) {
+          const touchingDuration = event.timeStamp - touchStartTimeStamp;
+          const thresholdDuration = 250;
+          const offsetCoefficient = 1 / (touchingDuration / (thresholdDuration * 2));
+          let calculatedOffset = xDiff;
+
+          if (touchingDuration < thresholdDuration) {
+            calculatedOffset = xDiff * offsetCoefficient;
+          }
+
+          let newOffset = offset + calculatedOffset;
+
+          if (newOffset > 0) {
+            newOffset = 0;
+          }
+
+          if (newOffset < 0 && viewingItemsCount > 1) {
+            newOffset = Math.round(newOffset / itemWidth) * itemWidth;
+          }
+
+          if (Math.abs(newOffset) > listWidth - containerWidth) {
+            newOffset = -(listWidth - containerWidth);
+          }
+
+          listRef.current.style.transition = `all ease ${TRANSITION_DURATION}ms`;
+          listRef.current.style.transform = `translateX(${newOffset}px)`;
+
+          setTransitionDuration(TRANSITION_DURATION);
+          setOffset(newOffset);
+        }
+
+        if (!isMultiple) {
+          listRef.current.style.transition = `all ease ${TRANSITION_DURATION}ms`;
+
+          if (touchDirection === 'right') handleLeftArrowClick();
+          if (touchDirection === 'left') handleRightArrowClick();
+        }
+      }
+    }
+  };
   return (
-    <div className={styles.carousel} style={isInfinite ? { overflow: 'hidden' } : {}}>
+    <div className={styles.carousel} style={isInfinite || isMobile ? { overflow: 'hidden' } : {}}>
       <div
         className={styles.carouselContainer}
         ref={containerRef}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        style={carouselContainerStyle}
       >
-        <div className={styles.carouselViewPort} style={!isInfinite ? { overflow: 'hidden' } : {}}>
+        <div
+          className={styles.carouselViewPort}
+          style={isMultiple && !isMobile ? { overflow: 'hidden' } : {}}
+        >
           <div
             className={styles.carouselList}
             ref={listRef}
@@ -306,7 +510,7 @@ export const Carousel: FC<ICarouselProps> = ({
               <CarouselItem
                 width={staticItemWidth ? staticItemWidth : itemWidth}
                 widthByContent={widthByContent}
-                paddingRight={itemRightPadding}
+                paddingRight={rightPadding}
                 isActive={isInfinite ? index - currentFirstItemNumber + 1 === 0 : true}
               >
                 {React.Children.only(child)}

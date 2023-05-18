@@ -13,6 +13,7 @@
 }
 
 .carouselViewPort {
+  margin: 0 auto;
   width: auto;
 }
 
@@ -38,6 +39,8 @@
   }
 
   &:hover {
+    cursor: pointer;
+
     img {
       filter: brightness(0) invert(1);
     }
@@ -49,6 +52,10 @@
       transition: transform 80ms;
     }
   }
+
+  // @media screen and (max-width: 599px) {
+  //   display: none;
+  // }
 
   @media screen and (min-width: 600px) and (max-width: 1336px) {
     right: -22px;
