@@ -7,7 +7,8 @@ import { createReduxStore } from '@/store/store';
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <Provider store={createReduxStore()}>
-      <Component {...pageProps} />;<div id="portal"></div>
+      <Component {...pageProps} />
+      <div id="portal"></div>
     </Provider>
   );
 };
