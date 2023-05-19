@@ -33,6 +33,7 @@ export const UserAvatar: FC<IUserAvatarProps> = ({
           <Image
             src={noAvatar}
             alt="Аватар"
+            priority={true}
             width={size === 'normal' ? 20 : 12}
             height={size === 'normal' ? 20 : 12}
             className={styles.svgImage}
