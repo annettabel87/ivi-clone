@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import PersonsList from '../PersonsList/PersonsList';
-import { IFilm } from '@/pages/film/[filmId]';
+import { IFilm } from '@/shared/Interfaces/FilmPageInterfaces';
 import styles from './PersonsBlock.module.scss';
 
 const PersonsBlock: FC<IFilm> = (movie) => {

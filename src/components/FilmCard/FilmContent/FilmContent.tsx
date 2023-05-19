@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Modal from '@/components/Modal/Modal';
-import { IFilm } from '@/pages/film/[filmId]';
+import { IFilm, IReviews } from '@/shared/Interfaces/FilmPageInterfaces';
 import { ONE_FILM_ROUTE } from '@/shared/constants/routes';
 import ModalTrailer from '../FilmTrailer/ModalTrailer/ModalTrailer';
 import SmallFilmCard from '../../SmallFilmCard/SmallFilmCard';
@@ -10,13 +10,13 @@ import PersonSmallCard from './SmallPersonCard/PersonSmallCard';
 import TrailerSmallCard from './TrailerSmallCard/TrailerSmallCard';
 import WatchAllDevices from './WatchAllDevices/WatchAllDevices';
 import PersonsModal from './PersonsModal/PersonsModal';
-import Reviews, { IReviews } from '@/components/Reviews/Reviews';
+import Reviews from '@/components/Reviews/Reviews';
 import Button from '@/components/Button/Button';
 import { useWindowSize } from '@/hooks/useWindowSize ';
 import useScrollPosition from '@/hooks/useScrollPosition ';
 import styles from './FilmContent.module.scss';
-import { useAppDispatch } from '@/store/hooks/hooks';
 import { filmPageSlice } from '@/store/reducers/filmPageReducer';
+import { useAppDispatch } from '@/store/hooks/hooks';
 
 const reviewsData: IReviews = {
   id: 1,

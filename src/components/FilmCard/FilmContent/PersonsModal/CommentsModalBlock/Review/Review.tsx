@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import Image from 'next/image';
 import Comments from './Comments/Comments';
-import { IReview } from '@/components/Reviews/Reviews';
+import { IReview } from '@/shared/Interfaces/FilmPageInterfaces';
 import likeIcon from '@/assets/icon/like.svg';
 import dislikeIcon from '@/assets/icon/dislike.svg';
 import commentsIcon from '@/assets/icon/comments.svg';

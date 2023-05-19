@@ -1,7 +1,7 @@
 import FilmCard from '@/components/FilmCard/FilmCard';
 import { GetServerSideProps } from 'next';
 import { FC } from 'react';
-import { IFilmProps, IFilm } from '..';
+import { IFilm, IFilmProps } from '@/shared/Interfaces/FilmPageInterfaces';
 
 const Film: FC<IFilmProps> = ({ filmData }) => {
   return (

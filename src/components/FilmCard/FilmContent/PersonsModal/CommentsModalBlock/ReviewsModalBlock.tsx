@@ -1,4 +1,4 @@
-import { IReviews } from '@/components/Reviews/Reviews';
+import { IReviews } from '@/shared/Interfaces/FilmPageInterfaces';
 import React, { FC, useState } from 'react';
 import Button from '@/components/Button/Button';
 import Review from './Review/Review';

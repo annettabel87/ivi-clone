@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { IFilm } from '@/pages/film/[filmId]';
+import { IFilm } from '@/shared/Interfaces/FilmPageInterfaces';
 import FilmCardHeader from './FilmCardHeader/FilmCardHeader';
 import FilmTrailer from './FilmTrailer/FilmTrailer';
 import FilmContent from './FilmContent/FilmContent';
