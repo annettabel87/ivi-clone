@@ -1,0 +1,67 @@
+@import '../../../styles/variables.scss';
+
+.commentCard {
+  background-color: #1f1b2e;
+  height: 222px;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.4s;
+  overflow: hidden;
+
+  &:hover {
+    background-color: #231f34;
+  }
+
+  &__text_grayBold {
+    color: #a5a1b2;
+    margin-bottom: 8px;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 700;
+  }
+
+  &__title {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    color: $mainColor;
+  }
+
+  &__text {
+    color: $mainColor;
+    line-height: 22px;
+  }
+
+  &__text_gray {
+    color: #a5a1b2;
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__likesBlock {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__btn {
+    background-color: transparent;
+  }
+
+  &__text_like {
+    color: #73a32f;
+    line-height: 20px;
+    font-weight: 700;
+  }
+}

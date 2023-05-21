@@ -1,0 +1,37 @@
+@import './../../../../../../../styles/variables.scss';
+
+.comments {
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 25px;
+
+    &_text {
+      color: $mainColor;
+    }
+  }
+
+  &__hidden_btn {
+    cursor: pointer;
+    background-color: transparent;
+  }
+
+  &__hidden_img {
+    transform: rotate(90deg);
+    transition: all 0.4s;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+}

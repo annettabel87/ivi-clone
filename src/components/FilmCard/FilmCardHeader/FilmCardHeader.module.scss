@@ -1,0 +1,65 @@
+@import '../../../styles/variables.scss';
+
+.filmCard__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 24px;
+  position: relative;
+  z-index: 15;
+
+  @media screen and (max-width: 599px) {
+    padding-top: 16px;
+  }
+
+  &_controls {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    @media screen and (max-width: 600px) {
+      display: none;
+    }
+  }
+
+  &_link {
+    color: $descriptionColor;
+    line-height: 20px;
+    font-weight: 500;
+    transition: all 0.4s;
+    text-transform: capitalize;
+
+    &:hover {
+      color: $mainColor;
+    }
+  }
+
+  &_badge {
+    background-color: #ea003d;
+    backdrop-filter: blur(0);
+    backdrop-filter: blur(0);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .dot {
+    width: 2px;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.56);
+  }
+
+  &_backBtn {
+    display: none;
+    cursor: pointer;
+    background-color: inherit;
+
+    @media screen and (max-width: 600px) {
+      display: block;
+    }
+  }
+}
