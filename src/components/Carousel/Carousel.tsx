@@ -136,29 +136,30 @@ export const Carousel: FC<ICarouselProps> = ({
 
   useEffect(() => {
     const clientWidth = document.documentElement.clientWidth;
-    const thresholdClientWidth = 1293;
-    if (clientWidth && clientWidth > thresholdClientWidth) {
-      setCarouselContainerStyle({});
 
-      if (staticItemWidth) {
-        const newContainerWidth = containerRef?.current?.offsetWidth;
+    if (staticItemWidth) {
+      const newContainerWidth = containerRef?.current?.offsetWidth;
 
-        if (newContainerWidth) {
-          setContainerWidth(newContainerWidth);
-        }
-      }
-
-      if (!staticItemWidth) {
-        setContainerWidth(MAX_CONTAINER_WIDTH);
+      if (newContainerWidth) {
+        setCarouselContainerStyle({ width: newContainerWidth + 'px' });
+        setContainerWidth(newContainerWidth);
       }
     }
 
-    if (clientWidth && clientWidth < thresholdClientWidth) {
-      const newContainerWidth = clientWidth - 64;
-      setCarouselContainerStyle({ width: newContainerWidth + 'px' });
-      setContainerWidth(
-        newContainerWidth <= MAX_CONTAINER_WIDTH ? newContainerWidth : MAX_CONTAINER_WIDTH
-      );
+    if (!staticItemWidth) {
+      const thresholdClientWidth = 1293;
+      if (clientWidth && clientWidth > thresholdClientWidth) {
+        setCarouselContainerStyle({});
+        setContainerWidth(MAX_CONTAINER_WIDTH);
+      }
+
+      if (clientWidth && clientWidth < thresholdClientWidth) {
+        const newContainerWidth = clientWidth - 64;
+        setCarouselContainerStyle({ width: newContainerWidth + 'px' });
+        setContainerWidth(
+          newContainerWidth <= MAX_CONTAINER_WIDTH ? newContainerWidth : MAX_CONTAINER_WIDTH
+        );
+      }
     }
   }, [windowSize]);
 
