@@ -136,18 +136,28 @@ export const Carousel: FC<ICarouselProps> = ({
 
   useEffect(() => {
     const clientWidth = document.documentElement.clientWidth;
+    const thresholdClientWidth = 1293;
 
     if (staticItemWidth) {
-      const newContainerWidth = containerRef?.current?.offsetWidth;
+      const defaultStaticItemCarouselContainerWidth = 650;
 
-      if (newContainerWidth) {
-        setCarouselContainerStyle({ width: newContainerWidth + 'px' });
-        setContainerWidth(newContainerWidth);
+      if (clientWidth && clientWidth > thresholdClientWidth) {
+        setCarouselContainerStyle({ width: defaultStaticItemCarouselContainerWidth + 'px' });
+        setContainerWidth(defaultStaticItemCarouselContainerWidth);
+      }
+
+      if (clientWidth && clientWidth < thresholdClientWidth) {
+        const newContainerWidth =
+          defaultStaticItemCarouselContainerWidth - (thresholdClientWidth - clientWidth);
+
+        if (newContainerWidth) {
+          setCarouselContainerStyle({ width: newContainerWidth + 'px' });
+          setContainerWidth(newContainerWidth);
+        }
       }
     }
 
     if (!staticItemWidth) {
-      const thresholdClientWidth = 1293;
       if (clientWidth && clientWidth > thresholdClientWidth) {
         setCarouselContainerStyle({});
         setContainerWidth(MAX_CONTAINER_WIDTH);
