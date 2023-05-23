@@ -1,0 +1,146 @@
+@import '.././../../styles/variables.scss';
+
+.filmContent {
+  position: relative;
+  z-index: 20;
+  overflow-x: hidden;
+
+  &__films {
+    margin-bottom: 24px;
+  }
+
+  &__title {
+    font-size: $subTitleFontSize;
+    line-height: 28px;
+    font-weight: 700;
+    margin-bottom: 24px;
+
+    @media screen and (max-width: 599px) {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+
+  &__slider {
+    display: flex;
+    gap: 24px;
+    overflow: hidden;
+  }
+
+  &__list {
+    display: flex;
+    gap: 24px;
+
+    @media screen and (max-width: 599px) {
+      gap: 16px;
+    }
+  }
+
+  &__persons {
+    margin-bottom: 48px;
+  }
+
+  &__trailers {
+    margin-bottom: 32px;
+  }
+
+  &__comments {
+    &_header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+
+      a {
+        @media screen and (max-width: 599px) {
+          display: none;
+        }
+      }
+    }
+
+    .bigCommentBtn {
+      margin-bottom: 32px;
+
+      @media screen and (min-width: 599px) {
+        display: none;
+      }
+    }
+  }
+
+  &__watchButton {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: calc(calc(48px + env(safe-area-inset-bottom)) - 1px);
+    z-index: 20;
+    padding: 16px 24px;
+    background: linear-gradient(180deg, rgba(17, 15, 26, 0) 0, #110f1a 55.73%);
+    transition: transform 80ms, -webkit-transform 80ms, -o-transform 80ms;
+
+    @media screen and (max-width: 599px) {
+      display: block;
+    }
+  }
+
+  .describe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__text_bold {
+    line-height: 20px;
+    font-weight: 500;
+  }
+
+  &__text_small {
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 500;
+    transition: all 0.4s;
+    color: rgba(255, 255, 255, 0.72);
+  }
+}
+
+.roundButton {
+  border-radius: 50%;
+  width: 88px;
+  height: 88px;
+  background-color: #1f1b2e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $additionalColor;
+  transition: all 0.4s;
+
+  @media screen and (max-width: 599px) {
+    width: 72px;
+    height: 72px;
+  }
+
+  &:hover {
+    background-color: #231f34;
+    color: $mainColor;
+  }
+}
+
+.title_link {
+  cursor: pointer;
+  border-bottom: 1px solid $additionalColor;
+  padding-bottom: 2px;
+  display: inline-block;
+  color: $mainColor;
+  margin-bottom: 15px;
+
+  &:hover {
+    border-bottom: 1px solid $mainColor;
+  }
+
+  .sup {
+    color: $additionalColor;
+    font-size: 13px;
+    line-height: 16px;
+    margin-left: 4px;
+  }
+}

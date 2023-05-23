@@ -1,0 +1,109 @@
+@import '../../../../styles//variables.scss';
+
+.personSmallCard {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  margin-bottom: 24px;
+
+  @media screen and (max-width: 599px) {
+    margin-bottom: 16px;
+  }
+
+  &.small {
+    width: 88px;
+  }
+
+  &.big {
+    width: 25%;
+    padding-left: 12px;
+    padding-right: 12px;
+
+    @media screen and (max-width: 599px) {
+      width: 88px;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+  }
+
+  &.xs {
+    max-width: 72px;
+  }
+
+  &:hover {
+    .personSmallCard__text_light {
+      color: $mainColor;
+    }
+  }
+
+  &__imageBlock {
+    border-radius: 50%;
+    margin-bottom: 8px;
+    height: 63%;
+    width: 100%;
+
+    &.big {
+      height: 50%;
+
+      @media screen and (max-width: 599px) {
+        margin-bottom: 16px;
+      }
+    }
+
+    &_img {
+      border-radius: 50%;
+      -o-object-fit: cover;
+      object-fit: cover;
+
+      &.small {
+        height: 88px;
+      }
+
+      &.big {
+        width: 100%;
+        height: 100%;
+
+        @media screen and (max-width: 599px) {
+          height: 72px;
+          width: 72px;
+        }
+      }
+
+      &.xs {
+        height: 72px;
+      }
+    }
+  }
+
+  &__text {
+    color: #a5a1b2;
+    font-size: 13px;
+    line-height: 16px;
+    text-overflow: ellipsis;
+
+    &_light {
+      font-size: 13px;
+      line-height: 16px;
+      font-weight: 500;
+      color: $cardsTitleColor;
+      text-overflow: ellipsis;
+      transition: all 0.4s;
+
+      &.small {
+        font-size: 13px;
+        line-height: 16px;
+      }
+
+      &.big {
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 500;
+
+        @media screen and (max-width: 599px) {
+          font-size: 13px;
+          line-height: 16px;
+        }
+      }
+    }
+  }
+}

@@ -1,16 +1,8 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Url } from 'next/dist/shared/lib/router/router';
+import { IPosterCardProps } from '@/shared/Interfaces/FilmPageInterfaces';
 import styles from './PostersFeed.module.scss';
-
-interface IPosterCardProps {
-  href: Url;
-  imgSrc: string;
-  imgAlt: string;
-  width: number;
-  height: number;
-}
 
 export const PosterCard: FC<IPosterCardProps> = ({ href, imgSrc, imgAlt, width, height }) => {
   return (

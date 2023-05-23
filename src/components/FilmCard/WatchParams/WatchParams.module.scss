@@ -1,0 +1,69 @@
+@import '../../../styles/variables.scss';
+
+.watchParams {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 24px;
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    a:hover {
+      color: #fff;
+    }
+
+    @media screen and (max-width: 880px) {
+      justify-content: center;
+    }
+  }
+
+  &__text {
+    color: $descriptionColor;
+    opacity: 1;
+    line-height: 22px;
+    transition: all 0.4s;
+
+    &_dot {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-transform: capitalize;
+    }
+  }
+
+  &__quality {
+    line-height: 16px;
+    box-shadow: 0 4px 12px transparent;
+    background-color: rgba(255, 255, 255, 0.16);
+    background-color: rgba(255, 255, 255, 0.16);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: $mainColor;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    text-transform: capitalize;
+  }
+}
+
+.dot {
+  display: block;
+  width: 2px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.56);
+}
+
+.center {
+  align-items: center;
+}
+
+.left {
+  align-items: left;
+
+  @media screen and (max-width: 798px) {
+    text-align: center;
+  }
+}
