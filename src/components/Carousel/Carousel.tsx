@@ -137,28 +137,39 @@ export const Carousel: FC<ICarouselProps> = ({
   useEffect(() => {
     const clientWidth = document.documentElement.clientWidth;
     const thresholdClientWidth = 1293;
-    if (clientWidth && clientWidth > thresholdClientWidth) {
-      setCarouselContainerStyle({});
 
-      if (staticItemWidth) {
-        const newContainerWidth = containerRef?.current?.offsetWidth;
+    if (staticItemWidth) {
+      const defaultStaticItemCarouselContainerWidth = 650;
+
+      if (clientWidth && clientWidth > thresholdClientWidth) {
+        setCarouselContainerStyle({ width: defaultStaticItemCarouselContainerWidth + 'px' });
+        setContainerWidth(defaultStaticItemCarouselContainerWidth);
+      }
+
+      if (clientWidth && clientWidth < thresholdClientWidth) {
+        const newContainerWidth =
+          defaultStaticItemCarouselContainerWidth - (thresholdClientWidth - clientWidth);
 
         if (newContainerWidth) {
+          setCarouselContainerStyle({ width: newContainerWidth + 'px' });
           setContainerWidth(newContainerWidth);
         }
       }
-
-      if (!staticItemWidth) {
-        setContainerWidth(MAX_CONTAINER_WIDTH);
-      }
     }
 
-    if (clientWidth && clientWidth < thresholdClientWidth) {
-      const newContainerWidth = clientWidth - 64;
-      setCarouselContainerStyle({ width: newContainerWidth + 'px' });
-      setContainerWidth(
-        newContainerWidth <= MAX_CONTAINER_WIDTH ? newContainerWidth : MAX_CONTAINER_WIDTH
-      );
+    if (!staticItemWidth) {
+      if (clientWidth && clientWidth > thresholdClientWidth) {
+        setCarouselContainerStyle({});
+        setContainerWidth(MAX_CONTAINER_WIDTH);
+      }
+
+      if (clientWidth && clientWidth < thresholdClientWidth) {
+        const newContainerWidth = clientWidth - 64;
+        setCarouselContainerStyle({ width: newContainerWidth + 'px' });
+        setContainerWidth(
+          newContainerWidth <= MAX_CONTAINER_WIDTH ? newContainerWidth : MAX_CONTAINER_WIDTH
+        );
+      }
     }
   }, [windowSize]);
 
@@ -341,12 +352,17 @@ export const Carousel: FC<ICarouselProps> = ({
       }
 
       if (widthByContent) {
-        if (listWidth && containerWidth)
+        if (listWidth && containerWidth) {
           setOffset((prev) => {
             const newOffset = Math.abs(prev) + STATIC_OFFSET;
-            const lastOffset = listWidth - containerWidth - rightPadding;
+            const lastOffset = listWidth - containerWidth;
             return -(newOffset < lastOffset ? newOffset : lastOffset);
           });
+        }
+
+        if (widthByContent) {
+          resizeHandler();
+        }
       }
     }
 
@@ -369,6 +385,9 @@ export const Carousel: FC<ICarouselProps> = ({
           const newOffset = Math.abs(prev) - STATIC_OFFSET;
           return -(newOffset >= 0 ? newOffset : 0);
         });
+      }
+      if (widthByContent) {
+        resizeHandler();
       }
     }
 
@@ -478,6 +497,10 @@ export const Carousel: FC<ICarouselProps> = ({
 
           if (touchDirection === 'right') handleLeftArrowClick();
           if (touchDirection === 'left') handleRightArrowClick();
+        }
+
+        if (widthByContent) {
+          resizeHandler();
         }
       }
     }
