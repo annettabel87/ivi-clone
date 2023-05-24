@@ -137,28 +137,39 @@ export const Carousel: FC<ICarouselProps> = ({
   useEffect(() => {
     const clientWidth = document.documentElement.clientWidth;
     const thresholdClientWidth = 1293;
-    if (clientWidth && clientWidth > thresholdClientWidth) {
-      setCarouselContainerStyle({});
 
-      if (staticItemWidth) {
-        const newContainerWidth = containerRef?.current?.offsetWidth;
+    if (staticItemWidth) {
+      const defaultStaticItemCarouselContainerWidth = 650;
+
+      if (clientWidth && clientWidth > thresholdClientWidth) {
+        setCarouselContainerStyle({ width: defaultStaticItemCarouselContainerWidth + 'px' });
+        setContainerWidth(defaultStaticItemCarouselContainerWidth);
+      }
+
+      if (clientWidth && clientWidth < thresholdClientWidth) {
+        const newContainerWidth =
+          defaultStaticItemCarouselContainerWidth - (thresholdClientWidth - clientWidth);
 
         if (newContainerWidth) {
+          setCarouselContainerStyle({ width: newContainerWidth + 'px' });
           setContainerWidth(newContainerWidth);
         }
       }
-
-      if (!staticItemWidth) {
-        setContainerWidth(MAX_CONTAINER_WIDTH);
-      }
     }
 
-    if (clientWidth && clientWidth < thresholdClientWidth) {
-      const newContainerWidth = clientWidth - 64;
-      setCarouselContainerStyle({ width: newContainerWidth + 'px' });
-      setContainerWidth(
-        newContainerWidth <= MAX_CONTAINER_WIDTH ? newContainerWidth : MAX_CONTAINER_WIDTH
-      );
+    if (!staticItemWidth) {
+      if (clientWidth && clientWidth > thresholdClientWidth) {
+        setCarouselContainerStyle({});
+        setContainerWidth(MAX_CONTAINER_WIDTH);
+      }
+
+      if (clientWidth && clientWidth < thresholdClientWidth) {
+        const newContainerWidth = clientWidth - 64;
+        setCarouselContainerStyle({ width: newContainerWidth + 'px' });
+        setContainerWidth(
+          newContainerWidth <= MAX_CONTAINER_WIDTH ? newContainerWidth : MAX_CONTAINER_WIDTH
+        );
+      }
     }
   }, [windowSize]);
 
