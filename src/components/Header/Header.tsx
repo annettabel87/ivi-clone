@@ -7,7 +7,7 @@ import { DropdownSectionType } from '@/shared/Interfaces/DropdownSectionType';
 export const Header = () => {
   const [dropdownSection, setDropdownSection] = useState<DropdownSectionType>('');
   const handleMouseLeave = () => {
-    // setDropdownSection('');
+    setDropdownSection('');
   };
   return (
     <div className={styles.header__container} onMouseLeave={handleMouseLeave}>
