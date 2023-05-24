@@ -352,12 +352,17 @@ export const Carousel: FC<ICarouselProps> = ({
       }
 
       if (widthByContent) {
-        if (listWidth && containerWidth)
+        if (listWidth && containerWidth) {
           setOffset((prev) => {
             const newOffset = Math.abs(prev) + STATIC_OFFSET;
-            const lastOffset = listWidth - containerWidth - rightPadding;
+            const lastOffset = listWidth - containerWidth;
             return -(newOffset < lastOffset ? newOffset : lastOffset);
           });
+        }
+
+        if (widthByContent) {
+          resizeHandler();
+        }
       }
     }
 
@@ -380,6 +385,9 @@ export const Carousel: FC<ICarouselProps> = ({
           const newOffset = Math.abs(prev) - STATIC_OFFSET;
           return -(newOffset >= 0 ? newOffset : 0);
         });
+      }
+      if (widthByContent) {
+        resizeHandler();
       }
     }
 
@@ -489,6 +497,10 @@ export const Carousel: FC<ICarouselProps> = ({
 
           if (touchDirection === 'right') handleLeftArrowClick();
           if (touchDirection === 'left') handleRightArrowClick();
+        }
+
+        if (widthByContent) {
+          resizeHandler();
         }
       }
     }
