@@ -1,10 +1,16 @@
 import React, { FC } from 'react';
 import styles from './HeaderTVPlus.module.scss';
 import { LinksList } from '@/components/LinksList/LinksList';
-import { tvPlusLinks } from '@/shared/headerLinks/tvPlusLinks';
+import {
+  tvPlusLinks,
+  tvPlusCarouselFederalChannels,
+  tvPlusCarouselSportChannels,
+  tvPlusCarouselTranslations,
+} from '@/shared/headerLinks/tvPlusLinks';
 import { HeaderWidget } from '../HeaderWidget/HeaderWidget';
 import Button from '@/components/Button/Button';
 import { tvShowPostersLinks } from '@/shared/headerLinks/postersFeedLinks';
+import { TVPlusCarouselItem } from './TVPlusCarouselItem';
 import { Carousel } from '@/components/Carousel/Carousel';
 
 interface IHeaderTVPlusProps {
@@ -29,14 +35,12 @@ export const HeaderTVPlus: FC<IHeaderTVPlusProps> = ({ isVisible }) => {
           as={'link'}
           href={'https://www.ivi.ru/tvplus/tv-schedule-today'}
         >
-          <div className={styles.btnContent}>
-            <span>Телепрограмма</span>
-          </div>
+          <div className={styles.headerTVPlus__btnTitle}>Телепрограмма</div>
         </Button>
       </div>
       <div className={styles.headerTVPlus__column}>
         <div className={styles.headerTVPlus__carouselBlock}>
-          <div className={styles.headerTVPlus__carouselTitle}>Федеральные каналы</div>
+          <div className={styles.headerTVPlus__carouselBlockTitle}>Федеральные каналы</div>
           <Carousel
             staticItemWidth={103}
             itemRightPadding={16}
@@ -46,20 +50,59 @@ export const HeaderTVPlus: FC<IHeaderTVPlusProps> = ({ isVisible }) => {
             isVisible={isVisible}
             withShadow={true}
           >
-            {[...new Array(29)].map((item, index) => (
-              <div key={index} style={{ width: '100%', height: '57px', backgroundColor: 'green' }}>
-                {index + 1}
-              </div>
+            {tvPlusCarouselFederalChannels.map((item) => (
+              <TVPlusCarouselItem
+                key={item.link}
+                purpose={'channel'}
+                link={item.link}
+                imageSrc={item.imageSrc}
+              />
             ))}
           </Carousel>
         </div>
         <div className={styles.headerTVPlus__carouselBlock}>
-          <div className={styles.headerTVPlus__carouselTitle}>Спортивные каналы</div>
-          <div>Карусель</div>
+          <div className={styles.headerTVPlus__carouselBlockTitle}>Спортивные каналы</div>
+          <Carousel
+            staticItemWidth={103}
+            itemRightPadding={16}
+            arrowSize={'small'}
+            initialViewingItems={6}
+            showArrows={'onHover'}
+            isVisible={isVisible}
+            withShadow={true}
+          >
+            {tvPlusCarouselSportChannels.map((item) => (
+              <TVPlusCarouselItem
+                key={item.link}
+                purpose={'channel'}
+                link={item.link}
+                imageSrc={item.imageSrc}
+              />
+            ))}
+          </Carousel>
         </div>
         <div className={styles.headerTVPlus__carouselBlock}>
-          <div className={styles.headerTVPlus__carouselTitle}>Популярные трансляции</div>
-          <div>Карусель</div>
+          <div className={styles.headerTVPlus__carouselBlockTitle}>Популярные трансляции</div>
+          <Carousel
+            staticItemWidth={270}
+            itemRightPadding={16}
+            arrowSize={'small'}
+            initialViewingItems={2}
+            showArrows={'onHover'}
+            isVisible={isVisible}
+            withShadow={true}
+          >
+            {tvPlusCarouselTranslations.map((item) => (
+              <TVPlusCarouselItem
+                key={item.link}
+                purpose={'translation'}
+                link={item.link}
+                imageSrc={item.imageSrc}
+                title={item.title}
+                date={item.date}
+              />
+            ))}
+          </Carousel>
         </div>
       </div>
       <div className={styles.headerTVPlus__column}>

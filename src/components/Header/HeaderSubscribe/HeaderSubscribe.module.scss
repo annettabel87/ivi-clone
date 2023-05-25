@@ -28,7 +28,7 @@
   }
 
   &__cardItem {
-    flex: 0 0 31%;
+    flex: 0 1 30%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -42,7 +42,7 @@
   }
 
   &__cardItem:nth-child(2) {
-    flex: 0 0 65.5%;
+    flex: 0 1 63.5%;
   }
 
   &__bottom {

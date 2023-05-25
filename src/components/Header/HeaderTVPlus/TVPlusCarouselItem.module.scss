@@ -1,0 +1,58 @@
+@import '../../../styles/variables.scss';
+
+.channelItem {
+  width: 100%;
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+}
+
+.translationItem {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+
+  &__imageWrapper {
+    width: 58px;
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      transition: all ease 0.4s;
+    }
+  }
+
+  &__title {
+    line-height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: $cardsTitleColor;
+    transition: all ease 0.4s;
+  }
+
+  &__date {
+    margin-top: 2px;
+    font-size: 13px;
+    height: 16px;
+    line-height: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: $secondaryColor;
+  }
+}
+
+.translationItem:hover {
+  img {
+    scale: 104%;
+  }
+
+  .translationItem__title {
+    color: $mainColor;
+  }
+}
