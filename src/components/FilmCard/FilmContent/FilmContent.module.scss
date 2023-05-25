@@ -5,6 +5,37 @@
   z-index: 20;
   overflow-x: hidden;
 
+  &__container {
+    position: relative;
+
+    @media screen and (min-width: 1280px) {
+      margin: 0 auto;
+      width: $maxWidthContainer;
+    }
+
+    @media screen and (min-width: 600px) {
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+
+    @media screen and (min-width: 600px) and (max-width: 1279px) {
+      width: auto;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+    @media screen and (min-width: 272px) and (max-width: 599px) {
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+
+    @media screen and (max-width: 599px) {
+      width: auto;
+      margin-left: 16px;
+      margin-right: 16px;
+    }
+  }
+
   &__films {
     margin-bottom: 24px;
   }
@@ -22,9 +53,10 @@
   }
 
   &__slider {
-    display: flex;
-    gap: 24px;
-    overflow: hidden;
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
   }
 
   &__list {

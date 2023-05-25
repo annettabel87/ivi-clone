@@ -1,9 +1,13 @@
 import React, { FC, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Modal from '@/components/Modal/Modal';
+import { filmPageSlice } from '@/store/reducers/filmPageReducer';
+import { useAppDispatch } from '@/store/hooks/hooks';
+import { useWindowSize } from '@/hooks/useWindowSize ';
+import useScrollPosition from '@/hooks/useScrollPosition ';
 import { IFilm, IReviews } from '@/shared/Interfaces/FilmPageInterfaces';
 import { ONE_FILM_ROUTE } from '@/shared/constants/routes';
+import Modal from '@/components/Modal/Modal';
 import ModalTrailer from '../FilmTrailer/ModalTrailer/ModalTrailer';
 import SmallFilmCard from '../../SmallFilmCard/SmallFilmCard';
 import PersonSmallCard from './SmallPersonCard/PersonSmallCard';
@@ -12,11 +16,8 @@ import WatchAllDevices from './WatchAllDevices/WatchAllDevices';
 import PersonsModal from './PersonsModal/PersonsModal';
 import Reviews from '@/components/Reviews/Reviews';
 import Button from '@/components/Button/Button';
-import { useWindowSize } from '@/hooks/useWindowSize ';
-import useScrollPosition from '@/hooks/useScrollPosition ';
+import { Carousel } from '@/components/Carousel/Carousel';
 import styles from './FilmContent.module.scss';
-import { filmPageSlice } from '@/store/reducers/filmPageReducer';
-import { useAppDispatch } from '@/store/hooks/hooks';
 
 const reviewsData: IReviews = {
   id: 1,
@@ -123,122 +124,141 @@ const FilmContent: FC<IFilm> = (movie) => {
   return (
     <div className={styles.filmContent}>
       <section className={styles.filmContent__films}>
-        <h2 className={styles.filmContent__title}>С фильмом «{movie.movieName}» смотрят</h2>
-        <div className={styles.filmContent__slider}>
-          {movie.similarMovies.map((movie) => {
-            return <SmallFilmCard key={movie.id} movie={movie} type={'posterInfo'} />;
-          })}
+        <div className={styles.filmContent__container}>
+          <h2 className={styles.filmContent__title}>С фильмом «{movie.movieName}» смотрят</h2>
+          <div className={styles.filmContent__slider}>
+            <Carousel initialViewingItems={7}>
+              {movie.similarMovies.map((movie) => {
+                return <SmallFilmCard key={movie.id} movie={movie} type={'posterInfo'} />;
+              })}
+            </Carousel>
+          </div>
         </div>
       </section>
       <section className={styles.filmContent__persons}>
-        <Link
-          href={`${ONE_FILM_ROUTE}/${movie.id}/person`}
-          shallow={true}
-          className={`${styles.filmContent__title} ${styles.title_link}`}
-          onClick={() => dispatch(SET_MODAL_TYPE('persons'))}
-        >
-          Актёры и создатели
-        </Link>
-        <div className={styles.filmContent__list}>
-          {[movie.director[0], ...movie.actors].splice(0, personCardsCount).map((person) => {
-            return (
-              <PersonSmallCard
-                key={person.id}
-                person={person}
-                size={!windowWidth || (windowWidth !== null && windowWidth > 599) ? 'small' : 'xs'}
-              />
-            );
-          })}
+        <div className={styles.filmContent__container}>
           <Link
             href={`${ONE_FILM_ROUTE}/${movie.id}/person`}
             shallow={true}
-            className={styles.roundButton}
-            onClick={() => {
-              dispatch(SET_MODAL_TYPE('persons'));
-            }}
+            className={`${styles.filmContent__title} ${styles.title_link}`}
+            onClick={() => dispatch(SET_MODAL_TYPE('persons'))}
           >
-            Ещё
+            Актёры и создатели
           </Link>
+          <div className={styles.filmContent__list}>
+            {[movie.director[0], ...movie.actors].splice(0, personCardsCount).map((person) => {
+              return (
+                <PersonSmallCard
+                  key={person.id}
+                  person={person}
+                  size={
+                    !windowWidth || (windowWidth !== null && windowWidth > 599) ? 'small' : 'xs'
+                  }
+                />
+              );
+            })}
+            <Link
+              href={`${ONE_FILM_ROUTE}/${movie.id}/person`}
+              shallow={true}
+              className={styles.roundButton}
+              onClick={() => {
+                dispatch(SET_MODAL_TYPE('persons'));
+              }}
+            >
+              Ещё
+            </Link>
+          </div>
         </div>
       </section>
       <section className={styles.filmContent__trailers}>
-        <h2 className={styles.filmContent__title}>
-          <Link
-            onClick={() => {
-              dispatch(SET_MODAL_TYPE('trailers'));
-            }}
-            href={`${ONE_FILM_ROUTE}/${movie.id}/person`}
-            shallow={true}
-            className={`${styles.filmContent__title} ${styles.title_link}`}
-          >
-            Трейлеры
-          </Link>{' '}
-          и доп. материалы
-        </h2>
-        <div className={styles.filmContent__slider}>
-          {[movie.trailerLink, movie.trailerLink, movie.trailerLink].map((trailer) => {
-            return (
-              <TrailerSmallCard
-                key={movie.movieName}
-                poster={movie.poster}
-                movieName={movie.movieName}
-                onClickHandler={setIsOpenTrailers}
-                trailer={trailer}
-              />
-            );
-          })}
+        <div className={styles.filmContent__container}>
+          <h2 className={styles.filmContent__title}>
+            <Link
+              onClick={() => {
+                dispatch(SET_MODAL_TYPE('trailers'));
+              }}
+              href={`${ONE_FILM_ROUTE}/${movie.id}/person`}
+              shallow={true}
+              className={`${styles.filmContent__title} ${styles.title_link}`}
+            >
+              Трейлеры
+            </Link>{' '}
+            и доп. материалы
+          </h2>
+          <div className={styles.filmContent__slider}>
+            <Carousel initialViewingItems={4}>
+              {[movie.trailerLink, movie.trailerLink, movie.trailerLink].map((trailer) => {
+                return (
+                  <TrailerSmallCard
+                    key={movie.movieName}
+                    poster={movie.poster}
+                    movieName={movie.movieName}
+                    onClickHandler={setIsOpenTrailers}
+                    trailer={trailer}
+                    carousel={true}
+                  />
+                );
+              })}
+            </Carousel>
+          </div>
         </div>
       </section>
       <section className={styles.filmContent__comments}>
-        <div className={styles.filmContent__comments_header}>
-          <Link
-            onClick={() => {
-              dispatch(SET_MODAL_TYPE('reviews'));
-            }}
-            href={`${ONE_FILM_ROUTE}/${movie.id}/person`}
-            shallow={true}
-            className={`${styles.filmContent__title} ${styles.title_link}`}
-          >
-            Рецензии<sup className={styles.sup}>{reviewsData.entityJSON.length}</sup>
-          </Link>
-          <Button
-            border={'1px solid #a5a1b2'}
-            bgColor={'transparent'}
-            height={'37px'}
-            radius={'8px'}
-            width={'173px'}
-            as={'link'}
-            href={`/film/${movie.id}/person`}
-            hoverBorder={'1px solid #fff'}
-            target={'_self'}
-            onClick={() => {
-              dispatch(SET_MODAL_TYPE('reviews'));
-            }}
-          >
-            Оставить рецезию
-          </Button>
-        </div>
-        <Reviews {...reviewsData} />
-        <div className={styles.bigCommentBtn}>
-          <Button
-            border={'1px solid #a5a1b2'}
-            bgColor={'transparent'}
-            height={'37px'}
-            radius={'8px'}
-            width={'100%'}
-            as={'link'}
-            href={`/film/${movie.id}/person`}
-            hoverBorder={'1px solid #fff'}
-            target={'_self'}
-            onClick={() => {
-              dispatch(SET_MODAL_TYPE('reviews'));
-            }}
-          >
-            Оставить рецензию
-          </Button>
+        <div className={styles.filmContent__container}>
+          <div className={styles.filmContent__comments_header}>
+            <Link
+              onClick={() => {
+                dispatch(SET_MODAL_TYPE('reviews'));
+              }}
+              href={`${ONE_FILM_ROUTE}/${movie.id}/person`}
+              shallow={true}
+              className={`${styles.filmContent__title} ${styles.title_link}`}
+            >
+              Рецензии<sup className={styles.sup}>{reviewsData.entityJSON.length}</sup>
+            </Link>
+            <Button
+              border={'1px solid #a5a1b2'}
+              bgColor={'transparent'}
+              height={'37px'}
+              radius={'8px'}
+              width={'173px'}
+              as={'link'}
+              href={`/film/${movie.id}/person`}
+              hoverBorder={'1px solid #fff'}
+              target={'_self'}
+              onClick={() => {
+                dispatch(SET_MODAL_TYPE('reviews'));
+              }}
+            >
+              Оставить рецезию
+            </Button>
+          </div>
+          <Reviews {...reviewsData} />
+          <div className={styles.bigCommentBtn}>
+            <Button
+              border={'1px solid #a5a1b2'}
+              bgColor={'transparent'}
+              height={'37px'}
+              radius={'8px'}
+              width={'100%'}
+              as={'link'}
+              href={`/film/${movie.id}/person`}
+              hoverBorder={'1px solid #fff'}
+              target={'_self'}
+              onClick={() => {
+                dispatch(SET_MODAL_TYPE('reviews'));
+              }}
+            >
+              Оставить рецензию
+            </Button>
+          </div>
         </div>
       </section>
-      <WatchAllDevices movieName={movie.movieName} poster={movie.poster} />
+      <section className={styles.filmContent__section}>
+        <div className={styles.filmContent__container}>
+          <WatchAllDevices movieName={movie.movieName} poster={movie.poster} />
+        </div>
+      </section>
       {scrollPosition !== null && scrollPosition > 500 && (
         <div className={styles.filmContent__watchButton}>
           <Button

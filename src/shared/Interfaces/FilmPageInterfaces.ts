@@ -127,6 +127,7 @@ export interface ITrailerSmallCard {
   onClickHandler: (show: boolean, trailer: string) => void;
   trailer: string;
   withClock?: boolean;
+  carousel?: boolean;
 }
 
 export interface IWatchAllDevicesProps {
