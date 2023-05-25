@@ -30,6 +30,10 @@
     }
   }
 
+  &.carousel {
+    width: auto;
+  }
+
   &__poster {
     border-radius: 8px;
     transition: all 0.4s;

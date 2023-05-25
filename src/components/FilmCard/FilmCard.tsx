@@ -1,11 +1,11 @@
 import React, { FC, useState } from 'react';
+import { useAppSelector } from '@/store/hooks/hooks';
 import { IFilm } from '@/shared/Interfaces/FilmPageInterfaces';
 import FilmCardHeader from './FilmCardHeader/FilmCardHeader';
 import FilmTrailer from './FilmTrailer/FilmTrailer';
 import FilmContent from './FilmContent/FilmContent';
 import FilmInfo from './FilmInfo/FilmInfo';
 import styles from './FilmCard.module.scss';
-import { useAppSelector } from '@/store/hooks/hooks';
 
 const FilmCard: FC<IFilm> = (props) => {
   const [isOpenTrailer, setIsOpenTrailer] = useState<boolean>(false);
@@ -13,10 +13,10 @@ const FilmCard: FC<IFilm> = (props) => {
 
   return (
     <div className={`${styles.filmCard} ${isOpen && styles.fixed}`}>
-      <div className={styles.filmCard__container}>
-        <FilmCardHeader genre={props.genres[0].genre} />
-        <div className={styles.filmCard__bg}></div>
-        <div className={styles.filmCard__content}>
+      <FilmCardHeader genre={props.genres[0].genre} />
+      <div className={styles.filmCard__bg}></div>
+      <div className={styles.filmCard__content}>
+        <div className={styles.filmCard__container}>
           <FilmTrailer
             trailer={props.trailerLink}
             ageRating={props.ageRating}
@@ -34,8 +34,8 @@ const FilmCard: FC<IFilm> = (props) => {
           />
           <FilmInfo filmInfo={props} setIsOpen={setIsOpenTrailer} />
         </div>
-        <FilmContent {...props} />
       </div>
+      <FilmContent {...props} />
     </div>
   );
 };
