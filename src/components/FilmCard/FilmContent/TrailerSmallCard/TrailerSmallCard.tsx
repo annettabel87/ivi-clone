@@ -10,9 +10,13 @@ const TrailerSmallCard: FC<ITrailerSmallCard> = ({
   onClickHandler,
   trailer,
   withClock = false,
+  carousel = false,
 }) => {
   return (
-    <div className={styles.trailerCard} onClick={() => onClickHandler(true, trailer)}>
+    <div
+      className={`${styles.trailerCard} ${carousel && styles.carousel}`}
+      onClick={() => onClickHandler(true, trailer)}
+    >
       <div className={styles.trailerCard__poster}>
         <Image
           src={poster}
