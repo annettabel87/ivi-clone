@@ -1,0 +1,58 @@
+@import '../../styles/variables.scss';
+
+.tabBar {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  z-index: 1001;
+  height: calc(48px + env(safe-area-inset-bottom));
+  backdrop-filter: blur(8px);
+  background-color: rgba(31, 27, 46, 0.88);
+  box-shadow: 0 -20px 40px rgba(7, 5, 14, 0.24);
+  display: flex;
+  align-items: center;
+}
+
+.tabBarItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 100%;
+  position: relative;
+  height: 100%;
+
+  &__glowImage {
+    background-image: url('../../assets/img/glow.svg');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 64px 48px;
+    height: 48px;
+    left: 50%;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    width: 64px;
+  }
+
+  &__icon {
+  }
+
+  &__iconSvg {
+    filter: brightness(0) invert(1);
+  }
+
+  &__title {
+    align-self: center;
+    color: $additionalColor;
+    font-size: 10px;
+    line-height: 12px;
+    margin-top: 4px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
