@@ -57,6 +57,11 @@
     left: auto;
     right: auto;
     bottom: auto;
+    margin: 0 -16px;
+
+    @media screen and (max-width: 599px) {
+      margin: 0 0px 0 -32px;
+    }
   }
 
   &__list {
