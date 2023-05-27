@@ -2,7 +2,8 @@
 
 .smallFilmCard,
 .bigSize {
-  width: 153px;
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -36,8 +37,14 @@
     background-color: #1f1b2e;
     border-radius: 8px;
     position: relative;
+
+    & > img {
+      width: 100%;
+      height: auto;
+    }
   }
 
+  
   &__poster {
     border-radius: 8px;
   }
