@@ -1,11 +1,20 @@
 import { useRouter } from 'next/router';
 import Person from '../../modules/person/';
 import { FC } from 'react';
-import { IPerson, person } from './constants';
+import { IPerson } from '@/shared/interfaces/interfaces';
 
 interface IPersonPageProps {
   person: IPerson;
 }
+
+export const person: IPerson = {
+  kinopoiskId: 23449,
+  photoLink:
+    'http://avatars.mds.yandex.net/get-kinopoisk-image/1600647/2e5d6b27-5868-484d-a673-0797bbf904c6/280x420',
+  name: 'Дэвид Хейман',
+  enName: 'David Heyman',
+  professions: ['Продюсер', 'Актер', 'Режиссер', 'Сценарист'],
+};
 
 // export const getStaticPaths = async () => {
 //   const response = await fetch("https://jsonplaceholder.typicode.com/users");

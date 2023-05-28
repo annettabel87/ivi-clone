@@ -1,65 +1,75 @@
-.personFilmographyItem{
+@import '../../../../../styles/variables.scss';
+
+.personFilmographyItem {
     display: flex;
     align-items: center;
     margin-top: 16px;
     cursor: pointer;
     width: 100%;
-        .posterImage{
+
+        .posterImage {
             border-radius: 8px;
         }
-        .personFilmographyItemTitle, .personFilmographyItemYear{
-            font-size: 15px;
+
+        .personFilmographyItemTitle, .personFilmographyItemYear {
+            font-size: $textFontSize;
             line-height: 22px;
             font-weight: bold;
             font-style: normal;
-            color: #fff;
+            color: $mainColor;
             margin-left: 20px;
         }
-        .personFilmographyItemRating{
-            font-size: 13px;
+
+        .personFilmographyItemRating {
+            font-size: $smallTextFontSize;
             line-height: 16px;
             font-weight: bold;
             font-style: normal;
-            color: #a5a1b2;
+            color: $additionalColor;
             margin-left: 20px;
         }
-        .personFilmographyItemMain{
+
+        .personFilmographyItemMain {
             display: flex;
             align-items: center;
             flex-wrap: wrap;
             justify-content: space-between;
             width: 100%;
-                .personFilmographyItemButton{
-                    height: 40px;
-                    border-width: 1px;
-                    border-radius: 8px;
-                    padding: 9px 15px;
-                    background-color: #1f1b2e;
-                    border-color: #1f1b2e;
-                    color: #fff;
-                    font-size: 15px;
-                    line-height: 20px;
-                    font-weight: bold;
-                    font-style: normal;
-                    margin-left: 16px;
-                        &:hover{
-                            background-color: #2a253e;
-                        }
 
-                }
+                // .personFilmographyItemButton {
+                //     height: 40px;
+                //     border-width: 1px;
+                //     border-radius: 8px;
+                //     padding: 9px 15px;
+                //     background-color: #1f1b2e;
+                //     border-color: #1f1b2e;
+                //     color: $mainColor;
+                //     font-size: $textFontSize;
+                //     line-height: 20px;
+                //     font-weight: bold;
+                //     font-style: normal;
+                //     margin-left: 16px;
+
+                //         &:hover {
+                //             background-color: #2a253e;
+                //         }
+
+                // }
         }
 
 }
 
 @media (max-width: 599.98px) {
-    .personFilmographyItemButton {
-        margin-top: 6px;
-    }
-    .personFilmographyItemInfosButton{
+    .personFilmographyItemMain div:nth-child(1){
         width: 100%;
     }
-    .personFilmographyItemInfos{
+    .personFilmographyItemMain div:nth-child(2){
         width: 100%;
+        margin-left: 18px;
+        margin-top: 4px;
+            a{
+                width: 100% !important;
+            }
     }
 }
 @media (max-width: 271.98px) {

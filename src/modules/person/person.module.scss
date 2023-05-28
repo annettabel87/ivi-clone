@@ -1,12 +1,19 @@
-.backArrow{
+.backArrow {
     display: flex;
     align-items: center;
     gap: 20px;
+    font-weight: 700;
     cursor: pointer;
-        & img:hover{
-            transition: transform .5s;
-            transform: scale(1.15);
-        }
-}
+    padding-top: 16px;
 
+        &:hover {
+            
+            & img {
+                transition: transform .8s;
+                transform: scale(1.2);
+                }
+
+        }
+        
+}
 
