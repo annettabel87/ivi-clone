@@ -4,36 +4,28 @@ export interface IRegistrationData {
   name: string;
 }
 
-export interface IRegistrationResponse {
+export interface ILoginData {
+  email: string;
+  password: string;
+}
+
+export interface IUserData {
   id: number;
-  roles: [
-    {
-      id: number;
-      value: string;
-      description: string;
-      createdAt: string;
-      updatedAt: string;
-    }
-  ];
-  token: string;
+  email: string;
+  banned: boolean;
+  roles: string[];
   name: string;
   phoneNumber: null;
   updatedAt: string;
   createdAt: string;
 }
 
-export interface ILoginData {
-  email: string;
-  password: string;
-}
-
-export interface ILoginResponse {
-  token: string;
-}
-
-export interface IUserData {
+export interface ILoginResponseData {
   id: number;
-  roles: [string];
+  email: string;
+  banned: boolean;
+  roles: string[];
+  token: string;
   name: string;
   phoneNumber: null;
   updatedAt: string;

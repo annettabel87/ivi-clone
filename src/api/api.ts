@@ -1,6 +1,6 @@
-import axiosApiInstance from './axios-api-instance';
+import { axiosApiInstance } from './axios-api-instance';
 import { API_ENDPOINTS } from '@/shared/constants/api';
-import { IUserData } from '@/shared/Interfaces/authInterfaces';
+import { ILoginResponseData, IUserData } from '@/shared/Interfaces/authInterfaces';
 import { ILoginData, IRegistrationData } from '@/shared/Interfaces/authInterfaces';
 
 export const userApi = {
@@ -14,9 +14,12 @@ export const userApi = {
   },
 };
 
-export const tokenApi = {
+export const loginApi = {
   async createToken(login: ILoginData) {
-    const response = await axiosApiInstance.post(API_ENDPOINTS.LOGIN, { ...login });
+    const response = await axiosApiInstance.post<ILoginResponseData>(API_ENDPOINTS.LOGIN, {
+      ...login,
+      withCredentials: true,
+    });
     return response.data;
   },
 };
