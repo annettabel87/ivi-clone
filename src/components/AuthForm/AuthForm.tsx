@@ -1,8 +1,7 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { useRouter } from 'next/router';
 import style from './AuthForm.module.scss';
 import { AuthFormType } from '@/pages/auth';
-
 import HeaderEnterApp from '../HeaderEnterApp/HeaderEnterApp';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { ILoginData, IRegistrationData } from '@/shared/Interfaces/authInterfaces';
@@ -10,6 +9,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
 import ShowPasswords from '../ShowPasswords/ShowPasswords';
 import { cancel, loginUser, registrationUser } from '@/store/reducers/authReducer';
 import { localStorageActions } from '@/utils/localStorageActions';
+import { GOOGLE_AUTH, VK_AUTH } from '@/shared/constants/routes';
 
 const MIN_LENGTH_NAME = 1;
 const MIN_LENGTH_PASSWORD = 4;
@@ -84,123 +84,139 @@ const AuthForm: FC<IAuthFormProps> = ({ type }) => {
 
   return (
     <div className={style.container}>
-      <form
-        className={style.wrapper}
-        onSubmit={handleSubmit(type === 'login' ? onSubmitLogin : onSubmitRegistration)}
-      >
-        <HeaderEnterApp title={type === 'registration' ? 'Регистрация' : 'Авторизация'} />
-        <div className={style.main}>
-          <label className={style.emailPasswordContainer}>
-            <span className={style.inputTitle}>Email</span>
-            <div className={style.inputContainer}>
-              <input
-                {...register('email', {
-                  required: 'Пожалуйста, введите ваш email',
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: errorRegistration || 'неверный формат',
-                  },
-                })}
-                placeholder="Введите email"
-                title="email"
-                type="email"
-              />
-            </div>
-            <span className={style.errorEmailPasswordMessage}>{errors.email?.message}</span>
-          </label>
-          <label className={style.emailPasswordContainer}>
-            <span className={style.inputTitle}>Пароль</span>
-            <div className={style.inputContainer}>
-              <input
-                {...register('password', {
-                  required: 'Пожалуйста, введите ваш пароль',
-                  minLength: {
-                    value: MIN_LENGTH_PASSWORD,
-                    message:
-                      (type === 'login' ? errorLogin : errorRegistration) ||
-                      'слишком короткий пароль',
-                  },
-                })}
-                placeholder="Введите пароль"
-                title="password"
-                type={typeShowInput('password', showPassword)}
-              />
-            </div>
-            <ShowPasswords showPassword={showPassword} setShowPassword={setShowPassword} />
-            <span className={style.errorEmailPasswordMessage}>{errors.password?.message}</span>
-          </label>
-          {type === 'registration' && (
+      <div className={style.wrapper}>
+        <form
+          className={style.form}
+          onSubmit={handleSubmit(type === 'login' ? onSubmitLogin : onSubmitRegistration)}
+        >
+          <HeaderEnterApp title={type === 'registration' ? 'Регистрация' : 'Авторизация'} />
+          <div className={style.main}>
             <label className={style.emailPasswordContainer}>
-              <span className={style.inputTitle}>подтвердите пароль</span>
+              <span className={style.inputTitle}>Email</span>
               <div className={style.inputContainer}>
                 <input
-                  {...register('passwordConfirm', {
-                    required: 'Пожалуйства, введите подтверждающий пароль',
+                  {...register('email', {
+                    required: 'Пожалуйста, введите ваш email',
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: errorRegistration || 'неверный формат',
+                    },
+                  })}
+                  placeholder="Введите email"
+                  title="email"
+                  type="email"
+                />
+              </div>
+              <span className={style.errorEmailPasswordMessage}>{errors.email?.message}</span>
+            </label>
+            <label className={style.emailPasswordContainer}>
+              <span className={style.inputTitle}>Пароль</span>
+              <div className={style.inputContainer}>
+                <input
+                  {...register('password', {
+                    required: 'Пожалуйста, введите ваш пароль',
                     minLength: {
                       value: MIN_LENGTH_PASSWORD,
-                      message: 'Пожалуйства, введите  правильный подтверждающий пароль',
+                      message:
+                        (type === 'login' ? errorLogin : errorRegistration) ||
+                        'слишком короткий пароль',
                     },
                   })}
-                  placeholder="Повторите пароль"
-                  title={'confirm'}
-                  type={typeShowInput('password', showConfirmPassword)}
+                  placeholder="Введите пароль"
+                  title="password"
+                  type={typeShowInput('password', showPassword)}
                 />
               </div>
-              <ShowPasswords
-                showPassword={showConfirmPassword}
-                setShowPassword={setShowConfirmPassword}
-              />
+              <ShowPasswords showPassword={showPassword} setShowPassword={setShowPassword} />
               <span className={style.errorEmailPasswordMessage}>{errors.password?.message}</span>
             </label>
-          )}
-          {type === 'registration' && (
-            <label className={style.emailPasswordContainer}>
-              <span className={style.inputTitle}>Имя</span>
-              <div className={style.inputContainer}>
-                <input
-                  {...register('name', {
-                    required: 'Пожалуйста, введите ваше имя',
-                    minLength: {
-                      value: MIN_LENGTH_NAME,
-                      message: errorRegistration || 'слишком короткое имя',
-                    },
-                  })}
-                  placeholder="Введите имя"
-                  title="name"
-                  type={'name'}
+            {type === 'registration' && (
+              <label className={style.emailPasswordContainer}>
+                <span className={style.inputTitle}>подтвердите пароль</span>
+                <div className={style.inputContainer}>
+                  <input
+                    {...register('passwordConfirm', {
+                      required: 'Пожалуйства, введите подтверждающий пароль',
+                      minLength: {
+                        value: MIN_LENGTH_PASSWORD,
+                        message: 'Пожалуйства, введите  правильный подтверждающий пароль',
+                      },
+                    })}
+                    placeholder="Повторите пароль"
+                    title={'confirm'}
+                    type={typeShowInput('password', showConfirmPassword)}
+                  />
+                </div>
+                <ShowPasswords
+                  showPassword={showConfirmPassword}
+                  setShowPassword={setShowConfirmPassword}
                 />
-              </div>
+                <span className={style.errorEmailPasswordMessage}>{errors.password?.message}</span>
+              </label>
+            )}
+            {type === 'registration' && (
+              <label className={style.emailPasswordContainer}>
+                <span className={style.inputTitle}>Имя</span>
+                <div className={style.inputContainer}>
+                  <input
+                    {...register('name', {
+                      required: 'Пожалуйста, введите ваше имя',
+                      minLength: {
+                        value: MIN_LENGTH_NAME,
+                        message: errorRegistration || 'слишком короткое имя',
+                      },
+                    })}
+                    placeholder="Введите имя"
+                    title="name"
+                    type={'name'}
+                  />
+                </div>
 
-              <span className={style.errorEmailPasswordMessage}>{errors.name?.message}</span>
-            </label>
-          )}
-        </div>
-        <div className={style.footer}>
-          <div className={style.footerBtns}>
-            <span className={style.btnCancel} onClick={goBack}>
-              назад
-            </span>
-            <div className={style.btnContainer}>
-              <button
-                className={style.submitBtn}
-                type={'submit'}
-                disabled={
-                  registrationRequestStatus === 'pending' ||
-                  loginRequestStatus === 'pending' ||
-                  !isDirty ||
-                  !isValid ||
-                  !!errorPasswords
-                }
-              >
-                {type === 'login' ? 'Вход' : 'Регистрация'}
-              </button>
-            </div>
+                <span className={style.errorEmailPasswordMessage}>{errors.name?.message}</span>
+              </label>
+            )}
           </div>
-          <span className={style.errorMessageContainer}>
-            {errorPasswords || errorRegistration || errorLogin}
-          </span>
+          <div className={style.footer}>
+            <div className={style.footerBtns}>
+              <span className={style.btnCancel} onClick={goBack}>
+                назад
+              </span>
+              <div className={style.btnContainer}>
+                <button
+                  className={style.submitBtn}
+                  type={'submit'}
+                  disabled={
+                    registrationRequestStatus === 'pending' ||
+                    loginRequestStatus === 'pending' ||
+                    !isDirty ||
+                    !isValid ||
+                    !!errorPasswords
+                  }
+                >
+                  {type === 'login' ? 'Вход' : 'Регистрация'}
+                </button>
+              </div>
+            </div>
+            <span className={style.errorMessageContainer}>
+              {errorPasswords || errorRegistration || errorLogin}
+            </span>
+          </div>
+        </form>
+        <div className={style.authButtonsContainer}>
+          <a
+            className={style.authButtonsContainer__vk}
+            href={`${VK_AUTH}?app_id=51659336&state=&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fvk&redirect_uri_hash=1d82341a52bb012c59&code_challenge=&code_challenge_method=&return_auth_hash=44439af1982b02f586&scope=4194304&force_hash=`}
+          >
+            VK
+          </a>
+          <a
+            className={style.authButtonsContainer__google}
+            href={`${GOOGLE_AUTH}?client_id=${process.env.GOOGLE_CLIENT_ID}&redirect_uri=http://localhost:3000/auth/google&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&access_type=offline`}
+          >
+            Google
+          </a>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

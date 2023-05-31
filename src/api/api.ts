@@ -1,7 +1,13 @@
 import { axiosApiInstance } from './axios-api-instance';
 import { API_ENDPOINTS } from '@/shared/constants/api';
-import { ILoginResponseData, IUserData } from '@/shared/Interfaces/authInterfaces';
+import {
+  ILoginGoogleResponseData,
+  ILoginResponseData,
+  ILoginVKResponseData,
+  IUserData,
+} from '@/shared/Interfaces/authInterfaces';
 import { ILoginData, IRegistrationData } from '@/shared/Interfaces/authInterfaces';
+import { ICode } from '@/store/reducers/authReducer';
 
 export const userApi = {
   async registerUser(data: IRegistrationData) {
@@ -20,6 +26,24 @@ export const loginApi = {
       ...login,
       withCredentials: true,
     });
+    return response.data;
+  },
+
+  async vkLogin(code: ICode) {
+    const response = await axiosApiInstance.post<ILoginVKResponseData>(API_ENDPOINTS.LOGIN_VK, {
+      ...code,
+    });
+
+    return response.data;
+  },
+
+  async googleLogin(code: ICode) {
+    const response = await axiosApiInstance.post<ILoginGoogleResponseData>(
+      API_ENDPOINTS.LOGIN_GOOGLE,
+      {
+        ...code,
+      }
+    );
     return response.data;
   },
 };

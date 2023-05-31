@@ -45,6 +45,7 @@ export const profileSlice = createSlice({
       if (!action.payload.user) {
         return state;
       }
+      console.log(action.payload);
       state.user = action.payload.user;
     });
     builder.addCase(getUser.pending, (state) => {

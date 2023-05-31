@@ -5,6 +5,8 @@ export const API_ENDPOINTS = {
   FILM: '/movies/',
   REGISTRATION: '/auth/registration',
   LOGIN: '/auth/login',
+  LOGIN_VK: '/auth/registration/vk',
+  LOGIN_GOOGLE: '/auth/registration/google',
   ME: '/users/me',
   PERSON: '/persons/',
 };

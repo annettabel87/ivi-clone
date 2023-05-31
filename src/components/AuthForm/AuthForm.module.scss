@@ -162,3 +162,59 @@
       cursor: pointer;
     }
   }
+
+  .authButtonsContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &__vk {
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      cursor: pointer;
+      white-space: nowrap;
+      line-height: 15px;     
+      text-decoration: none;
+      background: 0 0;
+      background-color: rgb(63, 138, 224);
+      color: $mainColor;
+      border: 0;
+      border-radius: 8px;
+      height: 40px;
+      padding: 9px 15px;
+      width: 100%;
+      font-size: 15px;
+      font-weight: 500;
+      transition: all 0.2s;
+
+      &:hover {
+        background-color: rgb(85, 154, 233);
+      }
+    }
+
+    &__google {
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      cursor: pointer;
+      white-space: nowrap;
+      line-height: 15px;     
+      text-decoration: none;
+      background: 0 0;
+      background-color: rgb(128, 134, 141);
+      color: $mainColor;
+      border: 0;
+      border-radius: 8px;
+      height: 40px;
+      padding: 9px 15px;
+      width: 100%;
+      font-size: 15px;
+      font-weight: 500;
+      transition: all 0.2s;
+
+      &:hover {
+        background-color: rgb(195, 202, 209);
+      }
+    }
+  }

@@ -31,3 +31,22 @@ export interface ILoginResponseData {
   updatedAt: string;
   createdAt: string;
 }
+
+export interface ILoginVKResponseData {
+  id: number;
+  banned: boolean;
+  email: string;
+  roles: [];
+  token: string;
+}
+
+export interface ILoginGoogleResponseData {
+  id: number;
+  banned: boolean;
+  email: string;
+  roles: Roles[];
+  token: string;
+  name: string;
+}
+
+export type Roles = 'USER' | 'ADMIN';
