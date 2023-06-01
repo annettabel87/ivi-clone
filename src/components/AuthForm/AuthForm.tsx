@@ -1,6 +1,5 @@
 import React, { FC, useState } from 'react';
 import { useRouter } from 'next/router';
-import style from './AuthForm.module.scss';
 import { AuthFormType } from '@/pages/auth';
 import HeaderEnterApp from '../HeaderEnterApp/HeaderEnterApp';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -8,8 +7,8 @@ import { ILoginData, IRegistrationData } from '@/shared/Interfaces/authInterface
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
 import ShowPasswords from '../ShowPasswords/ShowPasswords';
 import { cancel, loginUser, registrationUser } from '@/store/reducers/authReducer';
-import { localStorageActions } from '@/utils/localStorageActions';
 import { GOOGLE_AUTH, VK_AUTH } from '@/shared/constants/routes';
+import style from './AuthForm.module.scss';
 
 const MIN_LENGTH_NAME = 1;
 const MIN_LENGTH_PASSWORD = 4;
@@ -48,10 +47,10 @@ const AuthForm: FC<IAuthFormProps> = ({ type }) => {
     router.back();
     dispatch(cancel());
   };
+
   const onSubmitLogin: SubmitHandler<ILoginData> = (data) => {
     data &&
       dispatch(loginUser({ email: data.email, password: data.password })).then(() => router.back());
-    //localStorageActions.setLoginData(data);
     errorLogin === undefined &&
       reset({
         email: '',
@@ -71,15 +70,20 @@ const AuthForm: FC<IAuthFormProps> = ({ type }) => {
           password: data.password,
           name: data.name,
         } as IRegistrationData)
-      ).then(() => setFormType('login'));
+      )
+        .then(() => dispatch(loginUser({ email: data.email, password: data.password })))
+        .then(
+          () =>
+            errorRegistration === undefined &&
+            reset({
+              email: '',
+              name: '',
+              password: '',
+              passwordConfirm: '',
+            })
+        )
+        .then(() => router.back());
     }
-    errorRegistration === undefined &&
-      reset({
-        email: '',
-        name: '',
-        password: '',
-        passwordConfirm: '',
-      });
   };
 
   return (
@@ -205,7 +209,7 @@ const AuthForm: FC<IAuthFormProps> = ({ type }) => {
         <div className={style.authButtonsContainer}>
           <a
             className={style.authButtonsContainer__vk}
-            href={`${VK_AUTH}?app_id=51659336&state=&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fvk&redirect_uri_hash=1d82341a52bb012c59&code_challenge=&code_challenge_method=&return_auth_hash=44439af1982b02f586&scope=4194304&force_hash=`}
+            href={`${VK_AUTH}?app_id=51659336&state=&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fvk&redirect_uri_hash=101e1dc8376c4c4c8b&code_challenge=&code_challenge_method=&return_auth_hash=70783e11b7cd674979&scope=4194304&force_hash=`}
           >
             VK
           </a>

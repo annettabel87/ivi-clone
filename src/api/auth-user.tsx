@@ -1,7 +1,4 @@
-import { localStorageActions } from '@/utils/localStorageActions';
-
-export const authUser = () => {
-  const token = localStorageActions.getToken();
+export const authUser = (token: string) => {
   if (token) {
     return 'Bearer ' + token;
   } else {

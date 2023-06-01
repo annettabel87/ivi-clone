@@ -1,7 +1,12 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.scss';
+import { GetServerSideProps } from 'next';
+import { parseCookies } from 'nookies';
 import { Footer } from '../components/Footer/Footer';
 import { Header } from '../components/Header/Header';
+import { wrapper } from '@/store/store';
+import { setUser } from '@/store/reducers/profileReducer';
+import { userApi } from '@/api/api';
+import styles from '../styles/Home.module.scss';
 
 const Home = () => {
   return (
@@ -20,3 +25,17 @@ const Home = () => {
   );
 };
 export default Home;
+
+export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
+  (store) => async (ctx) => {
+    const { authToken } = parseCookies(ctx);
+    try {
+      const data = await userApi.getUser(authToken);
+      store.dispatch(setUser(data));
+    } catch (error) {
+      console.log(error);
+    }
+
+    return { props: {} };
+  }
+);

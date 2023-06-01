@@ -1,8 +1,5 @@
 import axios from 'axios';
 import { API_IVI_APP } from '@/shared/constants/api';
-import { authUser } from './auth-user';
-import { ILoginResponseData } from '@/shared/Interfaces/authInterfaces';
-import { localStorageActions } from '@/utils/localStorageActions';
 
 export const axiosApiInstance = axios.create({
   baseURL: API_IVI_APP,
@@ -10,7 +7,7 @@ export const axiosApiInstance = axios.create({
 
 axiosApiInstance.interceptors.request.use(
   async (config) => {
-    config.headers.Authorization = authUser();
+    //config.headers.Authorization = authUser();
     config.headers.ContentType = 'application/json';
     return config;
   },

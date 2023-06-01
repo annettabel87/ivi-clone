@@ -1,51 +1,19 @@
-import { ILoginData } from '@/shared/Interfaces/authInterfaces';
+import { IPersonsModalType } from '@/store/reducers/filmPageReducer';
 
-const setToken = (token: string) => {
-  if (token) localStorage.setItem('token', token);
+const setPersonsModal = (value: IPersonsModalType) => {
+  if (value) localStorage.setItem('personModal', value);
 };
 
-const getToken = () => {
-  return localStorage.getItem('token');
+const removePersonsModal = () => {
+  return localStorage.removeItem('personModal');
 };
 
-const removeToken = () => {
-  return localStorage.removeItem('token');
-};
-
-const setLoginData = (data: ILoginData) => {
-  localStorage.setItem('loginData', JSON.stringify(data));
-};
-
-const getLoginData = () => {
-  const data = localStorage.getItem('loginData');
-  return data && JSON.parse(data);
-};
-
-const removeLoginData = () => {
-  return localStorage.removeItem('loginData');
-};
-
-const setCurrentUser = (data: { [key: string]: string }) => {
-  localStorage.setItem('currentUser', JSON.stringify({ ...data }));
-};
-
-const getCurrentUser = () => {
-  const data = localStorage.getItem('currentUser');
-  return data && JSON.parse(data);
-};
-
-const removeCurrentUser = () => {
-  return localStorage.removeItem('currentUser');
+const setIsOpenPersonModal = (value: string) => {
+  if (value) localStorage.setItem('isOpenPersonModal', value);
 };
 
 export const localStorageActions = {
-  setToken,
-  getToken,
-  removeToken,
-  setLoginData,
-  getLoginData,
-  removeLoginData,
-  setCurrentUser,
-  getCurrentUser,
-  removeCurrentUser,
+  setPersonsModal,
+  removePersonsModal,
+  setIsOpenPersonModal,
 };

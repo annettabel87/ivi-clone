@@ -10,6 +10,7 @@ import Navbar from '../Navbar/Navbar';
 import { PROFILE_ROUTE } from '@/shared/constants/routes';
 import { DropdownSectionType } from '@/shared/Interfaces/DropdownSectionType';
 import { UserAvatar } from '../UserAvatar/UserAvatar';
+import { useAppSelector } from '@/store/hooks/hooks';
 
 interface IHeaderTopProps {
   section: DropdownSectionType;
@@ -20,6 +21,8 @@ export const HeaderTop: FC<IHeaderTopProps> = ({ section, setDropdownSection }) 
   const handleMouseEnter = (section: DropdownSectionType) => {
     setDropdownSection(section);
   };
+  const userData = useAppSelector((state) => state.profileReducer.user);
+  console.log(userData);
 
   return (
     <div className={section ? styles.headerTop__content_openSection : styles.headerTop__content}>
@@ -109,7 +112,7 @@ export const HeaderTop: FC<IHeaderTopProps> = ({ section, setDropdownSection }) 
           radius={'8px'}
         >
           <UserAvatar
-            isAuth={false}
+            isAuth={!!userData}
             // imgSrc={
             //   'https://thumbs.dfs.ivi.ru/storage2/contents/b/d/a9cb7de5701062fd09ff9a9623ce5d.jpg/50x50/?q=85'
             // }

@@ -1,4 +1,5 @@
 import { loginApi, userApi } from '@/api/api';
+import nookies, { parseCookies, setCookie } from 'nookies';
 import {
   ILoginData,
   ILoginGoogleResponseData,
@@ -8,7 +9,6 @@ import {
   IUserData,
 } from '@/shared/Interfaces/authInterfaces';
 import errorMessage from '@/shared/errorMessage/errorMessage';
-import { localStorageActions } from '@/utils/localStorageActions';
 import { PayloadAction, createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 import { HYDRATE } from 'next-redux-wrapper';
@@ -33,7 +33,10 @@ export const loginUser = createAsyncThunk<ILoginResponseData, ILoginData>(
     try {
       const response = await loginApi.createToken(login);
       const { token } = response as ILoginResponseData;
-      localStorageActions.setToken(token);
+      setCookie(null, 'authToken', token, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+      });
       return response;
     } catch (error) {
       return rejectWithValue(errorMessage(error as AxiosError));
@@ -49,7 +52,10 @@ export const loginUserVK = createAsyncThunk<ILoginVKResponseData, string>(
     try {
       const response = await loginApi.vkLogin({ code });
       const { token } = response as ILoginVKResponseData;
-      localStorageActions.setToken(token);
+      setCookie(null, 'authToken', token, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+      });
       return response;
     } catch (error) {
       return rejectWithValue(errorMessage(error as AxiosError));
@@ -63,7 +69,10 @@ export const loginUserGoogle = createAsyncThunk<ILoginGoogleResponseData, string
     try {
       const response = await loginApi.googleLogin({ code });
       const { token } = response as ILoginGoogleResponseData;
-      localStorageActions.setToken(token);
+      setCookie(null, 'authToken', token, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+      });
       return response;
     } catch (error) {
       return rejectWithValue(errorMessage(error as AxiosError));
@@ -124,7 +133,6 @@ export const authorizationSlice = createSlice({
       state.loginRequestStatus = 'succeeded';
       state.token = action.payload.token;
       state.user = action.payload;
-      console.log(action.payload);
       state.errorLogin = undefined;
       state.errorRegistration = undefined;
     });
@@ -179,7 +187,6 @@ export const authorizationSlice = createSlice({
     builder.addCase(registrationUser.rejected, (state, action) => {
       state.registrationRequestStatus = 'failed';
       state.errorLogin = undefined;
-      console.log(action.payload);
       if (action.payload) {
         state.errorRegistration =
           (action.payload as string) || 'Ошибка регистрации! Попробуйте снова!';

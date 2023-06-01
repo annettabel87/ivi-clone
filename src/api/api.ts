@@ -8,14 +8,17 @@ import {
 } from '@/shared/Interfaces/authInterfaces';
 import { ILoginData, IRegistrationData } from '@/shared/Interfaces/authInterfaces';
 import { ICode } from '@/store/reducers/authReducer';
+import { authUser } from './auth-user';
 
 export const userApi = {
   async registerUser(data: IRegistrationData) {
     const response = await axiosApiInstance.post(API_ENDPOINTS.REGISTRATION, { ...data });
     return response.data;
   },
-  async getUser() {
-    const response = await axiosApiInstance.get<IUserData>(API_ENDPOINTS.ME);
+  async getUser(token: string) {
+    const response = await axiosApiInstance.get<IUserData>(API_ENDPOINTS.ME, {
+      headers: { Authorization: authUser(token) },
+    });
     return response.data;
   },
 };

@@ -3,15 +3,16 @@ import AuthForm from '@/components/AuthForm/AuthForm';
 import { localStorageActions } from '@/utils/localStorageActions';
 import { useRouter } from 'next/router';
 import style from './auth.module.scss';
-import { useAppDispatch } from '@/store/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
 
 export type AuthFormType = 'login' | 'registration';
 
 const Auth = () => {
   const router = useRouter();
+  const { user } = useAppSelector((state) => state.profileReducer);
+
   useEffect(() => {
-    const token = localStorageActions.getToken();
-    if (token) {
+    if (user) {
       router.back();
     }
   });
