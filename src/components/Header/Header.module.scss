@@ -7,16 +7,30 @@
   @media screen and (max-width: 1293px) {
     margin: 0 32px;
   }
+
+  @media screen and (max-width: 600px) {
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+  }
 }
 
 .headerTop {
   &__content {
-    margin: 0 -12px;
-    padding: 0 12px;
+    margin: 0 -32px;
+    padding: 0 32px;
     display: flex;
     align-items: center;
     height: 72px;
-    border-top: 3px solid #100e19;
+    border-top: 3px solid $mainBackgroundColor;
+
+    @media screen and (max-width: 600px) {
+      height: 64px;
+      border-top: none;
+      background-color: $mainBackgroundColor;
+    }
   }
 
   &__content_openSection {

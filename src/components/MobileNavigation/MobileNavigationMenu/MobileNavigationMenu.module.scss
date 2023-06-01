@@ -1,0 +1,108 @@
+@import '../../../styles/variables.scss';
+.menu {
+  padding: 24px 0 48px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.menuItem {
+  // &__child {
+  //   margin-top: 20px;
+  // }
+}
+
+.dropMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.titleBlock {
+  display: flex;
+  gap: 12px;
+  align-items: end;
+}
+
+.menuTitle {
+  line-height: 20px;
+  font-weight: 700;
+  color: $mainColor;
+}
+
+.sectionLink {
+  color: $secondaryColor;
+  line-height: 20px;
+  text-decoration: none;
+}
+
+.menuDivider {
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.16);
+}
+
+.svgImage {
+  filter: brightness(0) invert(1);
+}
+
+.arrowUp {
+  transform: rotate(-90deg);
+}
+
+.arrowDown {
+  transform: rotate(90deg);
+}
+
+.tvPlusChannels {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tvPlusChannelItem {
+  flex: 0 1 33.3%;
+  padding: 8px;
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+}
+
+.tvPlusTranslationItem {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+
+  &__imageWrapper {
+    width: 58px;
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      transition: all ease 0.4s;
+    }
+  }
+
+  &__title {
+    line-height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: $cardsTitleColor;
+    transition: all ease 0.4s;
+  }
+
+  &__date {
+    margin-top: 2px;
+    font-size: 13px;
+    height: 16px;
+    line-height: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: $secondaryColor;
+  }
+}

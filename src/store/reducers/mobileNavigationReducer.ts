@@ -1,12 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface IMobileNavigationState {
-  section: 'Мой Иви' | 'Каталог' | 'Поиск' | 'TV+' | 'Еще' | 'Закрыть';
+  currentSection: 'Мой Иви' | 'Каталог' | 'Поиск' | 'TV+' | 'Еще' | 'Закрыть';
   isOpen: boolean;
 }
 
 export const initialState: IMobileNavigationState = {
-  section: 'Мой Иви',
+  currentSection: 'Мой Иви',
   isOpen: false,
 };
 
@@ -18,7 +18,7 @@ export const mobileNavigationSlice = createSlice({
       state,
       action: PayloadAction<'Мой Иви' | 'Каталог' | 'Поиск' | 'TV+' | 'Еще' | 'Закрыть'>
     ) {
-      state.section = action.payload;
+      state.currentSection = action.payload;
     },
     SET_MOBILE_MENU_OPEN(state, action: PayloadAction<boolean>) {
       state.isOpen = action.payload;
@@ -26,5 +26,5 @@ export const mobileNavigationSlice = createSlice({
   },
 });
 
-export const { SET_SECTION } = mobileNavigationSlice.actions;
+export const { SET_SECTION, SET_MOBILE_MENU_OPEN } = mobileNavigationSlice.actions;
 export default mobileNavigationSlice.reducer;

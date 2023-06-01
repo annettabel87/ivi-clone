@@ -8,72 +8,80 @@ import searchIcon from '../../assets/icon/search.svg';
 import tvIcon from '../../assets/icon/tv-variant.svg';
 import ellipsisIcon from '../../assets/icon/ellipsis.svg';
 import closeIcon from '../../assets/icon/close.svg';
+import { SET_SECTION, SET_MOBILE_MENU_OPEN } from '@/store/reducers/mobileNavigationReducer';
+import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
 
 export const TabBar: FC = () => {
-  const [activeItem, setActiveItem] = useState<
-    'Мой Иви' | 'Каталог' | 'Поиск' | 'TV+' | 'Еще' | 'Закрыть'
-  >('Закрыть');
+  const dispatch = useAppDispatch();
+  const { currentSection } = useAppSelector((state) => state.mobileNavigationReducer);
+
   return (
     <div className={styles.tabBar}>
       <TabBarItem
         as={'a'}
         onClick={() => {
-          setActiveItem('Мой Иви');
+          dispatch(SET_SECTION('Мой Иви'));
+          dispatch(SET_MOBILE_MENU_OPEN(false));
         }}
         href={MAIN_ROUTE}
         icon={myIviIcon}
         title={'Мой Иви'}
-        isActive={activeItem === 'Мой Иви'}
+        isActive={currentSection === 'Мой Иви'}
       />
       <TabBarItem
         as={'a'}
         onClick={() => {
-          setActiveItem('Каталог');
+          dispatch(SET_SECTION('Каталог'));
+          dispatch(SET_MOBILE_MENU_OPEN(false));
         }}
         href={FILMS_ROUTE}
         icon={folderVideoIcon}
         title={'Каталог'}
-        isActive={activeItem === 'Каталог'}
+        isActive={currentSection === 'Каталог'}
       />
       <TabBarItem
         as={'div'}
         onClick={() => {
-          setActiveItem('Поиск');
+          dispatch(SET_SECTION('Поиск'));
+          dispatch(SET_MOBILE_MENU_OPEN(false));
         }}
         icon={searchIcon}
         title={'Поиск'}
-        isActive={activeItem === 'Поиск'}
+        isActive={currentSection === 'Поиск'}
       />
       <TabBarItem
         as={'a'}
         onClick={() => {
-          setActiveItem('TV+');
+          dispatch(SET_SECTION('TV+'));
+          dispatch(SET_MOBILE_MENU_OPEN(false));
         }}
         href={'https://www.ivi.ru/tvplus'}
         icon={tvIcon}
         title={'TV+'}
-        isActive={activeItem === 'TV+'}
+        isActive={currentSection === 'TV+'}
       />
-      {activeItem !== 'Закрыть' && (
+      {currentSection !== 'Закрыть' && (
         <TabBarItem
           as={'div'}
           onClick={() => {
-            setActiveItem('Закрыть');
+            dispatch(SET_SECTION('Закрыть'));
+            dispatch(SET_MOBILE_MENU_OPEN(true));
           }}
           icon={ellipsisIcon}
           title={'Еще'}
-          isActive={activeItem === 'Еще'}
+          isActive={currentSection === 'Еще'}
         />
       )}
-      {activeItem === 'Закрыть' && (
+      {currentSection === 'Закрыть' && (
         <TabBarItem
           as={'div'}
           onClick={() => {
-            setActiveItem('Мой Иви');
+            dispatch(SET_SECTION('Мой Иви'));
+            dispatch(SET_MOBILE_MENU_OPEN(false));
           }}
           icon={closeIcon}
           title={'Закрыть'}
-          isActive={activeItem === 'Закрыть'}
+          isActive={currentSection === 'Закрыть'}
         />
       )}
     </div>

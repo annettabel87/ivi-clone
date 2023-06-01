@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import filmPageReducer from './reducers/filmPageReducer';
+import mobileNavigationReducer from './reducers/mobileNavigationReducer';
 
 export const rootReducer = combineReducers({
   filmPageReducer,
+  mobileNavigationReducer,
 });
 
 export const createReduxStore = () => {
