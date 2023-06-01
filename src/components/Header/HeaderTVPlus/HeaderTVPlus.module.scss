@@ -21,13 +21,28 @@
   &__column:nth-child(2) {
     flex: 1 1 auto;
     border-left: 1px solid rgba(255, 255, 255, 0.16);
-    padding-left: 30px;
+    padding-left: 32px;
+    padding-right: 15px;
   }
 
   &__carouselBlock {
+    max-width: 650px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-weight: 700;
+  }
+
+  &__carouselBlockTitle {
+    margin-bottom: 16px;
+  }
+
+  &__carouselTitle {
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+
+  &__btnTitle {
     font-weight: 700;
   }
 }

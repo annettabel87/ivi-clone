@@ -1,0 +1,107 @@
+@import '../../styles/variables.scss';
+
+.carousel {
+  width: auto;
+}
+
+.carouselContainer {
+  width: 100%;
+  max-width: $maxWidthContainer;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.carouselViewPort {
+  margin: 0 auto;
+  width: auto;
+}
+
+.carouselList {
+  display: flex;
+}
+
+.carouselItem {
+  padding-right: 24px;
+}
+
+.rightArrowWrapper {
+  position: absolute;
+  top: 0;
+  right: -44px;
+  width: 32px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  img {
+    transition: all ease 0.4s;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    img {
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  &:active {
+    img {
+      transform: scale(0.8);
+      transition: transform 80ms;
+    }
+  }
+
+  // @media screen and (max-width: 599px) {
+  //   display: none;
+  // }
+
+  @media screen and (min-width: 600px) and (max-width: 1336px) {
+    right: -22px;
+  }
+}
+
+.smallRightArrowWrapper {
+  @extend .rightArrowWrapper;
+  right: -32px;
+
+  @media screen and (min-width: 600px) and (max-width: 1336px) {
+    right: -28px;
+  }
+}
+
+.leftArrowWrapper {
+  @extend .rightArrowWrapper;
+  left: -44px;
+  transform: rotate(180deg);
+
+  @media screen and (min-width: 600px) and (max-width: 1336px) {
+    left: -22px;
+  }
+}
+
+.smallLeftArrowWrapper {
+  @extend .leftArrowWrapper;
+  left: -32px;
+
+  @media screen and (min-width: 600px) and (max-width: 1336px) {
+    left: -28px;
+  }
+}
+
+.rightShadow {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 0;
+  width: 60px;
+  z-index: 1;
+  background-image: linear-gradient(90deg, rgba(31, 27, 46, 0), #1f1b2e);
+}
+
+.leftShadow {
+  @extend .rightShadow;
+  left: 0;
+  background-image: linear-gradient(270deg, rgba(31, 27, 46, 0), #1f1b2e);
+}

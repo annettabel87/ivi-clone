@@ -1,0 +1,57 @@
+@import '../../../../../../../../styles/variables.scss';
+
+.comment {
+  padding-left: 36px;
+  position: relative;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+
+    &_about {
+      display: flex;
+      gap: 8px;
+    }
+  }
+
+  &__text_white {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 16px;
+    color: $mainColor;
+  }
+
+  &__text_gray {
+    color: $additionalColor;
+    font-size: 13px;
+    line-height: 16px;
+
+    @media screen and (max-width: 599px) {
+      position: absolute;
+      bottom: -15px;
+    }
+  }
+
+  &__text {
+    margin-bottom: 8px;
+    color: $cardsTitleColor;
+    line-height: 22px;
+  }
+
+  &__icon {
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 20px;
+    height: 20px;
+    background: blueviolet;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

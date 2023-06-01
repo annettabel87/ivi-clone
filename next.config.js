@@ -5,6 +5,17 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'st.kp.yandex.net',
+        port: '',
+        pathname: '/images/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.mds.yandex.net',
+        port: '',
+        pathname: '/get-kinopoisk-image/**',
+      },
+      {
         hostname: 'thumbs.dfs.ivi.ru',
         port: '',
         pathname: '/storage**/**',

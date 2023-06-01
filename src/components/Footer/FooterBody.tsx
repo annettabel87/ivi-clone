@@ -1,5 +1,5 @@
 import React from 'react';
-import { Socials } from './Socials/Socials';
+import { Socials } from './socials/Socials';
 import { Stores } from './Stores/Stores';
 import styles from './Footer.module.scss';
 

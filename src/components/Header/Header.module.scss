@@ -3,6 +3,10 @@
 .header__container {
   max-width: $maxWidthContainer;
   margin: 0 auto;
+
+  @media screen and (max-width: 1293px) {
+    margin: 0 32px;
+  }
 }
 
 .headerTop {
@@ -34,6 +38,10 @@
     justify-content: flex-end;
     align-items: center;
     margin: 0 12px 0 16px;
+
+    @media screen and (max-width: 600px) {
+      margin-right: 0;
+    }
   }
 
   &__subscribeBtn {
@@ -72,6 +80,12 @@
     transition: all ease 0.4s;
   }
 
+  &__notify {
+    @media screen and (max-width: 600px) {
+      display: none;
+    }
+  }
+
   &__notify:hover {
     .svgImage {
       filter: brightness(0) invert(1);
@@ -81,6 +95,10 @@
   &__avatar {
     margin-left: 12px;
     transition: all ease 0.4s;
+
+    @media screen and (max-width: 600px) {
+      display: none;
+    }
   }
 
   &__avatar:hover {

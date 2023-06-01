@@ -1,0 +1,79 @@
+@import '../../../../../../../../styles/variables.scss';
+
+.commentForm {
+  margin-bottom: 32px;
+
+  &__header {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 20px;
+
+    &_avatar {
+      border-radius: 4px;
+      overflow: hidden;
+      width: 20px;
+      background-color: rgb(255 255 255 / 15%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .form {
+    display: flex;
+    gap: 12px;
+
+    &__inputBlock {
+      width: 100%;
+    }
+    
+    &__input {
+      background-color: #d9d7e0;
+      color: #1f1b2e;
+      padding: 10px 12px;
+      height: 40px;
+      border-radius: 8px;
+      font-size: 15px;
+      line-height: 20px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      width: 100%;
+    }
+
+    &__error {
+      color: #ff542e;
+      line-height: 16px;
+      line-height: 16px;
+      font-size: 13px;
+
+      &_input {
+        background-color: #fff3f0;
+        color: #ff542e;
+      }
+    }
+
+    &__submitBtn {
+      background-color: #ea003d;
+      border-color: #ea003d;
+      color: $mainColor;
+      border-radius: 8px;
+      height: 40px;
+      padding: 9px 15px;
+      font-size: 15px;
+      line-height: 20px;
+      font-weight: 500;
+
+      &:disabled {
+        opacity: 0.32;
+      }
+
+      &:hover {
+        background-color: #ff0f4d;
+        border-color: #ff0f4d;
+      }
+    }
+  }
+}

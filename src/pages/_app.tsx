@@ -10,6 +10,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     <Provider store={store}>
       <>
         <Component {...props} />
+        {/* <TabBar /> */}
         <div id="portal"></div>
       </>
     </Provider>
