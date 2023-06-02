@@ -7,9 +7,6 @@
 }
 
 .menuItem {
-  // &__child {
-  //   margin-top: 20px;
-  // }
 }
 
 .dropMenu {
@@ -37,10 +34,6 @@
   text-decoration: none;
 }
 
-.menuDivider {
-  border-bottom: 1px solid hsla(0, 0%, 100%, 0.16);
-}
-
 .svgImage {
   filter: brightness(0) invert(1);
 }
@@ -59,50 +52,8 @@
   flex-wrap: wrap;
 }
 
-.tvPlusChannelItem {
-  flex: 0 1 33.3%;
-  padding: 8px;
-  img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-}
-
-.tvPlusTranslationItem {
-  width: 100%;
+.tvPlusTranslations {
   display: flex;
+  flex-direction: column;
   gap: 12px;
-  margin-bottom: 16px;
-
-  &__imageWrapper {
-    width: 58px;
-
-    img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      transition: all ease 0.4s;
-    }
-  }
-
-  &__title {
-    line-height: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    color: $cardsTitleColor;
-    transition: all ease 0.4s;
-  }
-
-  &__date {
-    margin-top: 2px;
-    font-size: 13px;
-    height: 16px;
-    line-height: 16px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    color: $secondaryColor;
-  }
 }

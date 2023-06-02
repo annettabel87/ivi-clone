@@ -1,0 +1,43 @@
+@import '../../../../styles/variables.scss';
+
+.buttonsBlock {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.btn {
+  flex: 0 0 32%;
+
+  &__text_small {
+    color: $descriptionColor;
+    font-size: 10px;
+    line-height: 12px;
+  }
+
+  &__content {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__title {
+    font-weight: 700;
+    line-height: 20px;
+    margin-bottom: 8px;
+  }
+
+  @media screen and (max-width: 880px) {
+    flex: 0 0 48%;
+  }
+
+  @media screen and (max-width: 512px) {
+    flex: 0 0 100%;
+  }
+}

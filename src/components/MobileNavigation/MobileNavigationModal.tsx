@@ -5,11 +5,15 @@ import Button from '../Button/Button';
 import diamondIcon from '../../assets/icon/diamond.svg';
 import certificateIcon from '../../assets/icon/certificate.svg';
 import { MobileNavigationMenu } from './MobileNavigationMenu/MobileNavigationMenu';
+import { Divider } from '../Divider/Divider';
 
 export const MobileNavigationModal = () => {
   return (
     <>
       <div className={styles.overlay}>
+        <div className={styles.fixedDivider}>
+          <Divider />
+        </div>
         <div className={styles.content}>
           <div className={styles.content__subscription}>
             <Button
@@ -43,6 +47,7 @@ export const MobileNavigationModal = () => {
               </div>
             </Button>
           </div>
+          <Divider />
           <MobileNavigationMenu />
         </div>
       </div>

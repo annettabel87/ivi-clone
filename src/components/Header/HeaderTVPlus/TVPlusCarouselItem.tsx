@@ -7,6 +7,7 @@ interface ITVPlusCarouselItemProps {
   purpose: 'channel' | 'translation';
   link: string;
   imageSrc: string;
+  isStaticWidth?: boolean;
   title?: string;
   date?: string;
 }
@@ -15,16 +16,18 @@ export const TVPlusCarouselItem: FC<ITVPlusCarouselItemProps> = ({
   purpose,
   link,
   imageSrc,
+  isStaticWidth = true,
   title,
   date,
 }) => {
   return (
     <>
       {purpose === 'channel' && (
-        <Link href={link}>
-          <div className={styles.channelItem}>
-            <Image src={imageSrc} alt={purpose} width={88} height={57} />
-          </div>
+        <Link
+          href={link}
+          className={isStaticWidth ? styles.staticChannelItem : styles.adaptiveChannelItem}
+        >
+          <Image src={imageSrc} alt={purpose} width={88} height={57} />
         </Link>
       )}
       {purpose === 'translation' && (

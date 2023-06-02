@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { socialsData } from '../../../shared/socials/socialsData';
 import Button from '@/components/Button/Button';
 import styles from './Socials.module.scss';
+import { checkIsMobile } from '@/helpers/checkIsMobile';
 
 export const Socials = () => {
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsMobile(checkIsMobile());
+  }, []);
   return (
-    <div className={styles.socials}>
+    <div className={styles.socials} style={isMobile ? { justifyContent: 'left' } : {}}>
       {socialsData.map((data) => (
         <Button
           key={data.id}
