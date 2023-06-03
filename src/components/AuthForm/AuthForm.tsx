@@ -3,7 +3,11 @@ import { useRouter } from 'next/router';
 import { AuthFormType } from '@/pages/auth';
 import HeaderEnterApp from '../HeaderEnterApp/HeaderEnterApp';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { ILoginData, IRegistrationData } from '@/shared/Interfaces/authInterfaces';
+import {
+  ILoginData,
+  ILoginResponseData,
+  IRegistrationData,
+} from '@/shared/Interfaces/authInterfaces';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
 import ShowPasswords from '../ShowPasswords/ShowPasswords';
 import { cancel, loginUser, registrationUser } from '@/store/reducers/authReducer';
@@ -50,7 +54,13 @@ const AuthForm: FC<IAuthFormProps> = ({ type }) => {
 
   const onSubmitLogin: SubmitHandler<ILoginData> = (data) => {
     data &&
-      dispatch(loginUser({ email: data.email, password: data.password })).then(() => router.back());
+      dispatch(loginUser({ email: data.email, password: data.password })).then((res) => {
+        console.log(res);
+        const { token } = res.payload as ILoginResponseData;
+        if (token) {
+          router.back();
+        }
+      });
     errorLogin === undefined &&
       reset({
         email: '',
