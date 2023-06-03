@@ -11,7 +11,7 @@ import {
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
 import ShowPasswords from '../ShowPasswords/ShowPasswords';
 import { cancel, loginUser, registrationUser } from '@/store/reducers/authReducer';
-import { GOOGLE_AUTH, VK_AUTH } from '@/shared/constants/routes';
+import { GOOGLE_AUTH, MAIN_ROUTE, VK_AUTH } from '@/shared/constants/routes';
 import style from './AuthForm.module.scss';
 
 const MIN_LENGTH_NAME = 1;
@@ -58,7 +58,7 @@ const AuthForm: FC<IAuthFormProps> = ({ type }) => {
         console.log(res);
         const { token } = res.payload as ILoginResponseData;
         if (token) {
-          router.back();
+          router.push(MAIN_ROUTE);
         }
       });
     errorLogin === undefined &&
@@ -92,7 +92,7 @@ const AuthForm: FC<IAuthFormProps> = ({ type }) => {
               passwordConfirm: '',
             })
         )
-        .then(() => router.back());
+        .then(() => router.push(MAIN_ROUTE));
     }
   };
 

@@ -1,10 +1,9 @@
 import type { AppProps } from 'next/app';
 import { wrapper } from '@/store/store';
-import { Provider } from 'react-redux';
-import '../styles/globals.scss';
 import { parseCookies } from 'nookies';
 import { userApi } from '@/api/api';
 import { setUser } from '@/store/reducers/authReducer';
+import '../styles/globals.scss';
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
