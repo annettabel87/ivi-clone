@@ -25,14 +25,6 @@ axiosApiInstance.interceptors.response.use(
     if (error.response.status == 401 && error.config && !error.config._isRetry) {
       originalRequest._isRetry = true;
       try {
-        //localStorageActions.removeToken();
-        // const login = localStorageActions.getLoginData();
-        // const response = await axios.post<ILoginResponseData>(`${API_ENDPOINTS.LOGIN}`, {
-        //   ...login,
-        //   withCredentials: true,
-        // });
-        // localStorage.setItem('token', response.data.token);
-        // return axiosApiInstance.request(originalRequest);
       } catch (e) {
         Promise.reject(e);
       }

@@ -10,7 +10,7 @@ import {
 } from '@/shared/Interfaces/authInterfaces';
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
 import ShowPasswords from '../ShowPasswords/ShowPasswords';
-import { cancel, loginUser, registrationUser } from '@/store/reducers/authReducer';
+import { loginUser, registrationUser } from '@/store/reducers/authReducer';
 import { GOOGLE_AUTH, MAIN_ROUTE, VK_AUTH } from '@/shared/constants/routes';
 import style from './AuthForm.module.scss';
 
@@ -25,8 +25,6 @@ const AuthForm: FC<IAuthFormProps> = ({ type }) => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
   const [errorPasswords, setErrorPasswords] = useState<string>('');
-  const [formType, setFormType] = useState<AuthFormType>(type);
-
   const { errorRegistration, registrationRequestStatus, errorLogin, loginRequestStatus } =
     useAppSelector((state) => state.authReducer);
   const dispatch = useAppDispatch();
@@ -49,7 +47,6 @@ const AuthForm: FC<IAuthFormProps> = ({ type }) => {
 
   const goBack = () => {
     router.back();
-    dispatch(cancel());
   };
 
   const onSubmitLogin: SubmitHandler<ILoginData> = (data) => {
@@ -81,7 +78,14 @@ const AuthForm: FC<IAuthFormProps> = ({ type }) => {
           name: data.name,
         } as IRegistrationData)
       )
-        .then(() => dispatch(loginUser({ email: data.email, password: data.password })))
+        .then((res) => {
+          console.log(res);
+          if (res.meta.requestStatus === 'fulfilled') {
+            dispatch(loginUser({ email: data.email, password: data.password })).then(() =>
+              router.push(MAIN_ROUTE)
+            );
+          }
+        })
         .then(
           () =>
             errorRegistration === undefined &&
@@ -91,8 +95,7 @@ const AuthForm: FC<IAuthFormProps> = ({ type }) => {
               password: '',
               passwordConfirm: '',
             })
-        )
-        .then(() => router.push(MAIN_ROUTE));
+        );
     }
   };
 

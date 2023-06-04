@@ -1,5 +1,5 @@
 import { loginApi, userApi } from '@/api/api';
-import nookies, { parseCookies, setCookie } from 'nookies';
+import { setCookie } from 'nookies';
 import {
   ILoginData,
   ILoginGoogleResponseData,
@@ -111,11 +111,6 @@ export const authorizationSlice = createSlice({
       state.user = undefined;
       state.token = undefined;
     },
-    cancel: (state) => {
-      state.errorLogin = '';
-      state.errorRegistration = '';
-      state.user = undefined;
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(hydrate, (state, action) => {
@@ -195,5 +190,5 @@ export const authorizationSlice = createSlice({
   },
 });
 
-export const { logout, setToken, cancel, setUser } = authorizationSlice.actions;
+export const { logout, setToken, setUser } = authorizationSlice.actions;
 export default authorizationSlice.reducer;

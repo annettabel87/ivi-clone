@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import AuthForm from '@/components/AuthForm/AuthForm';
 import { useRouter } from 'next/router';
-import style from './auth.module.scss';
 import { useAppSelector } from '@/store/hooks/hooks';
+import AuthForm from '@/components/AuthForm/AuthForm';
+import style from './auth.module.scss';
 
 export type AuthFormType = 'login' | 'registration';
 

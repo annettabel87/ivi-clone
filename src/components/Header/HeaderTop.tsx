@@ -10,19 +10,20 @@ import Navbar from '../Navbar/Navbar';
 import { PROFILE_ROUTE } from '@/shared/constants/routes';
 import { DropdownSectionType } from '@/shared/Interfaces/DropdownSectionType';
 import { UserAvatar } from '../UserAvatar/UserAvatar';
-import { useAppSelector } from '@/store/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
+import { cancel } from '@/store/reducers/profileReducer';
 
 interface IHeaderTopProps {
   section: DropdownSectionType;
   setDropdownSection: (dropdownSection: DropdownSectionType) => void;
 }
-
 export const HeaderTop: FC<IHeaderTopProps> = ({ section, setDropdownSection }) => {
   const handleMouseEnter = (section: DropdownSectionType) => {
     setDropdownSection(section);
   };
   const userData = useAppSelector((state) => state.profileReducer.user);
   console.log(userData);
+  const dispatch = useAppDispatch();
 
   return (
     <div className={section ? styles.headerTop__content_openSection : styles.headerTop__content}>
@@ -120,6 +121,7 @@ export const HeaderTop: FC<IHeaderTopProps> = ({ section, setDropdownSection }) 
             size={'normal'}
           />
         </Button>
+        <button onClick={() => dispatch(cancel())}>выйти</button>
       </div>
     </div>
   );
