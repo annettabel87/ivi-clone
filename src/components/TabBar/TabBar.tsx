@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import styles from './TabBar.module.scss';
 import { TabBarItem } from './TabBarItem';
 import { FILMS_ROUTE, MAIN_ROUTE } from '@/shared/constants/routes';

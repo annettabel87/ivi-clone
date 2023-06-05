@@ -1,16 +1,11 @@
-import React, { Children, FC, ReactElement, ReactNode, useState } from 'react';
-import Link from 'next/link';
+import React, { FC, ReactElement, ReactNode, useState } from 'react';
 import Image from 'next/image';
 import styles from './MobileNavigationMenu.module.scss';
 import arrowIcon from '../../../assets/icon/arrow-left.svg';
-import { FILMS_ROUTE } from '@/shared/constants/routes';
-import { LinksList } from '@/components/LinksList/LinksList';
-import { ILinks } from '@/shared/Interfaces/ILinks';
 
 interface IMobileNavigationMenuItemProps {
   title: string;
   imgSrc?: string;
-
   children: ReactElement | ReactNode[];
 }
 
@@ -21,8 +16,8 @@ export const MobileNavigationMenuItem: FC<IMobileNavigationMenuItemProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
-    <div className={styles.menuItem}>
-      <div className={styles.titleBlock} onClick={() => setIsOpen((prev) => !prev)}>
+    <div className={styles.menuItem} onClick={() => setIsOpen((prev) => !prev)}>
+      <div className={styles.titleBlock}>
         {imgSrc && (
           <Image src={imgSrc} width={20} height={20} alt={title} className={styles.svgImage} />
         )}

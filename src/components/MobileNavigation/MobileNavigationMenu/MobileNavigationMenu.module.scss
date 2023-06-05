@@ -7,6 +7,8 @@
 }
 
 .menuItem {
+  cursor: pointer;
+  // width: fit-content;
 }
 
 .dropMenu {
@@ -20,6 +22,7 @@
   display: flex;
   gap: 12px;
   align-items: end;
+  width: fit-content;
 }
 
 .menuTitle {
