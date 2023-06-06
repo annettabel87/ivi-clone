@@ -114,7 +114,6 @@ export const authorizationSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(hydrate, (state, action) => {
-      console.log('HYDRATE user', action.payload);
       if (!action.payload.user) {
         return state;
       }

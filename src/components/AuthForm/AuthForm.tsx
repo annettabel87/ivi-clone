@@ -78,7 +78,6 @@ const AuthForm: FC<IAuthFormProps> = ({ type }) => {
         } as IRegistrationData)
       )
         .then((res) => {
-          console.log(res);
           if (res.meta.requestStatus === 'fulfilled') {
             dispatch(loginUser({ email: data.email, password: data.password })).then(() =>
               router.push(MAIN_ROUTE)

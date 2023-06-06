@@ -27,7 +27,6 @@ export const profileSlice = createSlice({
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
-      console.log(action);
       state.user = action.payload.profileReducer.user;
     },
   },
