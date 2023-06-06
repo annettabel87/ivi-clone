@@ -107,3 +107,16 @@ const Home = () => {
   );
 };
 export default Home;
+export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
+  (store) => async (ctx) => {
+    const { authToken } = parseCookies(ctx);
+    try {
+      const data = await userApi.getUser(authToken);
+      store.dispatch(setUser(data));
+    } catch (error) {
+      console.log(error);
+    }
+
+    return { props: {} };
+  }
+);

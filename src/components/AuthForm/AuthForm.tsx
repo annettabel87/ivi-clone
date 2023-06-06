@@ -52,7 +52,6 @@ const AuthForm: FC<IAuthFormProps> = ({ type }) => {
   const onSubmitLogin: SubmitHandler<ILoginData> = (data) => {
     data &&
       dispatch(loginUser({ email: data.email, password: data.password })).then((res) => {
-        console.log(res);
         const { token } = res.payload as ILoginResponseData;
         if (token) {
           router.push(MAIN_ROUTE);
@@ -222,13 +221,13 @@ const AuthForm: FC<IAuthFormProps> = ({ type }) => {
         <div className={style.authButtonsContainer}>
           <a
             className={style.authButtonsContainer__vk}
-            href={`${VK_AUTH}?app_id=51659336&state=&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fvk&redirect_uri_hash=101e1dc8376c4c4c8b&code_challenge=&code_challenge_method=&return_auth_hash=70783e11b7cd674979&scope=4194304&force_hash=`}
+            href={`${VK_AUTH}?client_id=51659336&display=page&redirect_uri=http://localhost:3000/auth/vk&scope=email&response_type=code&v=5.131`}
           >
             VK
           </a>
           <a
             className={style.authButtonsContainer__google}
-            href={`${GOOGLE_AUTH}?client_id=${process.env.GOOGLE_CLIENT_ID}&redirect_uri=http://localhost:3000/auth/google&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&access_type=offline`}
+            href={`${GOOGLE_AUTH}?client_id=336661184234-vphhqs0r10irmajbu5ooinq6nbv6a38m.apps.googleusercontent.com&redirect_uri=http://localhost:3000/auth/google&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&access_type=offline`}
           >
             Google
           </a>

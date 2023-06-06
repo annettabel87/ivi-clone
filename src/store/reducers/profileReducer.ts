@@ -1,7 +1,7 @@
 import { IUserData } from '@/shared/Interfaces/authInterfaces';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
-import nookies from 'nookies';
+import { destroyCookie } from 'nookies';
 
 export interface IProfileSliceState {
   user: IUserData | null;
@@ -20,12 +20,9 @@ export const profileSlice = createSlice({
       state.user = action.payload;
     },
     cancel: (state) => {
+      destroyCookie(null, 'authToken', { path: '/' });
       state.user = null;
       state.errorUser = '';
-      const cookies = nookies.get();
-      for (const cookie of Object.keys(cookies)) {
-        nookies.destroy(null, cookie);
-      }
     },
   },
   extraReducers: {

@@ -14,7 +14,7 @@ const Auth = () => {
     if (user) {
       router.back();
     }
-  });
+  }, []);
 
   const [type, setType] = useState<AuthFormType>('login');
   return (

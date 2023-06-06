@@ -1,29 +1,19 @@
 import type { AppProps } from 'next/app';
 import { wrapper } from '@/store/store';
-import { parseCookies } from 'nookies';
-import { userApi } from '@/api/api';
-import { setUser } from '@/store/reducers/authReducer';
+import { Provider } from 'react-redux';
 import '../styles/globals.scss';
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const { store, props } = wrapper.useWrappedStore(pageProps);
   return (
-    <>
-      <Component {...pageProps} />
-      {/* <TabBar /> */}
-      <div id="portal"></div>
-    </>
+    <Provider store={store}>
+      <>
+        <Component {...props} />
+        {/* <TabBar /> */}
+        <div id="portal"></div>
+      </>
+    </Provider>
   );
 };
-App.getInitialProps = wrapper.getInitialAppProps((store) => async ({ ctx, Component }) => {
-  const { authToken } = parseCookies(ctx);
-  try {
-    const data = await userApi.getUser(authToken);
-    store.dispatch(setUser(data));
-  } catch (error) {
-    console.log(error);
-  }
-  return {
-    pageProps: Component.getInitialProps ? await Component.getInitialProps({ ...ctx, store }) : {},
-  };
-});
-export default wrapper.withRedux(App);
+
+export default App;
