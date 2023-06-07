@@ -274,6 +274,10 @@ export const Carousel: FC<ICarouselProps> = ({
   }, [isMobile, windowSize, itemWidth]);
 
   useEffect(() => {
+    setArrows();
+  }, [windowSize, listWidth]);
+
+  useEffect(() => {
     if (transitionDuration === 0) {
       const timerId = setTimeout(() => {
         setTransitionDuration(TRANSITION_DURATION);
@@ -301,7 +305,20 @@ export const Carousel: FC<ICarouselProps> = ({
 
   const setArrows = () => {
     if (!isMobile) {
-      if (showArrows === 'default' || (showArrows === 'onHover' && isHovering)) {
+      if (showArrows === 'onHover' && !isHovering) {
+        setIsRightArrowHidden(true);
+        setIsLeftArrowHidden(true);
+      }
+
+      if (listWidth < containerWidth) {
+        setIsRightArrowHidden(true);
+        setIsLeftArrowHidden(true);
+      }
+
+      if (
+        listWidth > containerWidth &&
+        (showArrows === 'default' || (showArrows === 'onHover' && isHovering))
+      ) {
         if (!widthByContent) {
           setIsRightArrowHidden(totalItemsCount === currentFirstItemNumber + viewingItemsCount - 1);
         }
@@ -312,11 +329,6 @@ export const Carousel: FC<ICarouselProps> = ({
           }
         }
         setIsLeftArrowHidden(offset === 0);
-      }
-
-      if (showArrows === 'onHover' && !isHovering) {
-        setIsRightArrowHidden(true);
-        setIsLeftArrowHidden(true);
       }
     }
 

@@ -1,8 +1,11 @@
 @import '../../styles/variables.scss';
 
-.comments {
-  display: flex;
-  align-items: center;
-  gap: 24px;
+.reviews {
   margin-bottom: 56px;
+  margin-left: -16px;
+  margin-right: -16px;
+
+  @media screen and (max-width: 599px) {
+    margin: 0 0px 56px -32px;
+  }
 }

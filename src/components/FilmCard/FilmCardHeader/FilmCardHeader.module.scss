@@ -1,9 +1,6 @@
 @import '../../../styles/variables.scss';
 
 .filmCard__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding-top: 20px;
   padding-bottom: 24px;
   position: relative;
@@ -61,5 +58,24 @@
     @media screen and (max-width: 600px) {
       display: block;
     }
+  }
+}
+
+.filmCard__container {
+  max-width: $maxWidthContainer;
+  margin: 0 auto;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media screen and (max-width: 1297px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @media screen and (max-width: 599px) {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }
