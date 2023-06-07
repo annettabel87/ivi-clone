@@ -17,6 +17,7 @@ import {
   authorizedProfileLinks,
 } from '@/shared/headerLinks/profileLinks';
 import { SelectProfile } from '@/components/SelectProfile/SelectProfile';
+import { PROFILE_ROUTE } from '@/shared/constants/routes';
 
 interface IHeaderProfileProps {
   isVisible: boolean;
@@ -160,7 +161,7 @@ export const HeaderProfile: FC<IHeaderProfileProps> = ({ isVisible, isAuth = fal
               radius={'8px'}
               border={'none'}
               as={'link'}
-              href={'#'}
+              href={PROFILE_ROUTE}
               target={'_self'}
             >
               <span>Войти или зарегистрироваться</span>

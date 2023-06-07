@@ -1,3 +1,4 @@
+import { localStorageActions } from '@/utils/localStorageActions';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type IPersonsModalType = 'persons' | 'reviews' | 'trailers';
@@ -16,11 +17,11 @@ export const filmPageSlice = createSlice({
   reducers: {
     SET_MODAL_TYPE(state, action: PayloadAction<IPersonsModalType>) {
       state.modalType = action.payload;
-      localStorage.setItem('personModal', action.payload);
+      localStorageActions.setPersonsModal(action.payload);
     },
     SET_OPEN(state, action: PayloadAction<boolean>) {
       state.isOpen = action.payload;
-      localStorage.setItem('isOpenPersonModal', JSON.stringify(state.isOpen));
+      localStorageActions.setIsOpenPersonModal(JSON.stringify(state.isOpen));
     },
   },
 });
