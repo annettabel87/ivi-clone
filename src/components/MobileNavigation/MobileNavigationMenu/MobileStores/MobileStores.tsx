@@ -20,6 +20,7 @@ export const MobileStores = () => {
           href="https://go.onelink.me/app/devicesiOS"
           target="_blank"
           hoverBg={'#2e2844'}
+          hoverBorder={'#2e2844'}
         >
           <div className={styles.btn__content}>
             <Image src={appleLogo} alt={'googlePlay Logo'} width={20} height={20} />
@@ -41,6 +42,7 @@ export const MobileStores = () => {
           href="https://www.ivi.ru/pages/tvsmart"
           target="_blank"
           hoverBg={'#2e2844'}
+          hoverBorder={'#2e2844'}
         >
           <div className={styles.btn__content}>
             <Image src={smartTvLogo} alt={'smart TV'} width={20} height={20} />
@@ -62,6 +64,7 @@ export const MobileStores = () => {
           href="https://www.ivi.ru/devices"
           target="_blank"
           hoverBg={'#2e2844'}
+          hoverBorder={'#2e2844'}
         >
           <div className={styles.btn__content}>
             <Image src={gadgets} alt={'gadgets'} width={20} height={20} />

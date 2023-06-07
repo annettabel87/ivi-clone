@@ -22,6 +22,9 @@
   gap: 12px;
   align-items: end;
   width: fit-content;
+  &:hover {
+    opacity: 0.72;
+  }
 }
 
 .menuTitle {

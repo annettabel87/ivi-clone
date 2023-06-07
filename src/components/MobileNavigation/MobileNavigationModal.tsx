@@ -24,6 +24,8 @@ export const MobileNavigationModal = () => {
               border={'none'}
               as={'link'}
               href={'https://www.ivi.ru/profile/subscriptions'}
+              hoverBg={'#231f34'}
+              hoverBorder={'#231f34'}
             >
               <div className={styles.content__subscriptionBtn}>
                 <Image src={diamondIcon} alt={'Подписки'} width={20} height={20} />
@@ -39,6 +41,8 @@ export const MobileNavigationModal = () => {
               border={'none'}
               as={'link'}
               href={'https://www.ivi.ru/profile/subscriptions'}
+              hoverBg={'#231f34'}
+              hoverBorder={'#231f34'}
             >
               <div className={styles.content__subscriptionBtn}>
                 <Image src={certificateIcon} alt={'Активация сертификата'} width={20} height={20} />
