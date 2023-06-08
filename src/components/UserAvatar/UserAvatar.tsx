@@ -59,7 +59,7 @@ export const UserAvatar: FC<IUserAvatarProps> = ({
               className={styles.avatar__authorizedNormal}
               style={bgColor ? { backgroundColor: bgColor } : { backgroundColor: '#71a32d' }}
             >
-              {login[0]}
+              {login[0].toUpperCase()}
             </div>
           )}
           {size === 'small' && (
@@ -67,7 +67,7 @@ export const UserAvatar: FC<IUserAvatarProps> = ({
               className={styles.avatar__authorizedSmall}
               style={bgColor ? { backgroundColor: bgColor } : { backgroundColor: '#71a32d' }}
             >
-              {login[0]}
+              {login[0].toUpperCase()}
             </div>
           )}
         </>

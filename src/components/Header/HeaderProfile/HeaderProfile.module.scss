@@ -1,3 +1,5 @@
+@import '../../../styles/variables.scss';
+
 .headerProfile {
   display: flex;
 
@@ -24,6 +26,18 @@
     font-size: 28px;
     line-height: 32px;
     font-weight: 700;
+  }
+  &__logoutBtn {
+    margin-top: 8px;
+    line-height: 20px;
+    cursor: pointer;
+    color: $secondaryColor;
+    text-decoration: none;
+    transition: all 0.4s;
+
+    &:hover {
+      color: $mainColor;
+    }
   }
 }
 

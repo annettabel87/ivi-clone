@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Image from 'next/image';
 import styles from './SelectProfile.module.scss';
 import { UserAvatar } from '../UserAvatar/UserAvatar';
 import plusIcon from '../../assets/icon/plus.svg';
+import { IUserData } from '@/shared/Interfaces/authInterfaces';
 
-export const SelectProfile = () => {
+interface ISelectProfileProps {
+  userData: IUserData | null;
+}
+
+export const SelectProfile: FC<ISelectProfileProps> = ({ userData }) => {
   return (
     <>
       <div className={styles.selectProfile}>
         <div className={styles.selectProfile__avatarBlock_active}>
-          <UserAvatar isAuth={true} size={'normal'} />
-          <div className={styles.selectProfile__avatarTitle}>UserLogin</div>
+          <UserAvatar isAuth={true} size={'normal'} login={userData?.name} />
+          <div className={styles.selectProfile__avatarTitle}>{userData?.name}</div>
         </div>
         <div className={styles.selectProfile__avatarBlock}>
           <UserAvatar

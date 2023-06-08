@@ -26,15 +26,19 @@ import aboutIcon from '../../../assets/icon/about.svg';
 import messageIcon from '../../../assets/icon/message.svg';
 import { Divider } from '@/components/Divider/Divider';
 import { UserAvatar } from '../../UserAvatar/UserAvatar';
+import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
+import { cancel } from '@/store/reducers/profileReducer';
 
 export const MobileNavigationMenu = () => {
-  const isAuth = true;
+  const userData = useAppSelector((state) => state.profileReducer.user);
+  const dispatch = useAppDispatch();
+
   return (
     <div className={styles.menu}>
-      {isAuth ? (
+      {!!userData ? (
         <div className={styles.titleBlock}>
-          <UserAvatar isAuth={isAuth} size={'small'} />
-          <div className={styles.menuTitle}>UserLogin</div>
+          <UserAvatar isAuth={true} size={'small'} login={userData.name} />
+          <div className={styles.menuTitle}>{userData.name}</div>
         </div>
       ) : (
         <Link href={MAIN_ROUTE + 'auth'} className={styles.titleBlock}>
@@ -128,6 +132,11 @@ export const MobileNavigationMenu = () => {
         />
         <div className={styles.menuTitle}>Вход по коду</div>
       </Link>
+      {!!userData && (
+        <div className={styles.menuTitle} onClick={() => dispatch(cancel())}>
+          Выйти из Иви
+        </div>
+      )}
       <MobileStores />
       <Divider />
       <MobileNavigationMenuItem title={'Служба поддержки'} imgSrc={messageIcon}>
