@@ -14,9 +14,10 @@ interface IHeaderDropdownProps {
 
 export const HeaderDropdown: FC<IHeaderDropdownProps> = ({ section }) => {
   const userData = useAppSelector((state) => state.profileReducer.user);
+  const isMobileMenuOpen = useAppSelector((state) => state.mobileNavigationReducer.isOpen);
 
   return (
-    <div className={section ? styles.headerDropdown : styles.hidden}>
+    <div className={section && !isMobileMenuOpen ? styles.headerDropdown : styles.hidden}>
       <HeaderDropdownCatalog isVisible={section === 'movies'} section={'movies'} />
       <HeaderDropdownCatalog isVisible={section === 'serials'} section={'serials'} />
       <HeaderDropdownCatalog isVisible={section === 'cartoons'} section={'cartoons'} />

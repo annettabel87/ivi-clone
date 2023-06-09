@@ -21,9 +21,15 @@ export const HeaderTop: FC<IHeaderTopProps> = ({ section, setDropdownSection }) 
     setDropdownSection(section);
   };
   const userData = useAppSelector((state) => state.profileReducer.user);
+  const isMobileMenuOpen = useAppSelector((state) => state.mobileNavigationReducer.isOpen);
 
   return (
-    <div className={section ? styles.headerTop__content_openSection : styles.headerTop__content}>
+    <div
+      className={section ? styles.headerTop__content_openSection : styles.headerTop__content}
+      style={
+        isMobileMenuOpen ? { backgroundColor: '#100e19', margin: '0 -32px', padding: '0 32px' } : {}
+      }
+    >
       <div className={styles.headerTop__logo}>
         <Link href={'/'}>
           <Image src={logo} alt="Логотип" />
