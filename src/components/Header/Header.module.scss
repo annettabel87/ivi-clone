@@ -9,13 +9,6 @@
   @media screen and (max-width: 1293px) {
     margin: 0 32px;
   }
-
-  // @media screen and (max-width: 600px) {
-  //   left: 0;
-  //   position: fixed;
-  //   right: 0;
-  //   top: 0;
-  // }
 }
 
 .headerTop {
@@ -139,7 +132,6 @@
 
     &__content_openSection {
       @extend .headerTop__content;
-      // background-color: $mainBackgroundColor;
       border-top-left-radius: 0;
       border-top-right-radius: 0;
     }
