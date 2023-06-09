@@ -99,7 +99,6 @@ const Home = () => {
             </Carousel>
           </div>
         </div>
-        <Footer />
       </main>
     </>
   );
