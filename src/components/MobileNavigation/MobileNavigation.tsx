@@ -25,8 +25,8 @@ export const MobileNavigation = () => {
 
   useEffect(() => {
     if (isOpen) document.body.style.position = 'fixed';
-    if (!isOpen) document.body.style.position = 'static';
-  }, [isOpen]);
+    if (!isOpen || (windowSize && windowSize >= 1160)) document.body.style.position = 'static';
+  }, [isOpen, windowSize]);
   return (
     <div>
       {((windowSize && windowSize < 1160) ||
