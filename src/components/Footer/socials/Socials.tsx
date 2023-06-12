@@ -25,6 +25,7 @@ export const Socials = () => {
           href={data.link}
           target="_blank"
           hoverBg={'#2e2844'}
+          hoverBorder={'#2e2844'}
         >
           <Image src={data.iconUrl} alt={data.id} width={16} height={16} />
         </Button>
