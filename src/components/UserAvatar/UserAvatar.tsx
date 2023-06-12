@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import styles from './UserAvatar.module.scss';
 import noAvatar from '../../assets/icon/noAvatar.svg';
 
@@ -8,7 +8,7 @@ interface IUserAvatarProps {
   login?: string; // Для отображения в аватаре первой буквы логина, возможно почты или имени пользователя, когда авторизован, нужно обдумать как у нас будет реализовано
   imgWidth?: number;
   imgHeight?: number;
-  imgSrc?: string;
+  imgSrc?: string | StaticImageData;
   bgColor?: string;
   size: 'normal' | 'small'; // В header 'normal', в блоке комментариев 'small'
 }

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styles from './SelectProfile.module.scss';
 import { UserAvatar } from '../UserAvatar/UserAvatar';
 import plusIcon from '../../assets/icon/plus.svg';
+import kidsAvatar from '../../assets/image/kids.jpeg';
 import { IUserData } from '@/shared/Interfaces/authInterfaces';
 
 interface ISelectProfileProps {
@@ -23,9 +24,7 @@ export const SelectProfile: FC<ISelectProfileProps> = ({ userData }) => {
             size={'normal'}
             imgWidth={40}
             imgHeight={40}
-            imgSrc={
-              'https://gambit-parent.dfs.ivi.ru/static/23.04.05/images/_main/start-select-profile/kids.png?1'
-            }
+            imgSrc={kidsAvatar}
           />
           <div className={styles.selectProfile__avatarTitle}>Дети</div>
         </div>
