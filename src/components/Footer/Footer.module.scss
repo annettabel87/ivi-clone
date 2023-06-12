@@ -4,6 +4,11 @@
   &__container {
     max-width: $maxWidthContainer;
     margin: 0 auto;
+
+    @media screen and (min-width: 600px) and (max-width: 1279px) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
   }
 
   &__head,
