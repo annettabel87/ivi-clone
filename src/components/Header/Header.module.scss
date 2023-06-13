@@ -3,6 +3,8 @@
 .header__container {
   max-width: $maxWidthContainer;
   margin: 0 auto;
+  z-index: 450;
+  position: relative;
 
   @media screen and (max-width: 1293px) {
     margin: 0 32px;
@@ -16,14 +18,27 @@
     display: flex;
     align-items: center;
     height: 72px;
-    border-top: 3px solid #100e19;
+    border-top: 3px solid hsla(0, 0%, 100%, 0);
+
+    @media screen and (max-width: 1293px) {
+      padding: 0;
+    }
+
+    @media screen and (max-width: 600px) {
+      height: 64px;
+      border-top: none;
+      background-color: hsla(0, 0%, 100%, 0);
+    }
   }
 
   &__content_openSection {
     @extend .headerTop__content;
-    background-color: #1f1b2e;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
+
+    @media screen and (min-width: 1160px) {
+      background-color: #1f1b2e;
+    }
   }
 
   &__menu {
@@ -117,7 +132,6 @@
 
     &__content_openSection {
       @extend .headerTop__content;
-      background-color: $mainBackgroundColor;
       border-top-left-radius: 0;
       border-top-right-radius: 0;
     }

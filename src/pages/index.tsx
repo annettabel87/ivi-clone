@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 import { parseCookies } from 'nookies';
 import { Footer } from '../components/Footer/Footer';
-import { Header } from '../components/Header/Header';
 import { wrapper } from '@/store/store';
 import { setUser } from '@/store/reducers/profileReducer';
 import { userApi } from '@/api/api';
@@ -19,7 +18,6 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Header />
         <div style={{ paddingLeft: '16px', paddingRight: '16px' }}>
           <div style={{ marginLeft: '-16px', marginRight: '-16px' }}>
             <Carousel
@@ -101,7 +99,6 @@ const Home = () => {
             </Carousel>
           </div>
         </div>
-        <Footer />
       </main>
     </>
   );

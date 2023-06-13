@@ -18,13 +18,17 @@ import {
 } from '@/shared/headerLinks/profileLinks';
 import { SelectProfile } from '@/components/SelectProfile/SelectProfile';
 import { PROFILE_ROUTE } from '@/shared/constants/routes';
+import { useAppDispatch } from '@/store/hooks/hooks';
+import { cancel } from '@/store/reducers/profileReducer';
+import { IUserData } from '@/shared/Interfaces/authInterfaces';
 
 interface IHeaderProfileProps {
   isVisible: boolean;
-  isAuth?: boolean; // Временно задаю, что приходит через пропсы
+  userData: IUserData | null;
 }
 
-export const HeaderProfile: FC<IHeaderProfileProps> = ({ isVisible, isAuth = false }) => {
+export const HeaderProfile: FC<IHeaderProfileProps> = ({ isVisible, userData }) => {
+  const dispatch = useAppDispatch();
   return (
     <div className={isVisible ? styles.headerProfile : styles.hidden}>
       <div className={styles.headerProfile__mainContent}>
@@ -151,7 +155,7 @@ export const HeaderProfile: FC<IHeaderProfileProps> = ({ isVisible, isAuth = fal
         </Button>
       </div>
       <div className={styles.headerProfile__sideContent}>
-        {!isAuth ? (
+        {!userData ? (
           <>
             <Button
               width={'100%'}
@@ -171,8 +175,11 @@ export const HeaderProfile: FC<IHeaderProfileProps> = ({ isVisible, isAuth = fal
         ) : (
           <>
             <div className={styles.headerProfile__profileTitle}>Выбор профиля</div>
-            <SelectProfile />
+            <SelectProfile userData={userData} />
             <LinksList list={authorizedProfileLinks} />
+            <div className={styles.headerProfile__logoutBtn} onClick={() => dispatch(cancel())}>
+              Выйти из Иви
+            </div>
           </>
         )}
       </div>

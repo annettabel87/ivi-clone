@@ -21,9 +21,4 @@ export const authorizedProfileLinks: ILinks[] = [
     titleEng: 'Help',
     link: 'https://ask.ivi.ru/?_gl=1*1su3zc7*_ga*MTg0MzcwNzU1LjE2ODEyMTQ2Nzg.*_ga_GETQ4387MJ*MTY4MTkwNjIyOS4xNS4xLjE2ODE5MDkzMDIuNi4wLjA.',
   },
-  {
-    title: 'Выйти из Иви',
-    titleEng: 'Log out',
-    link: '#',
-  },
 ];

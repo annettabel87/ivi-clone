@@ -1,5 +1,6 @@
 import { Action, ThunkAction, combineReducers, configureStore } from '@reduxjs/toolkit';
 import filmPageReducer from './reducers/filmPageReducer';
+import mobileNavigationReducer from './reducers/mobileNavigationReducer';
 import authReducer from './reducers/authReducer';
 import { createWrapper } from 'next-redux-wrapper';
 import profileReducer from './reducers/profileReducer';
@@ -8,6 +9,7 @@ export const rootReducer = combineReducers({
   filmPageReducer,
   authReducer,
   profileReducer,
+  mobileNavigationReducer,
 });
 
 export const createReduxStore = () => {

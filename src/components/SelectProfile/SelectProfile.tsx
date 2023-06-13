@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Image from 'next/image';
 import styles from './SelectProfile.module.scss';
 import { UserAvatar } from '../UserAvatar/UserAvatar';
 import plusIcon from '../../assets/icon/plus.svg';
+import kidsAvatar from '../../assets/image/kids.jpeg';
+import { IUserData } from '@/shared/Interfaces/authInterfaces';
 
-export const SelectProfile = () => {
+interface ISelectProfileProps {
+  userData: IUserData | null;
+}
+
+export const SelectProfile: FC<ISelectProfileProps> = ({ userData }) => {
   return (
     <>
       <div className={styles.selectProfile}>
         <div className={styles.selectProfile__avatarBlock_active}>
-          <UserAvatar isAuth={true} size={'normal'} />
-          <div className={styles.selectProfile__avatarTitle}>UserLogin</div>
+          <UserAvatar isAuth={true} size={'normal'} login={userData?.name} />
+          <div className={styles.selectProfile__avatarTitle}>{userData?.name}</div>
         </div>
         <div className={styles.selectProfile__avatarBlock}>
           <UserAvatar
@@ -18,9 +24,7 @@ export const SelectProfile = () => {
             size={'normal'}
             imgWidth={40}
             imgHeight={40}
-            imgSrc={
-              'https://gambit-parent.dfs.ivi.ru/static/23.04.05/images/_main/start-select-profile/kids.png?1'
-            }
+            imgSrc={kidsAvatar}
           />
           <div className={styles.selectProfile__avatarTitle}>Дети</div>
         </div>

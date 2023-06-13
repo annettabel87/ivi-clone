@@ -1,0 +1,65 @@
+@import '../../../styles/variables.scss';
+.menu {
+  padding: 24px 0 48px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.menuItem {
+  cursor: pointer;
+}
+
+.dropMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.titleBlock {
+  display: flex;
+  gap: 12px;
+  align-items: end;
+  width: fit-content;
+  &:hover {
+    opacity: 0.72;
+  }
+}
+
+.menuTitle {
+  line-height: 20px;
+  font-weight: 700;
+  color: $mainColor;
+  cursor: pointer;
+}
+
+.sectionLink {
+  color: $secondaryColor;
+  line-height: 20px;
+  text-decoration: none;
+}
+
+.svgImage {
+  filter: brightness(0) invert(1);
+}
+
+.arrowUp {
+  transform: rotate(-90deg);
+}
+
+.arrowDown {
+  transform: rotate(90deg);
+}
+
+.tvPlusChannels {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tvPlusTranslations {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

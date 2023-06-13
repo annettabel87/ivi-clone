@@ -3,4 +3,8 @@
   align-items: center;
   gap: 12px;
   justify-content: right;
+
+  @media screen and (max-width: 1159px) {
+    justify-content: left;
+  }
 }

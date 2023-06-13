@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import styles from './UserAvatar.module.scss';
 import noAvatar from '../../assets/icon/noAvatar.svg';
 
@@ -8,7 +8,7 @@ interface IUserAvatarProps {
   login?: string; // Для отображения в аватаре первой буквы логина, возможно почты или имени пользователя, когда авторизован, нужно обдумать как у нас будет реализовано
   imgWidth?: number;
   imgHeight?: number;
-  imgSrc?: string;
+  imgSrc?: string | StaticImageData;
   bgColor?: string;
   size: 'normal' | 'small'; // В header 'normal', в блоке комментариев 'small'
 }
@@ -59,7 +59,7 @@ export const UserAvatar: FC<IUserAvatarProps> = ({
               className={styles.avatar__authorizedNormal}
               style={bgColor ? { backgroundColor: bgColor } : { backgroundColor: '#71a32d' }}
             >
-              {login[0]}
+              {login[0].toUpperCase()}
             </div>
           )}
           {size === 'small' && (
@@ -67,7 +67,7 @@ export const UserAvatar: FC<IUserAvatarProps> = ({
               className={styles.avatar__authorizedSmall}
               style={bgColor ? { backgroundColor: bgColor } : { backgroundColor: '#71a32d' }}
             >
-              {login[0]}
+              {login[0].toUpperCase()}
             </div>
           )}
         </>
