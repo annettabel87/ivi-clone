@@ -47,11 +47,18 @@ const Review: FC<IReview> = (review) => {
           )}
           <button className={styles.btn__comment} onClick={() => setIsShowComments(true)}>
             <Image src={commentsIcon} alt="комментарии" width={25} height={25} />
-            <p className={styles.review__text_big}>{review.comments.length}</p>
+            <p className={styles.review__text_big}>{review.comments?.length || 0}</p>
           </button>
         </div>
         {isShowComments && (
-          <Comments comments={review.comments} hiddenComments={() => setIsShowComments(false)} />
+          <Comments
+            comments={review.comments || []}
+            hiddenComments={() => setIsShowComments(false)}
+            reviewId={review.reviewId}
+            lastCommentId={
+              review.comments.length > 0 ? review.comments[review.comments.length - 1].commentId : 0
+            }
+          />
         )}
       </div>
     </li>

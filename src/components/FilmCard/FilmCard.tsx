@@ -20,7 +20,7 @@ const FilmCard: FC<IFilm> = (props) => {
           <FilmTrailer
             trailer={props.trailerLink}
             ageRating={props.ageRating}
-            name={props.movieName}
+            name={props.name}
             year={props.year}
             movieLength={props.movieLength}
             countries={props.countries}
@@ -28,7 +28,7 @@ const FilmCard: FC<IFilm> = (props) => {
             languages={props.languages}
             subtitles_languages={props.subtitles_languages}
             quality={props.quality}
-            movieName={props.movieName}
+            movieName={props.name}
             isOpen={isOpenTrailer}
             setIsOpen={setIsOpenTrailer}
           />

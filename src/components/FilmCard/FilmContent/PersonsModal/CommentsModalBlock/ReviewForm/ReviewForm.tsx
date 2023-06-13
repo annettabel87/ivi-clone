@@ -5,27 +5,33 @@ import userIcon from '@/assets/icon/user.svg';
 import Image from 'next/image';
 import Button from '@/components/Button/Button';
 import styles from './ReviewForm.module.scss';
+import { routingKeys } from '@/shared/constants/routingKeys';
+import { useAppSelector } from '@/store/hooks/hooks';
+import { reviewApi } from '@/api/reviewApi';
+import { API_IVI_APP } from '@/shared/constants/api';
 
 const MIN_LENGTH_TITLE = 10;
 const MAX_LENGTH_TEXT = 1000;
-const MIN_LENGTH_TEXT = 500;
+const MIN_LENGTH_TEXT = 100;
 
 type FormValues = {
   title: string;
   review: string;
 };
 
-const ReviewForm: FC<IReviewFormProps> = ({ onClose }) => {
+const ReviewForm: FC<IReviewFormProps> = ({ onClose, filmId, lastReviewId }) => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isValid, isDirty },
     watch,
+    setError,
   } = useForm<FormValues>({ mode: 'onChange' });
 
   const [titleLength, setTitleLength] = useState<number>(1);
   const [textLength, setTextLength] = useState<number>(1);
+  const { user } = useAppSelector((state) => state.profileReducer);
 
   useEffect(() => {
     const subscription = watch((value, { name, type }) => {
@@ -37,10 +43,37 @@ const ReviewForm: FC<IReviewFormProps> = ({ onClose }) => {
     });
   }, [watch, textLength, titleLength, setTextLength, setTitleLength]);
 
-  const onSubmit = handleSubmit((data: FormValues) => {
+  const onSubmit = handleSubmit(async (data: FormValues) => {
     console.log(data);
-    reset();
-    onClose();
+    const user = {
+      name: 'Anna',
+      id: 1209,
+    };
+    if (user) {
+      const review = {
+        routingKey: routingKeys.POST_REVIEW,
+        entityKinopoiskId: filmId,
+        entityJSON: [
+          {
+            author: user.name,
+            title: data.title,
+            text: data.review,
+            userId: user.id,
+            reviewId: lastReviewId++,
+            reviewDate: new Date().toLocaleString('ru-RU', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+            }),
+          },
+        ],
+      };
+      reviewApi.addReview(review);
+      reset();
+      //onClose();
+    } else {
+      setError('review', { message: 'авторизуйтесь' });
+    }
   });
 
   return (

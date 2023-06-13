@@ -33,7 +33,7 @@ const PersonsModal: FC<IPersonsModal> = ({ movie, onClose, comments }) => {
         <div className={styles.persons__content}>
           <div className={styles.persons__content_info}>
             <h2 className={styles.persons__title}>
-              {movie.movieName} (Фильм {movie.year})
+              {movie.name} (Фильм {movie.year})
             </h2>
             <div className={styles.persons__navigation}>
               <ul className={styles.persons__navigation_list}>
@@ -75,11 +75,13 @@ const PersonsModal: FC<IPersonsModal> = ({ movie, onClose, comments }) => {
             {modalType === 'trailers' && (
               <TrailersBlock
                 trailers={[movie.trailerLink, movie.trailerLink, movie.trailerLink]}
-                movieName={movie.movieName}
+                movieName={movie.name}
                 poster={movie.poster}
               />
             )}
-            {modalType === 'reviews' && <ReviewsModalBlock {...comments} />}
+            {modalType === 'reviews' && (
+              <ReviewsModalBlock reviews={comments} filmId={movie.kinopoiskId} />
+            )}
           </div>
           <div className={styles.persons__content_poster}>
             <SmallFilmCard movie={movie} type={'poster'} />

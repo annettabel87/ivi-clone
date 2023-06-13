@@ -1,4 +1,4 @@
-import { axiosApiInstance } from './axios-api-instance';
+import { axiosAuthApiInstance } from './axios-api-instance';
 import { API_ENDPOINTS } from '@/shared/constants/api';
 import {
   ILoginGoogleResponseData,
@@ -12,11 +12,11 @@ import { authUser } from './auth-user';
 
 export const userApi = {
   async registerUser(data: IRegistrationData) {
-    const response = await axiosApiInstance.post(API_ENDPOINTS.REGISTRATION, { ...data });
+    const response = await axiosAuthApiInstance.post(API_ENDPOINTS.REGISTRATION, { ...data });
     return response.data;
   },
   async getUser(token: string) {
-    const response = await axiosApiInstance.get<IUserData>(API_ENDPOINTS.ME, {
+    const response = await axiosAuthApiInstance.get<IUserData>(API_ENDPOINTS.ME, {
       headers: { Authorization: authUser(token) },
     });
     return response.data;
@@ -25,7 +25,7 @@ export const userApi = {
 
 export const loginApi = {
   async createToken(login: ILoginData) {
-    const response = await axiosApiInstance.post<ILoginResponseData>(API_ENDPOINTS.LOGIN, {
+    const response = await axiosAuthApiInstance.post<ILoginResponseData>(API_ENDPOINTS.LOGIN, {
       ...login,
       withCredentials: true,
     });
@@ -33,7 +33,7 @@ export const loginApi = {
   },
 
   async vkLogin(code: ICode) {
-    const response = await axiosApiInstance.post<ILoginVKResponseData>(API_ENDPOINTS.LOGIN_VK, {
+    const response = await axiosAuthApiInstance.post<ILoginVKResponseData>(API_ENDPOINTS.LOGIN_VK, {
       ...code,
     });
 
@@ -41,7 +41,7 @@ export const loginApi = {
   },
 
   async googleLogin(code: ICode) {
-    const response = await axiosApiInstance.post<ILoginGoogleResponseData>(
+    const response = await axiosAuthApiInstance.post<ILoginGoogleResponseData>(
       API_ENDPOINTS.LOGIN_GOOGLE,
       {
         ...code,

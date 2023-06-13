@@ -13,7 +13,7 @@ export interface IPersonSmallCardProps {
 const PersonSmallCard: FC<IPersonSmallCardProps> = ({ person, size }) => {
   return (
     <Link
-      href={`${PERSON_ROUTE}/${person.id}`}
+      href={`${PERSON_ROUTE}/${person.personKinopoiskId}`}
       className={`${styles.personSmallCard} ${styles[size]}`}
     >
       <div className={`${styles.personSmallCard__imageBlock}  ${styles[size]}`}>

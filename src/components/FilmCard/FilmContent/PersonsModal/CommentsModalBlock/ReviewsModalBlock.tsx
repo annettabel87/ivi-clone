@@ -2,15 +2,23 @@ import { IReviews } from '@/shared/Interfaces/FilmPageInterfaces';
 import React, { FC, useState } from 'react';
 import Button from '@/components/Button/Button';
 import Review from './Review/Review';
-import styles from './ReviewsModalBlock.module.scss';
 import ReviewForm from './ReviewForm/ReviewForm';
+import styles from './ReviewsModalBlock.module.scss';
 
-const ReviewsModalBlock: FC<IReviews> = (reviews) => {
+export interface IReviewsModalBlockProps {
+  reviews: IReviews;
+  filmId: number;
+}
+const ReviewsModalBlock: FC<IReviewsModalBlockProps> = ({ reviews, filmId }) => {
   const [isShowForm, setIsShowForm] = useState<boolean>(false);
   return (
     <div className={styles.comments}>
       {isShowForm ? (
-        <ReviewForm onClose={() => setIsShowForm(false)} />
+        <ReviewForm
+          onClose={() => setIsShowForm(false)}
+          filmId={filmId}
+          lastReviewId={reviews.entityJSON[reviews.entityJSON.length - 1].reviewId}
+        />
       ) : (
         <Button
           border={'1px solid rgba(255,255,255,0.32)'}

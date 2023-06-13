@@ -2,7 +2,12 @@ import React, { FC, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Image from 'next/image';
 import userIcon from '@/assets/icon/user.svg';
+import { reviewApi } from '@/api/reviewApi';
+import { routingKeys } from '@/shared/constants/routingKeys';
+import { useAppSelector } from '@/store/hooks/hooks';
 import styles from './CommentForm.module.scss';
+import { API_IVI_APP } from '@/shared/constants/api';
+import axios from 'axios';
 
 const MIN_LENGTH_TEXT = 10;
 
@@ -10,16 +15,23 @@ type FormValues = {
   comment: string;
 };
 
-const CommentForm: FC = () => {
+export interface ICommentFormProps {
+  reviewId: number;
+  lastCommentId: number;
+}
+
+const CommentForm: FC<ICommentFormProps> = ({ reviewId, lastCommentId }) => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isValid, isDirty },
     watch,
+    setError,
   } = useForm<FormValues>({ mode: 'onChange' });
 
   const [textLength, setTextLength] = useState<number>(1);
+  const { user } = useAppSelector((state) => state.profileReducer);
 
   useEffect(() => {
     const subscription = watch((value, { name, type }) => {
@@ -30,9 +42,35 @@ const CommentForm: FC = () => {
     });
   }, [watch, textLength, setTextLength]);
 
-  const onSubmit = handleSubmit((data: FormValues) => {
+  const onSubmit = handleSubmit(async (data: FormValues) => {
     console.log(data);
-    reset();
+    const user = {
+      name: 'Anna',
+      id: 1209,
+    };
+    if (user) {
+      const comment = {
+        routingKey: routingKeys.POST_COMMENT,
+        reviewId: reviewId,
+        comments: [
+          {
+            commentId: lastCommentId !== 0 ? lastCommentId++ : 1,
+            author: user?.name,
+            text: data.comment,
+            commentDate: new Date().toLocaleString('ru-RU', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+            }),
+          },
+        ],
+      };
+      console.log(comment);
+      reviewApi.addComment(comment);
+      reset();
+    } else {
+      setError('comment', { message: 'авторизуйтесь' });
+    }
   });
 
   return (

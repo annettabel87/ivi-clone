@@ -1,4 +1,5 @@
 import { Url } from 'next/dist/shared/lib/router/router';
+import { routingKeys } from '../constants/routingKeys';
 
 export interface ICountry {
   country: string;
@@ -11,10 +12,10 @@ export interface IGenre {
 }
 
 export interface IPerson {
-  id: number;
-  photo: string;
+  personKinopoiskId: number;
   name: string;
-  enName: string;
+  nameEng: string;
+  photo: string;
   profession: string;
   enProfession: string;
 }
@@ -24,11 +25,10 @@ export interface IAwards {
   year: number;
   nomination: string[];
 }
-
 export interface ISimilarMovies {
-  id: number;
+  similarKinopoiskId: number;
   name: string;
-  originalName: string;
+  nameEng: string;
   poster: string;
   rate: string;
   movieLength: string;
@@ -46,25 +46,21 @@ export interface IRate {
 }
 
 export interface IFilm {
-  id: number;
-  movieName: string;
+  kinopoiskId: number;
+  name: string;
   originalName: string;
-  year: number;
-  ageRating: string;
-  countries: ICountry[];
-  genres: IGenre[];
-  movieLength: string;
   fullDescription: string;
   description: string;
-  rate: IRate;
-  poster: string;
-  actors: IPerson[];
   trailerLink: string;
+  year: number;
+  movieLength: string;
+  ageRating: string;
+  rate: IRate;
+  actors: IPerson[];
+  countries: ICountry[];
+  genres: IGenre[];
+  poster: string;
   similarMovies: ISimilarMovies[];
-
-  // encyclopedia: [
-
-  // ]
   languages: string[];
   subtitles_languages: string[];
   quality: string; // fullHD и т.п.
@@ -104,10 +100,14 @@ export interface IPersonsModal {
 export interface ICommentProps {
   comments: IComment[];
   hiddenComments: () => void;
+  reviewId: number;
+  lastCommentId: number;
 }
 
 export interface IReviewFormProps {
   onClose: () => void;
+  filmId: number;
+  lastReviewId: number;
 }
 
 export interface IPersonsList {
@@ -193,9 +193,9 @@ export interface IPosterCardProps {
 }
 
 export interface IComment {
-  id: number;
-  commentAuthor: string;
-  commentText: string;
+  commentId: number;
+  author: string;
+  text: string;
   commentDate: string;
 }
 
@@ -203,10 +203,10 @@ export interface IReview {
   author: string;
   title: string;
   text: string;
-  userId: string;
-  reviewId: string;
+  userId: number;
+  reviewId: number;
   reviewDate: string;
-  comments: IComment[];
+  comments: IComment[] | [];
 }
 
 export interface IReviews {
@@ -218,4 +218,16 @@ export interface IReviews {
 export interface IReviewCardProps {
   review: IReview;
   filmId: number;
+}
+
+export interface IReviewData {
+  routingKey: typeof routingKeys.POST_REVIEW;
+  entityKinopoiskId: number;
+  entityJSON: Omit<IReview, 'comments'>[];
+}
+
+export interface ICommentData {
+  routingKey: typeof routingKeys.POST_COMMENT;
+  reviewId: number;
+  comments: IComment[];
 }

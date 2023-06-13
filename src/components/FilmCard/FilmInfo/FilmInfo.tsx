@@ -14,7 +14,7 @@ import styles from './FilmInfo.module.scss';
 
 const FilmInfo: FC<IFilmInfoProps> = ({ filmInfo, setIsOpen }) => {
   const {
-    movieName,
+    name,
     year,
     movieLength,
     ageRating,
@@ -36,7 +36,7 @@ const FilmInfo: FC<IFilmInfoProps> = ({ filmInfo, setIsOpen }) => {
     <div className={styles.filmInfo}>
       <div className={styles.filmInfo__header}>
         <h1 className={styles.filmInfo__title}>
-          {movieName} (Фильм {year}) смотреть онлайн
+          {name} (Фильм {year}) смотреть онлайн
         </h1>
         <WatchParams
           year={year}
@@ -83,11 +83,9 @@ const FilmInfo: FC<IFilmInfoProps> = ({ filmInfo, setIsOpen }) => {
           {isShowFullDescription && (
             <>
               <p className={styles.filmInfo__text}>{fullDescription}</p>
+              <p className={styles.filmInfo__text}>Смотреть легендарный «{name}» можно онлайн.</p>
               <p className={styles.filmInfo__text}>
-                Смотреть легендарный «{movieName}» можно онлайн.
-              </p>
-              <p className={styles.filmInfo__text}>
-                Приглашаем посмотреть фильм «{movieName}» в нашем онлайн-кинотеатре в хорошем HD
+                Приглашаем посмотреть фильм «{name}» в нашем онлайн-кинотеатре в хорошем HD
                 качестве. Приятного просмотра!
               </p>
               <div className={styles.filmInfo__showOptions}>

@@ -2,6 +2,7 @@ import { FC } from 'react';
 import FilmCard from '@/components/FilmCard/FilmCard';
 import { IFilm, IFilmProps } from '@/shared/Interfaces/FilmPageInterfaces';
 import { GetServerSideProps } from 'next';
+import { filmApi } from '@/api/filmApi';
 
 const Film: FC<IFilmProps> = ({ filmData }) => {
   return (
@@ -14,10 +15,14 @@ export default Film;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   //const { filmId } = context.params;
-  // const response = `baseUrl/film/${filmId}`;
+  // console.log(filmId);
+
+  // const response = await filmApi.getFilm(filmId!);
+  // console.log(response);
+
   const data: IFilm = {
-    id: 435,
-    movieName: 'Зеленая миля',
+    kinopoiskId: 435,
+    name: 'Зеленая миля',
     originalName: 'The Green Mile',
     year: 1999,
     ageRating: '16+',
@@ -44,83 +49,83 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     trailerLink: 'https://www.youtube.com/embed/TODt_q-_4C4',
     actors: [
       {
-        id: 9144,
+        personKinopoiskId: 9144,
         photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_9144.jpg',
         name: 'Том Хэнкс',
-        enName: 'Tom Hanks',
+        nameEng: 'Tom Hanks',
         profession: 'актеры',
         enProfession: 'actor',
       },
       {
-        id: 12759,
+        personKinopoiskId: 12759,
         photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_12759.jpg',
         name: 'Дэвид Морс',
-        enName: 'David Morse',
+        nameEng: 'David Morse',
         profession: 'актеры',
         enProfession: 'actor',
       },
       {
-        id: 22527,
+        personKinopoiskId: 22527,
         photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_22527.jpg',
         name: 'Бонни Хант',
-        enName: 'Bonnie Hunt',
+        nameEng: 'Bonnie Hunt',
         profession: 'актеры',
         enProfession: 'actor',
       },
       {
-        id: 677,
+        personKinopoiskId: 677,
         photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_677.jpg',
         name: 'Майкл Кларк Дункан',
-        enName: 'Michael Clarke Duncan',
+        nameEng: 'Michael Clarke Duncan',
         profession: 'актеры',
         enProfession: 'actor',
       },
       {
-        id: 20664,
+        personKinopoiskId: 20664,
         photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_20664.jpg',
         name: 'Джеймс Кромуэлл',
-        enName: 'James Cromwell',
+        nameEng: 'James Cromwell',
         profession: 'актеры',
         enProfession: 'actor',
       },
       {
-        id: 8989,
+        personKinopoiskId: 8989,
         photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_8989.jpg',
         name: 'Майкл Джитер',
-        enName: 'Michael Jeter',
+        nameEng: 'Michael Jeter',
         profession: 'актеры',
         enProfession: 'actor',
       },
       {
-        id: 1130,
+        personKinopoiskId: 1130,
         photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_1130.jpg',
         name: 'Грэм Грин',
-        enName: 'Graham Greene',
+        nameEng: 'Graham Greene',
         profession: 'актеры',
         enProfession: 'actor',
       },
       {
-        id: 12761,
+        personKinopoiskId: 12761,
         photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_12761.jpg',
         name: 'Даг Хатчисон',
-        enName: 'Doug Hutchison',
+        nameEng: 'Doug Hutchison',
         profession: 'актеры',
         enProfession: 'actor',
       },
       {
-        id: 21496,
+        personKinopoiskId: 21496,
         photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_21496.jpg',
         name: 'Сэм Рокуэлл',
-        enName: 'Sam Rockwell',
+        nameEng: 'Sam Rockwell',
         profession: 'актеры',
         enProfession: 'actor',
       },
     ],
     similarMovies: [
       {
-        id: 326,
+        similarKinopoiskId: 326,
         name: 'Побег из Шоушенка',
-        originalName: 'The Shawshank Redemption',
+        nameEng: 'The Shawshank Redemption',
         rate: '9.0',
         movieLength: '189 мин. / 03:09',
         year: '2019',
@@ -136,9 +141,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           'https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/0b76b2a2-d1c7-4f04-a284-80ff7bb709a4/orig',
       },
       {
-        id: 448,
+        similarKinopoiskId: 448,
         name: 'Форрест Гамп',
-        originalName: 'Forrest Gump',
+        nameEng: 'Forrest Gump',
         rate: '7.7',
         movieLength: '189 мин. / 03:09',
         year: '2019',
@@ -154,9 +159,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           'https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/3560b757-9b95-45ec-af8c-623972370f9d/orig',
       },
       {
-        id: 723,
+        similarKinopoiskId: 723,
         name: 'Планета Ка-Пэкс',
-        originalName: 'K-PAX',
+        nameEng: 'K-PAX',
         rate: '8.0',
         movieLength: '189 мин. / 03:09',
         year: '2019',
@@ -172,9 +177,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           'https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/83aeba81-a956-4e70-b19d-40a4db1284d9/orig',
       },
       {
-        id: 738,
+        similarKinopoiskId: 738,
         name: 'Жизнь Дэвида Гейла',
-        originalName: 'The Life of David Gale',
+        nameEng: 'The Life of David Gale',
         rate: '6.7',
         movieLength: '189 мин. / 03:09',
         year: '2019',
@@ -190,9 +195,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           'https://avatars.mds.yandex.net/get-kinopoisk-image/4483445/09a852e0-394e-457e-b637-880cadc38dd2/orig',
       },
       {
-        id: 279880,
+        similarKinopoiskId: 279880,
         name: 'Подмена',
-        originalName: 'Changeling',
+        nameEng: 'Changeling',
         rate: '9.1',
         movieLength: '189 мин. / 03:09',
         year: '2019',
@@ -208,9 +213,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           'https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/295dc81a-a86f-4246-872c-6b5bc75c74f0/orig',
       },
       {
-        id: 357,
+        similarKinopoiskId: 357,
         name: 'Убить пересмешника',
-        originalName: 'To Kill a Mockingbird',
+        nameEng: 'To Kill a Mockingbird',
         rate: '5.0',
         movieLength: '189 мин. / 03:09',
         year: '2019',
@@ -226,9 +231,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           'https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/46b80991-7b6f-484b-b6dd-8cd2cd6ccbe9/orig',
       },
       {
-        id: 273302,
+        similarKinopoiskId: 273302,
         name: 'Мгла',
-        originalName: 'The Mist',
+        nameEng: 'The Mist',
         rate: '7.7',
         year: '2019',
         movieLength: '189 мин. / 03:09',
@@ -244,9 +249,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           'https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/e365ec59-b8ba-4d2c-b068-0c472832a47e/orig',
       },
       {
-        id: 2271,
+        similarKinopoiskId: 2271,
         name: 'Пудра',
-        originalName: 'Powder',
+        nameEng: 'Powder',
         rate: '7.7',
         movieLength: '189 мин. / 03:09',
         year: '2019',
@@ -262,9 +267,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           'https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/feb20b68-6f88-433c-a6b2-44f30304ff66/orig',
       },
       {
-        id: 646,
+        similarKinopoiskId: 646,
         name: 'Танцующая в темноте',
-        originalName: 'Dancer in the Dark',
+        nameEng: 'Dancer in the Dark',
         rate: '6.7',
         movieLength: '189 мин. / 03:09',
         year: '2019',
@@ -280,9 +285,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           'https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/355a7fde-66df-42e4-9360-ee8400221203/orig',
       },
       {
-        id: 7363,
+        similarKinopoiskId: 7363,
         name: 'Мертвец идет',
-        originalName: 'Dead Man Walking',
+        nameEng: 'Dead Man Walking',
         rate: '5.7',
         movieLength: '189 мин. / 03:09',
         year: '2019',
@@ -311,118 +316,118 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     quality: 'fullHD',
     director: [
       {
-        id: 21496,
+        personKinopoiskId: 21496,
         photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_24262.jpg',
         name: 'Фрэнк Дарабонт',
-        enName: 'Фрэнк Дарабонт',
+        nameEng: 'Фрэнк Дарабонт',
         profession: 'режиссеры',
         enProfession: 'director',
       },
     ],
     producers: [
       {
-        id: 21496,
+        personKinopoiskId: 21496,
         photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_24262.jpg',
         name: 'Фрэнк Дарабонт',
-        enName: 'Фрэнк Дарабонт',
+        nameEng: 'Фрэнк Дарабонт',
         profession: 'режиссеры',
         enProfession: 'director',
       },
       {
-        id: 21496,
+        personKinopoiskId: 21496,
         photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_24262.jpg',
         name: 'Фрэнк Дарабонт',
-        enName: 'Фрэнк Дарабонт',
+        nameEng: 'Фрэнк Дарабонт',
         profession: 'режиссеры',
         enProfession: 'director',
       },
     ],
     operator: {
-      id: 21496,
+      personKinopoiskId: 21496,
       photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_24262.jpg',
       name: 'Фрэнк Дарабонт',
-      enName: 'Фрэнк Дарабонт',
+      nameEng: 'Фрэнк Дарабонт',
       profession: 'режиссеры',
       enProfession: 'operator',
     },
     voice_actors: [
       {
-        id: 21496,
+        personKinopoiskId: 21496,
         photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_24262.jpg',
         name: 'Фрэнк Дарабонт',
-        enName: 'Фрэнк Дарабонт',
+        nameEng: 'Фрэнк Дарабонт',
         profession: 'актеры дубляжа"',
         enProfession: 'voice_actor',
       },
       {
-        id: 21496,
+        personKinopoiskId: 21496,
         photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_24262.jpg',
         name: 'Фрэнк Дарабонт',
-        enName: 'Фрэнк Дарабонт',
+        nameEng: 'Фрэнк Дарабонт',
         profession: 'актеры дубляжа"',
         enProfession: 'voice_actor',
       },
     ],
     designers: [
       {
-        id: 21496,
+        personKinopoiskId: 21496,
         photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_24262.jpg',
         name: 'Фрэнк Дарабонт',
-        enName: 'Фрэнк Дарабонт',
+        nameEng: 'Фрэнк Дарабонт',
         profession: 'художники',
         enProfession: 'designer',
       },
       {
-        id: 21496,
+        personKinopoiskId: 21496,
         photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_24262.jpg',
         name: 'Фрэнк Дарабонт',
-        enName: 'Фрэнк Дарабонт',
+        nameEng: 'Фрэнк Дарабонт',
         profession: 'художники',
         enProfession: 'designer',
       },
     ],
     writers: [
       {
-        id: 21496,
+        personKinopoiskId: 21496,
         photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_24262.jpg',
         name: 'Фрэнк Дарабонт',
-        enName: 'Фрэнк Дарабонт',
+        nameEng: 'Фрэнк Дарабонт',
         profession: 'редакторы',
         enProfession: 'writer',
       },
       {
-        id: 21496,
+        personKinopoiskId: 21496,
         photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_24262.jpg',
         name: 'Фрэнк Дарабонт',
-        enName: 'Фрэнк Дарабонт',
+        nameEng: 'Фрэнк Дарабонт',
         profession: 'редакторы',
         enProfession: 'writer',
       },
     ],
     musics: [
       {
-        id: 21496,
+        personKinopoiskId: 21496,
         photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_24262.jpg',
         name: 'Фрэнк Дарабонт',
-        enName: 'Фрэнк Дарабонт',
+        nameEng: 'Фрэнк Дарабонт',
         profession: 'композитор',
         enProfession: 'music',
       },
     ],
     editor: {
-      id: 1986116,
+      personKinopoiskId: 1986116,
       photo: 'https://st.kp.yandex.net/images/actor_iphone/iphone360_1986116.jpg',
       name: 'Ричард Фрэнсис-Брюс',
-      enName: 'Richard Francis-Bruce',
+      nameEng: 'Richard Francis-Bruce',
       profession: 'монтажеры',
       enProfession: 'editor',
     },
   };
 
-  // if(!data)  {
+  // if (!response) {
   //   return {
   //     notFound: true,
-  //   }
+  //   };
   // }
   return {
     props: { filmData: data },

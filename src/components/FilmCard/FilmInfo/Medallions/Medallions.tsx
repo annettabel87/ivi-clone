@@ -18,9 +18,9 @@ const Medallions: FC<IMedallionsProps> = ({ persons, rating }) => {
       {persons.map((person) => {
         return (
           <Link
-            href={`${PERSON_ROUTE}/${person.id}`}
+            href={`${PERSON_ROUTE}/${person.personKinopoiskId}`}
             className={styles.medallions_item}
-            key={person.id}
+            key={person.personKinopoiskId}
           >
             <div className={styles.medallion}>
               <div className={styles.medallion_content}>

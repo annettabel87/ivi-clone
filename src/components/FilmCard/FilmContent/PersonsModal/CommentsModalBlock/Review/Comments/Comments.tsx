@@ -6,7 +6,7 @@ import CommentForm from './CommentForm/CommentForm';
 import hiddenIcon from '../../../../../../../assets/icon/arrow-left-gray.svg';
 import styles from './Comments.module.scss';
 
-const Comments: FC<ICommentProps> = ({ comments, hiddenComments }) => {
+const Comments: FC<ICommentProps> = ({ comments, hiddenComments, reviewId, lastCommentId }) => {
   return (
     <div className={styles.comments}>
       <div className={styles.comments__header}>
@@ -21,10 +21,10 @@ const Comments: FC<ICommentProps> = ({ comments, hiddenComments }) => {
           />
         </button>
       </div>
-      <CommentForm />
+      <CommentForm reviewId={reviewId} lastCommentId={lastCommentId} />
       <ul className={styles.comments__content}>
         {comments.map((comment) => (
-          <Comment {...comment} key={comment.id} />
+          <Comment {...comment} key={comment.commentId} />
         ))}
       </ul>
     </div>

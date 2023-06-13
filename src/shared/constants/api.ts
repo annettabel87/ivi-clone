@@ -1,4 +1,5 @@
-export const API_IVI_APP = 'http://localhost:7001';
+export const API_IVI_APP = 'http://localhost:3001';
+export const API_IVI_APP_AUTH = 'http://localhost:7001';
 
 export const API_ENDPOINTS = {
   FILMS: '/movies',
@@ -9,4 +10,5 @@ export const API_ENDPOINTS = {
   LOGIN_GOOGLE: '/auth/registration/google',
   ME: '/users/me',
   PERSON: '/persons/',
+  REVIEWS: '/reviews',
 };
