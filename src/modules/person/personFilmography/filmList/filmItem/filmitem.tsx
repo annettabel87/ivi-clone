@@ -42,13 +42,13 @@ const FilmItem: FC<IFilmItemProps> = ({ film }) => {
               Подробнее
             </button> */}
               <Button
-                as={'button'}
+                as={'link'}
+                href={`/film/${film.filmId}`}
                 border={'1px solid #1f1b2e'}
                 bgColor={'#1f1b2e'}
                 height={'40px'}
                 radius={'8px'}
                 width={'140px'}
-                onClick={() => router.push(`/film/${film.filmId}`)}
                 target="_blank"
                 hoverBg={'#2e2844'}
               >

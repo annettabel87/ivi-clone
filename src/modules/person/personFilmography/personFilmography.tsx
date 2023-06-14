@@ -4,8 +4,8 @@ import { FC, useState } from 'react';
 import numeralize from 'numeralize-ru';
 
 export interface IFilm {
-  length: any;
-  slice(arg0: number, arg1: number): any;
+  // length: any;
+  // slice(arg0: number, arg1: number): any;
   poster: string;
   name: string;
   year: string;
@@ -18,7 +18,7 @@ export interface IFilm {
 }
 
 interface IPersonFilmographyProps {
-  films: IFilm;
+  films: IFilm[];
 }
 
 const PersonFilmography: FC<IPersonFilmographyProps> = ({ films }) => {

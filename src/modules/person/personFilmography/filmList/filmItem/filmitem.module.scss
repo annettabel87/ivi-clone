@@ -32,34 +32,16 @@
         .personFilmographyItemMain {
             display: flex;
             align-items: center;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             justify-content: space-between;
             width: 100%;
-
-                // .personFilmographyItemButton {
-                //     height: 40px;
-                //     border-width: 1px;
-                //     border-radius: 8px;
-                //     padding: 9px 15px;
-                //     background-color: #1f1b2e;
-                //     border-color: #1f1b2e;
-                //     color: $mainColor;
-                //     font-size: $textFontSize;
-                //     line-height: 20px;
-                //     font-weight: bold;
-                //     font-style: normal;
-                //     margin-left: 16px;
-
-                //         &:hover {
-                //             background-color: #2a253e;
-                //         }
-
-                // }
         }
-
 }
 
 @media (max-width: 599.98px) {
+    .personFilmographyItemMain{
+        flex-wrap: wrap !important;
+    }
     .personFilmographyItemMain div:nth-child(1){
         width: 100%;
     }

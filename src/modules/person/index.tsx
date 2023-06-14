@@ -129,9 +129,7 @@ const Person: FC<IPersonProps> = ({ personData }) => {
       </div>
       <Container>
         <Personify photoLink={photoLink} name={name} enName={enName} />
-        <PersonFilmography films = {filmArray} />
-        {/* <FilmList /> */}
-        {/* </PersonFilmography> */}
+        <PersonFilmography films={filmArray} />
       </Container>
     </>
   );
