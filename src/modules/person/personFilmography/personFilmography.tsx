@@ -4,8 +4,6 @@ import { FC, useState } from 'react';
 import numeralize from 'numeralize-ru';
 
 export interface IFilm {
-  // length: any;
-  // slice(arg0: number, arg1: number): any;
   poster: string;
   name: string;
   year: string;
@@ -22,11 +20,11 @@ interface IPersonFilmographyProps {
 }
 
 const PersonFilmography: FC<IPersonFilmographyProps> = ({ films }) => {
-  const [filmSlice, setFilmCount] = useState(films.slice(0, 4));
-  const [showAllFilms, setShowAllFilms] = useState(false);
+  const [filmography, setFilmography] = useState<IFilm[]>(films.slice(0, 4));
+  const [showAllFilms, setShowAllFilms] = useState<boolean>(false);
   const pluralize = numeralize.pluralize;
-  const handleSwitchFilmCount = (array: any) => {
-    setFilmCount(array);
+  const handleSwitchFilmCount = (array: IFilm[]) => {
+    setFilmography(array);
     setShowAllFilms(true);
   };
   const filmQuantity = films.length;
@@ -40,8 +38,8 @@ const PersonFilmography: FC<IPersonFilmographyProps> = ({ films }) => {
         </p>
       </div>
 
-      <FilmList filmArray={filmSlice} />
-      {filmSlice.length >= 4 && !showAllFilms ? (
+      <FilmList filmArray={filmography} />
+      {filmography.length >= 4 && !showAllFilms && (
         <p
           onClick={() => {
             handleSwitchFilmCount(films);
@@ -50,8 +48,6 @@ const PersonFilmography: FC<IPersonFilmographyProps> = ({ films }) => {
         >
           Показать еще
         </p>
-      ) : (
-        <></>
       )}
     </>
   );
