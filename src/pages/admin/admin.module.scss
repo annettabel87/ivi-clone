@@ -1,0 +1,28 @@
+.adminLayout {
+
+    &__header {
+        width: 413px;
+        margin: 20px auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+    }
+
+    &__btn {
+        background-color: transparent;
+        color: #fff;
+        font-size: 15px;
+        opacity: 0.5;
+        transition: all 0.4s;
+
+        &.active {
+            opacity: 1;
+        }
+
+        &:hover {
+            opacity: 0.5;
+        }
+
+    }
+}
