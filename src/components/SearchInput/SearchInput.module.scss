@@ -1,0 +1,46 @@
+@import '../../styles/variables.scss';
+
+.searchInput {
+
+    &__input_body {
+        height: 40px;
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    &__input {
+        padding: 18px 40px 2px 12px;
+        background-color: $cardsTitleColor;
+        color: #1f1b2e;
+        height: 40px;
+        cursor: pointer;
+        display: block;
+        font-family: inherit;  
+        font-size: 16px;     
+        font-weight: 500;
+        line-height: 20px;
+        width: 100%;
+
+        &::placeholder {
+            font-size: 16px;            
+        }
+    }
+
+    &__btn {
+        width: 40px;
+        bottom: 0;
+        height: 40px;
+        top: 0;
+        position: absolute;
+        right: 0;
+
+        &_img {
+            position: absolute;
+            bottom: 12px;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+        }
+    }
+}
