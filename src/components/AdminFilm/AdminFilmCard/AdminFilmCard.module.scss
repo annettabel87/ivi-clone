@@ -1,0 +1,104 @@
+@import '../../../styles/variables.scss';
+
+.adminFilmCard {
+    border: 1px solid black;
+    background-color: rgb(31, 27, 46);
+    padding: 15px 10px;
+    line-height: 1;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 21px;
+    position: relative;
+    box-sizing: border-box;
+    transition: all ease-in 0.3s;
+    cursor: pointer;
+    width: 49%;
+
+    @media screen and (max-width: 528px) {
+        width: 100%;
+    }
+
+    &__label {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    &__input {
+        background-color: #d9d7e0;
+        color: #1f1b2e;
+        padding: 10px 12px;
+        height: 30px;
+        border-radius: 8px;
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 500;
+        margin-bottom: 8px;
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    &__editBtn {
+        height: 25px;
+        width: 25px;
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        background-color: inherit;
+        background-image: url('../../../assets/icon/edit.svg');
+        background-size: cover;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .btnBlock {
+        margin-top: 10px;
+        display: flex;
+        gap: 15px;
+
+        .okBtn,
+        .cancelBtn {
+            height: 30px;
+            width: 30px;
+            padding: 5px;
+            border: 2px solid rgb(130, 129, 135);
+            border-radius: 8px;
+            transition: 0.2s;
+            cursor: pointer;
+            background-color: inherit;
+
+            &:hover {
+                box-shadow: 0 4px 16px rgba(255, 255, 255, 0.24);
+                color: $mainColor;
+            }
+        }
+
+        .okBtn {
+            background-image: url('../../../assets/icon/ok.svg');
+            background-size: cover;
+        }
+
+        .cancelBtn {
+            background-image: url('../../../assets/icon/cancel.svg');
+            background-size: cover;
+        }
+    }
+
+    &__error {
+        color: #ff542e;
+        line-height: 16px;
+        line-height: 16px;
+        font-size: 13px;
+    }
+}
