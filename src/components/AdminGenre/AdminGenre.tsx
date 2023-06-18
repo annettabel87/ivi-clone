@@ -34,8 +34,10 @@ const AdminGenre = () => {
   }, []);
 
   useEffect(() => {
-    const filteredGenres = allGenres.filter((genre) =>
-      genre.genre.toLowerCase().includes(searchedGenre)
+    const filteredGenres = allGenres.filter(
+      (genre) =>
+        genre.genre.toLowerCase().includes(searchedGenre) ||
+        genre.genreEng.toLowerCase().includes(searchedGenre)
     );
     setFilteredGenres(filteredGenres);
   }, [allGenres, searchedGenre]);
