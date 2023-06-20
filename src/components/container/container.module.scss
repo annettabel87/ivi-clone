@@ -1,0 +1,14 @@
+@import '../../styles/variables.scss';
+
+.container{
+    max-width: $maxWidthContainer;
+    padding-left: 250px;
+    padding-right: 250px;
+    margin: 0 auto;
+    margin-top: 10px;
+
+}
+@media (max-width: 879.98px) {
+    .container {
+      padding-left: 30px;
+      padding-right: 30px; } }

@@ -1,0 +1,62 @@
+@import '../../../../../styles/variables.scss';
+
+.personFilmographyItem {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    cursor: pointer;
+    width: 100%;
+
+        .posterImage {
+            border-radius: 8px;
+        }
+
+        .personFilmographyItemTitle, .personFilmographyItemYear {
+            font-size: $textFontSize;
+            line-height: 22px;
+            font-weight: bold;
+            font-style: normal;
+            color: $mainColor;
+            margin-left: 20px;
+        }
+
+        .personFilmographyItemRating {
+            font-size: $smallTextFontSize;
+            line-height: 16px;
+            font-weight: bold;
+            font-style: normal;
+            color: $additionalColor;
+            margin-left: 20px;
+        }
+
+        .personFilmographyItemMain {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            width: 100%;
+        }
+}
+
+@media (max-width: 599.98px) {
+    .personFilmographyItemMain{
+        flex-wrap: wrap !important;
+    }
+    .personFilmographyItemMain div:nth-child(1){
+        width: 100%;
+    }
+    .personFilmographyItemMain div:nth-child(2){
+        width: 100%;
+        margin-left: 18px;
+        margin-top: 4px;
+            a{
+                width: 100% !important;
+            }
+    }
+}
+@media (max-width: 271.98px) {
+    .posterImage{
+        display: none;
+    }
+}
+
