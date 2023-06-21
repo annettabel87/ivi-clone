@@ -1,13 +1,12 @@
 import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
-import styles from './AdminGenre.module.scss';
 import { useEffect, useState } from 'react';
-import genresReducer, { getGenres } from '@/store/reducers/genresReducer';
+import { getGenres } from '@/store/reducers/genresReducer';
 import { IGenre } from '@/shared/Interfaces/FilmPageInterfaces';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import GenreCard from './GenreCard/CenreCard';
+import GenreCard from './GenreCard/GenreCard';
 import SearchInput from '../SearchInput/SearchInput';
+import styles from './AdminGenre.module.scss';
 
-const genres: IGenre[] = [
+const allGenres: IGenre[] = [
   { genre: 'аниме', genreEng: 'anime' },
   { genre: 'биография', genreEng: 'biography' },
   { genre: 'боевик', genreEng: 'action movie' },
@@ -16,22 +15,20 @@ const genres: IGenre[] = [
   { genre: 'детектив', genreEng: 'detective' },
   { genre: 'детский', genreEng: 'children' },
 ];
+
 const AdminGenre = () => {
   const dispatch = useAppDispatch();
-  const [allGenres, setAllGenres] = useState<IGenre[]>(genres);
+  const { genres } = useAppSelector((state) => state.genresReducer);
   const [filteredGenres, setFilteredGenres] = useState<IGenre[]>(genres);
   const [searchedGenre, setSearchedGenre] = useState<string>('');
+  const { errorGenres } = useAppSelector((state) => state.genresReducer);
 
   useEffect(() => {
     const getAllGenres = async () => {
-      //const allGenre = await dispatch(getGenres());
-      //   if (allGenre !== undefined) {
-      //     setAllGenres(allGenre);
-      //   }
-      // console.log(allGenre);
+      await dispatch(getGenres());
     };
     getAllGenres();
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     const filteredGenres = allGenres.filter(
@@ -40,7 +37,7 @@ const AdminGenre = () => {
         genre.genreEng.toLowerCase().includes(searchedGenre)
     );
     setFilteredGenres(filteredGenres);
-  }, [allGenres, searchedGenre]);
+  }, [searchedGenre]);
 
   return (
     <div className={styles.adminGenre}>
@@ -50,6 +47,7 @@ const AdminGenre = () => {
           {allGenres &&
             filteredGenres.map((genre) => <GenreCard key={genre.genre} genre={genre} />)}
         </div>
+        <span className={styles.error}>{errorGenres}</span>
       </div>
     </div>
   );

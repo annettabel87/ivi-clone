@@ -4,12 +4,14 @@ import mobileNavigationReducer from './reducers/mobileNavigationReducer';
 import authReducer from './reducers/authReducer';
 import { createWrapper } from 'next-redux-wrapper';
 import profileReducer from './reducers/profileReducer';
+import genresReducer from './reducers/genresReducer';
 
 export const rootReducer = combineReducers({
   filmPageReducer,
   authReducer,
   profileReducer,
   mobileNavigationReducer,
+  genresReducer,
 });
 
 export const createReduxStore = () => {

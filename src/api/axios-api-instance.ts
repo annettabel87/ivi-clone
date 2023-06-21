@@ -1,11 +1,15 @@
 import axios from 'axios';
-import { API_IVI_APP } from '@/shared/constants/api';
+import { API_IVI_APP, API_IVI_APP_AUTH } from '@/shared/constants/api';
+
+export const axiosAuthApiInstance = axios.create({
+  baseURL: API_IVI_APP_AUTH,
+});
 
 export const axiosApiInstance = axios.create({
   baseURL: API_IVI_APP,
 });
 
-axiosApiInstance.interceptors.request.use(
+axiosAuthApiInstance.interceptors.request.use(
   async (config) => {
     //config.headers.Authorization = authUser();
     config.headers.ContentType = 'application/json';
@@ -16,7 +20,7 @@ axiosApiInstance.interceptors.request.use(
   }
 );
 
-axiosApiInstance.interceptors.response.use(
+axiosAuthApiInstance.interceptors.response.use(
   (config) => {
     return config;
   },
@@ -29,6 +33,16 @@ axiosApiInstance.interceptors.response.use(
         Promise.reject(e);
       }
     }
+    return Promise.reject(error);
+  }
+);
+
+axiosApiInstance.interceptors.request.use(
+  async (config) => {
+    config.headers.ContentType = 'application/json';
+    return config;
+  },
+  (error) => {
     return Promise.reject(error);
   }
 );

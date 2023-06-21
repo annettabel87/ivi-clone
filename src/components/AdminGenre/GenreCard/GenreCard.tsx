@@ -1,6 +1,8 @@
-import { IGenre } from '@/shared/Interfaces/FilmPageInterfaces';
 import { FC, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useAppDispatch, useAppSelector } from '@/store/hooks/hooks';
+import { updateGenre } from '@/store/reducers/genresReducer';
+import { IGenre } from '@/shared/Interfaces/FilmPageInterfaces';
 import styles from './GenreCard.module.scss';
 
 export interface IGenreCardProps {
@@ -9,21 +11,25 @@ export interface IGenreCardProps {
 
 const GenreCard: FC<IGenreCardProps> = ({ genre }) => {
   const [openGenre, setOpenGenre] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  const { errorGenreUpdate } = useAppSelector((state) => state.genresReducer);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IGenre>();
+  } = useForm<IGenre>({ mode: 'onChange' });
 
-  const updateGenre = handleSubmit((data: IGenre) => {
+  const updateGenreHandler: SubmitHandler<IGenre> = (data) => {
     console.log(data);
+    data && dispatch(updateGenre(data));
     setOpenGenre(false);
-  });
+  };
 
   return (
     <div className={styles.genreCard}>
       {openGenre ? (
-        <form className={styles.genreCard__form} onSubmit={updateGenre}>
+        <form className={styles.genreCard__form} onSubmit={handleSubmit(updateGenreHandler)}>
           <label className={styles.genreCard__label}>
             <span className={styles.genreCard__inputTitle}>Жанр</span>
             <div className={styles.genreCard__inputContainer}>
@@ -62,6 +68,7 @@ const GenreCard: FC<IGenreCardProps> = ({ genre }) => {
             <button className={styles.okBtn} type="submit" />
             <button className={styles.cancelBtn} onClick={() => setOpenGenre(false)} />
           </div>
+          <span className={styles.genreCard__error}>{errorGenreUpdate}</span>{' '}
         </form>
       ) : (
         <div className={styles.genreCard__info}>

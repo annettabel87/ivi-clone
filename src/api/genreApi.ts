@@ -8,8 +8,15 @@ export const genreApi = {
     return response.data;
   },
 
-  async getGenresEng(name: string) {
+  async getGenreEng(name: string) {
     const response = await axiosApiInstance.get<IGenre>(`${API_ENDPOINTS.GENRES}${name}`);
+    return response.data;
+  },
+
+  async updateGenre(data: IGenre) {
+    const response = await axiosApiInstance.put<IGenre>(`${API_ENDPOINTS.GENRES}${data.genreEng}`, {
+      ...data,
+    });
     return response.data;
   },
 };
